@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 5.0f;
     public GameObject balle;
+    public bool isHoldingObject = false;
+    public bool isNearPickableObject = false;
 
 
     // Start is called before the first frame update
@@ -24,12 +26,35 @@ public class PlayerController : MonoBehaviour
         this.transform.Translate(x, 0, z);
 
 
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Fire2") && isHoldingObject)
         {
-            Instantiate(balle, transform.position, transform.rotation);
+            GameObject baballe = Instantiate(balle, transform.position, transform.rotation);
+            Vector3 movement = new Vector3(1000, 0, 0);
+            baballe.GetComponent<Rigidbody>().AddForce(movement);
+            isHoldingObject = false;
 
+        }
+        else if (Input.GetButtonDown("Fire2") && !isHoldingObject && isNearPickableObject)
+        {
+            isHoldingObject = true;
         }
 
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Pickable")
+        {
+            isNearPickableObject = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Pickable")
+        {
+            isNearPickableObject = false;
+        }
     }
 }
