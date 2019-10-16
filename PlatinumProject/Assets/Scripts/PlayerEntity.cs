@@ -28,6 +28,8 @@ public class PlayerEntity : MonoBehaviour
     // Pick Up
     [Header("Pick Up")]
     private bool canPick = false;
+    private bool isHoldingItem = false;
+    private GameObject targetObjet;
     public GameObject pickedObject;
     public GameObject pointToHold;
     private Vector3 positionHolded;
@@ -72,6 +74,8 @@ public class PlayerEntity : MonoBehaviour
         GUILayout.BeginVertical();
         GUILayout.Label("Velocity = " + velocity);
         GUILayout.Label("moveDir = " + moveDir);
+        GUILayout.Label(canPick ? "canPick" : "notPick");
+        GUILayout.Label(isHoldingItem ? "hold" : "empty");
         GUILayout.Label("Pos spawn = " + positionHolded);
         GUILayout.EndVertical();
     }
@@ -145,7 +149,23 @@ public class PlayerEntity : MonoBehaviour
         return canPick;
     }
 
+    public bool IsHoldingItem()
+    {
+        return isHoldingItem;
+    }
 
+    public void PickItem()
+    {
+        if (isHoldingItem)
+        {
+            return;
+        }
+        pickedObject = targetObjet;
+        targetObjet = null;
+        pickedObject.transform.position = positionHolded;
+        canPick = false;
+        isHoldingItem = true;
+    }
 
     #endregion
 
@@ -155,4 +175,16 @@ public class PlayerEntity : MonoBehaviour
 
     #endregion
 
+    #region Collisions/Trigger Fonctions
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Pickable")
+        {
+            canPick = true;
+            targetObjet = other.gameObject;
+        }
+    }
+
+    #endregion
 }

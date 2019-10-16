@@ -36,5 +36,10 @@ public class PlayerController : MonoBehaviour
 
         entity.Move(moveDir);
         //entity2.Move(moveDir2);
+
+        if (mainPlayer.GetButtonDown("PickUp") && entity.CanPick())
+        {
+            entity.PickItem();
+        }
     }
 }
