@@ -22,16 +22,16 @@ public class PlayerEntity : MonoBehaviour
 
     //Rigidbody
     [Header("Rigidbody")]
-    public Rigidbody rigidbody;
+    public Rigidbody _rigidbody;
 
     // Debug
     [Header("Debug")]
     public bool _debugMode = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -40,10 +40,13 @@ public class PlayerEntity : MonoBehaviour
         UpdateMove();
         UpdateModelOrient();
 
+
+        //_rigidbody.velocity = new Vector3(Mathf.Abs(velocity.x * moveDir.x), 0, Mathf.Abs(velocity.y * moveDir.y));
         Vector3 movePosition = transform.position;
         movePosition.x += velocity.x * Time.fixedDeltaTime;
         movePosition.z += velocity.y * Time.fixedDeltaTime;
         transform.position = movePosition;
+
     }
 
     private void OnGUI()
@@ -54,7 +57,7 @@ public class PlayerEntity : MonoBehaviour
         }
 
         GUILayout.BeginVertical();
-        GUILayout.Label("Velocity = " + velocity);
+        GUILayout.Label("Velocity = " + _rigidbody.velocity);
         GUILayout.Label("moveDir = " + moveDir);
         GUILayout.EndVertical();
     }
