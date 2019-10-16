@@ -485,6 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 594869548}
+  entity2: {fileID: 741177982}
 --- !u!4 &236894453
 Transform:
   m_ObjectHideFlags: 0
