@@ -499,13 +499,8 @@ MonoBehaviour:
     customControllers: []
     controllerMapLayoutManagerRuleSets: []
     controllerMapEnablerRuleSets: []
-<<<<<<< HEAD
     playerIdCounter: 7
     actionIdCounter: 3
-=======
-    playerIdCounter: 2
-    actionIdCounter: 4
->>>>>>> da04268cdae0c36ca65576ebfc7d552a3c698e87
     actionCategoryIdCounter: 1
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 1
