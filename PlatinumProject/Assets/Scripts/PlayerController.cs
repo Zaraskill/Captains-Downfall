@@ -11,11 +11,11 @@ public class PlayerController : MonoBehaviour
     private Player mainPlayer;
     //private Player mainPlayer2;
 
-
     // Start is called before the first frame update
     void Start()
     {
-        mainPlayer = ReInput.players.GetPlayer("Player0");
+        mainPlayer = ReInput.players.GetPlayer(entity.playerID);
+
         //mainPlayer2 = ReInput.players.GetPlayer("Player1");
     }
 
