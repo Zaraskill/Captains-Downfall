@@ -4,23 +4,40 @@ using UnityEngine;
 
 public class PlayerEntity : MonoBehaviour
 {
+    // Player
+    [Header("Player")]
+    public int playerID = 0;
+    
     // Move
     [Header("Move")]
     [Range(0f, 100f)]  public float acceleration = 20f;
     public float moveSpeedMax = 10f;
     private Vector2 moveDir;
     private Vector2 velocity = Vector2.zero;
+    private Vector2 orientDir = Vector2.right;
 
     // Frictions
     [Header("Friction")]
     [Range(0f, 100f)] public float friction;
     [Range(0f, 100f)] public float turnFriction;
 
-    private Vector2 orientDir = Vector2.right;
     // Object Models
     [Header("Models")]
     public List<GameObject> modelObjs;
 
+    // Pick Up
+    [Header("Pick Up")]
+    private bool canPick = false;
+    public GameObject pickedObject;
+    public GameObject pointToHold;
+    private Vector3 positionHolded;
+
+    // Throw
+    [Header("Throw")]
+    private bool canThrow = false;
+    private Vector3 throwDir;
+    private float power = 0f;
+    public float powerMax = 10f;
 
     //Rigidbody
     [Header("Rigidbody")]
@@ -34,6 +51,7 @@ public class PlayerEntity : MonoBehaviour
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        positionHolded = pointToHold.transform.position;
     }
 
     // Update is called once per frame
@@ -41,14 +59,7 @@ public class PlayerEntity : MonoBehaviour
     {
         UpdateMove();
         UpdateModelOrient();
-
-
-        //_rigidbody.velocity = new Vector3(Mathf.Abs(velocity.x * moveDir.x), 0, Mathf.Abs(velocity.y * moveDir.y));
-        Vector3 movePosition = transform.position;
-        movePosition.x += velocity.x * Time.fixedDeltaTime;
-        movePosition.z += velocity.y * Time.fixedDeltaTime;
-        transform.position = movePosition;
-
+        UpdatePostion();
     }
 
     private void OnGUI()
@@ -61,22 +72,20 @@ public class PlayerEntity : MonoBehaviour
         GUILayout.BeginVertical();
         GUILayout.Label("Velocity = " + velocity);
         GUILayout.Label("moveDir = " + moveDir);
+        GUILayout.Label("Pos spawn = " + positionHolded);
         GUILayout.EndVertical();
     }
 
-    private void UpdateModelOrient()
+    private void UpdatePostion()
     {
-        float angle =  -Vector2.SignedAngle(Vector2.right, orientDir);
-        Vector3 eulerAngles = modelObjs[0].transform.eulerAngles;
-        eulerAngles.y = angle;
-        modelObjs[0].transform.eulerAngles = eulerAngles;
-        modelObjs[1].transform.eulerAngles = eulerAngles;
+        //_rigidbody.velocity = new Vector3(Mathf.Abs(velocity.x * moveDir.x), 0, Mathf.Abs(velocity.y * moveDir.y));
+        Vector3 movePosition = transform.position;
+        movePosition.x += velocity.x * Time.fixedDeltaTime;
+        movePosition.z += velocity.y * Time.fixedDeltaTime;
+        transform.position = movePosition;
     }
 
-    public void Move(Vector2 dir)
-    {
-        moveDir = dir;
-    }
+    #region Move Fonctions
 
     private void UpdateMove()
     {
@@ -112,4 +121,38 @@ public class PlayerEntity : MonoBehaviour
             }
         }
     }
+
+    public void Move(Vector2 dir)
+    {
+        moveDir = dir;
+    }
+
+    private void UpdateModelOrient()
+    {
+        float angle = -Vector2.SignedAngle(Vector2.right, orientDir);
+        Vector3 eulerAngles = modelObjs[0].transform.eulerAngles;
+        eulerAngles.y = angle;
+        modelObjs[0].transform.eulerAngles = eulerAngles;
+        modelObjs[1].transform.eulerAngles = eulerAngles;
+    }
+
+    #endregion
+
+    #region PickUp Fonctions
+
+    public bool CanPick()
+    {
+        return canPick;
+    }
+
+
+
+    #endregion
+
+    #region Throw Fonctions
+
+
+
+    #endregion
+
 }
