@@ -17,8 +17,10 @@ public class PlayerEntity : MonoBehaviour
     [Range(0f, 100f)] public float turnFriction;
 
     private Vector2 orientDir = Vector2.right;
-    public GameObject modelObj;
-    public GameObject modelObj2;
+    // Object Models
+    [Header("Models")]
+    public List<GameObject> modelObjs;
+
 
     //Rigidbody
     [Header("Rigidbody")]
@@ -57,7 +59,7 @@ public class PlayerEntity : MonoBehaviour
         }
 
         GUILayout.BeginVertical();
-        GUILayout.Label("Velocity = " + _rigidbody.velocity);
+        GUILayout.Label("Velocity = " + velocity);
         GUILayout.Label("moveDir = " + moveDir);
         GUILayout.EndVertical();
     }
@@ -65,10 +67,10 @@ public class PlayerEntity : MonoBehaviour
     private void UpdateModelOrient()
     {
         float angle =  -Vector2.SignedAngle(Vector2.right, orientDir);
-        Vector3 eulerAngles = modelObj.transform.eulerAngles;
+        Vector3 eulerAngles = modelObjs[0].transform.eulerAngles;
         eulerAngles.y = angle;
-        modelObj.transform.eulerAngles = eulerAngles;
-        modelObj2.transform.eulerAngles = eulerAngles;
+        modelObjs[0].transform.eulerAngles = eulerAngles;
+        modelObjs[1].transform.eulerAngles = eulerAngles;
     }
 
     public void Move(Vector2 dir)
