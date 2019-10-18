@@ -32,4 +32,14 @@ public class PickupableObject : MonoBehaviour
     {
         this.velocity = velocity;
     }
+
+    public bool IsPickable()
+    {
+        return isPickable;
+    }
+
+    public void SetPickable(bool pick)
+    {
+        isPickable = pick;
+    }
 }
