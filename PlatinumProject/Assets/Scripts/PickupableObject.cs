@@ -21,6 +21,11 @@ public class PickupableObject : MonoBehaviour
         transform.position = movePosition;
     }
 
+    public Vector2 GetVelocity()
+    {
+        return velocity;
+    }
+
     public void SetVelocity(Vector3 velocity)
     {
         this.velocity = velocity;

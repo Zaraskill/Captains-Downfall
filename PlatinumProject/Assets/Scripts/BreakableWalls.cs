@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BreakableWalls : MonoBehaviour
 {
+    [Header("Health Points")]
     public int startHealthPoints = 2;
     [SerializeField]
     private int currentHealthPoints;
+
+    [Header("Components")]
     private Animator myAnimator;
 
     // Start is called before the first frame update
@@ -24,7 +27,7 @@ public class BreakableWalls : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Ball"))
+        if(collision.gameObject.CompareTag("Pickable"))
         {
             currentHealthPoints -= 1;
 
