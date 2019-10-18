@@ -30,11 +30,11 @@ public class PlayerEntity : MonoBehaviour
 
     // Pick Up
     [Header("Pick Up")]
-    public GameObject pickedObject;
+    public PickupableObject pickedObject;
     public GameObject pointToHold;
     private bool canPick = false;
     private bool isHoldingItem = false;
-    private GameObject targetObjet;
+    private PickupableObject targetObjet;
 
 
     // Throw
@@ -44,6 +44,9 @@ public class PlayerEntity : MonoBehaviour
     private bool canThrow = false;
     private Vector2 throwDir;
     private float power = 0f;
+
+    // Knockback
+    
     
 
     //Rigidbody
@@ -201,7 +204,7 @@ public class PlayerEntity : MonoBehaviour
         throwDir = orientDir;
         pickedObject.transform.parent = null;
         Vector2 velocity = throwDir * power;
-        pickedObject.GetComponent<PickupableObject>().SetVelocity(velocity);
+        pickedObject.SetVelocity(velocity);
         pickedObject.GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().mass -= pickedObject.GetComponent<Rigidbody>().mass;
         pickedObject = null;
@@ -213,8 +216,10 @@ public class PlayerEntity : MonoBehaviour
 
     #region Knockback Fonctions
 
-    private void Knockback()
+    private void Knockback(Vector2 knockDir, float powerKnock)
     {
+        // Récupère l'orientation de l'objet/canon ainsi que la puissance  afin d'envoyer le player dans le sens
+        orientDir = knockDir;
 
     }
 
@@ -234,10 +239,15 @@ public class PlayerEntity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pickable" && !isHoldingItem && other.GetComponent<PickupableObject>().IsPickable())
+        if (other.tag == "Pickable" && !isHoldingItem)
         {
-            canPick = true;
-            targetObjet = other.gameObject;
+            PickupableObject objectPick = other.GetComponent<PickupableObject>();
+            if (objectPick.IsPickable())
+            {
+                canPick = true;
+                targetObjet = objectPick;
+            }
+            
         }
     }
 
@@ -246,6 +256,7 @@ public class PlayerEntity : MonoBehaviour
         if (collision.gameObject.tag == "Pickable")
         {
             knockbackDir = collision.gameObject.GetComponent<PickupableObject>().GetVelocity();
+            Destroy(collision.gameObject);
         }
     }
 
