@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 
+
+// Code crée et géré par Corentin
 public class PlayerController : MonoBehaviour
 {
     public PlayerEntity entity;

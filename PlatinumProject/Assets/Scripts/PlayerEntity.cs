@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Code crée et géré par Corentin
 public class PlayerEntity : MonoBehaviour
 {
     // Player
@@ -204,6 +206,15 @@ public class PlayerEntity : MonoBehaviour
 
     #endregion
 
+    #region Knockback Fonctions
+
+    private void Knockback(Vector2 knockbackDir)
+    {
+
+    }
+
+    #endregion
+
     #region Collisions/Trigger Fonctions
 
     private void OnTriggerEnter(Collider other)
@@ -212,6 +223,14 @@ public class PlayerEntity : MonoBehaviour
         {
             canPick = true;
             targetObjet = other.gameObject;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Pickable")
+        {
+            //Knockback(collision.gameObject.GetComponent<PickupableObject>.GetVelocity());
         }
     }
 
