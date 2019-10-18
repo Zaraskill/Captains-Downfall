@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Code créé et géré par Siméon
 public class Canon : MonoBehaviour
 {
     [Header("Rotation")]

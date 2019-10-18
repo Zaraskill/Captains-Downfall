@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Code créé et géré par Siméon
 public class PickupableObject : MonoBehaviour
 {
     private Vector2 velocity = Vector2.zero;
+    private bool isPickable = true;
 
     // Start is called before the first frame update
     void Start()

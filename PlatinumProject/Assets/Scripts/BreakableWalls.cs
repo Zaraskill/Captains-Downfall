@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Code créé et géré par Siméon
 public class BreakableWalls : MonoBehaviour
 {
     [Header("Health Points")]
@@ -22,7 +23,14 @@ public class BreakableWalls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentHealthPoints == 1)
+        {
+            myAnimator.SetTrigger("1HPLeft");
+        }
+        else if (currentHealthPoints == 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -30,15 +38,6 @@ public class BreakableWalls : MonoBehaviour
         if(collision.gameObject.CompareTag("Pickable"))
         {
             currentHealthPoints -= 1;
-
-            if (currentHealthPoints == 1)
-            {
-                myAnimator.SetTrigger("1HPLeft");
-            }
-            else if (currentHealthPoints == 0)
-            {
-                Destroy(this.gameObject);
-            }
         }
     }
 }
