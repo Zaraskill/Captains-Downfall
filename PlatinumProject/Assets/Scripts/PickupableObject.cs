@@ -61,5 +61,9 @@ public class PickupableObject : MonoBehaviour
             collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
             Destroy(this.gameObject);
         }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
