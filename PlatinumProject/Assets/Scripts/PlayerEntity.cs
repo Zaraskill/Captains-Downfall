@@ -17,7 +17,6 @@ public class PlayerEntity : MonoBehaviour
     private Vector2 moveDir;
     private Vector2 velocity = Vector2.zero;
     private Vector2 orientDir = Vector2.right;
-    private Vector2 knockbackDir = Vector2.zero;
 
     // Frictions
     [Header("Friction")]
@@ -46,7 +45,7 @@ public class PlayerEntity : MonoBehaviour
     private float power = 0f;
 
     // Knockback
-    
+    private bool isKnocked = false;
     
 
     //Rigidbody
@@ -108,7 +107,7 @@ public class PlayerEntity : MonoBehaviour
             float turnFrictionWithRatio = turnFriction * frictionRatio;
 
             velocity += moveDir * acceleration * Time.fixedDeltaTime;
-            if (velocity.sqrMagnitude > moveSpeedMax * moveSpeedMax)
+            if (velocity.sqrMagnitude > moveSpeedMax * moveSpeedMax && !isKnocked)
             {
                 velocity = velocity.normalized * moveSpeedMax;
             }
@@ -201,11 +200,8 @@ public class PlayerEntity : MonoBehaviour
 
     public void Throw()
     {
-        throwDir = orientDir;
         pickedObject.transform.parent = null;
-        Vector2 velocity = throwDir * power;
-        pickedObject.SetVelocity(velocity);
-        pickedObject.GetComponent<Rigidbody>().useGravity = true;
+        pickedObject.Throw(orientDir, power);
         GetComponent<Rigidbody>().mass -= pickedObject.GetComponent<Rigidbody>().mass;
         pickedObject = null;
         isHoldingItem = false;
@@ -216,21 +212,18 @@ public class PlayerEntity : MonoBehaviour
 
     #region Knockback Fonctions
 
-    private void Knockback(Vector2 knockDir, float powerKnock)
+    public void Knockback(Vector2 knockDir, float powerKnock)
     {
         // Récupère l'orientation de l'objet/canon ainsi que la puissance  afin d'envoyer le player dans le sens
+        isKnocked = true;
         orientDir = knockDir;
-
+        moveDir = Vector2.zero;
+        velocity = knockDir * powerKnock;
     }
 
-    public void SetKnockbackDir(Vector2 knockback)
+    public bool IsKnocked()
     {
-        knockbackDir = knockback;
-    }
-
-    public Vector2 GetKnockbackDir()
-    {
-        return knockbackDir;
+        return isKnocked;
     }
 
     #endregion
@@ -251,14 +244,6 @@ public class PlayerEntity : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Pickable")
-        {
-            knockbackDir = collision.gameObject.GetComponent<PickupableObject>().GetVelocity();
-            Destroy(collision.gameObject);
-        }
-    }
 
     #endregion
 }
