@@ -41,5 +41,13 @@ public class PlayerController : MonoBehaviour
         {
             entity.PickItem();
         }
+        else if (mainPlayer.GetButton("PickUp") && entity.IsHoldingItem())
+        {
+            entity.ImprovePower();
+        }
+        else if (mainPlayer.GetButtonUp("PickUp") && entity.IsHoldingItem())
+        {
+            entity.Throw();
+        }
     }
 }

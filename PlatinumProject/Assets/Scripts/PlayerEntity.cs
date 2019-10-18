@@ -27,19 +27,21 @@ public class PlayerEntity : MonoBehaviour
 
     // Pick Up
     [Header("Pick Up")]
+    public GameObject pickedObject;
+    public GameObject pointToHold;
     private bool canPick = false;
     private bool isHoldingItem = false;
     private GameObject targetObjet;
-    public GameObject pickedObject;
-    public GameObject pointToHold;
-    private Vector3 positionHolded;
+
 
     // Throw
     [Header("Throw")]
+    public float powerUpgrade = 50f;
+    [Range(0f, 150f)]  public float powerMax = 20f;
     private bool canThrow = false;
-    private Vector3 throwDir;
+    private Vector2 throwDir;
     private float power = 0f;
-    public float powerMax = 10f;
+    
 
     //Rigidbody
     [Header("Rigidbody")]
@@ -53,7 +55,6 @@ public class PlayerEntity : MonoBehaviour
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        positionHolded = pointToHold.transform.position;
     }
 
     // Update is called once per frame
@@ -74,9 +75,9 @@ public class PlayerEntity : MonoBehaviour
         GUILayout.BeginVertical();
         GUILayout.Label("Velocity = " + velocity);
         GUILayout.Label("moveDir = " + moveDir);
-        GUILayout.Label(canPick ? "canPick" : "notPick");
+        GUILayout.Label(canPick ? "canPick" : "cantPick");
         GUILayout.Label(isHoldingItem ? "hold" : "empty");
-        GUILayout.Label("Pos spawn = " + positionHolded);
+        GUILayout.Label("power = " + power);
         GUILayout.EndVertical();
     }
 
@@ -161,17 +162,45 @@ public class PlayerEntity : MonoBehaviour
             return;
         }
         pickedObject = targetObjet;
+        pickedObject.GetComponent<Rigidbody>().useGravity = false;
         targetObjet = null;
-        pickedObject.transform.position = positionHolded;
+        pickedObject.transform.SetParent(modelObjs[0].transform);
+        pickedObject.transform.position = pointToHold.transform.position;        
         canPick = false;
         isHoldingItem = true;
+        
     }
 
     #endregion
 
     #region Throw Fonctions
 
+    public bool CanThrow()
+    {
+        return canThrow;
+    }
 
+    public void ImprovePower()
+    {
+        if (power >= powerMax)
+        {
+            power = powerMax;
+            return;
+        }
+        power += powerUpgrade * Time.deltaTime;
+    }
+
+    public void Throw()
+    {
+        throwDir = orientDir;
+        pickedObject.transform.parent = null;
+        Vector2 velocity = throwDir * power;
+        pickedObject.GetComponent<PickupableObject>().SetVelocity(velocity);
+        pickedObject.GetComponent<Rigidbody>().useGravity = true;
+        pickedObject = null;
+        isHoldingItem = false;
+        power = 0f;
+    }
 
     #endregion
 
@@ -179,7 +208,7 @@ public class PlayerEntity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pickable")
+        if (other.tag == "Pickable" && !isHoldingItem)
         {
             canPick = true;
             targetObjet = other.gameObject;

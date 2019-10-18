@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickupableObject : MonoBehaviour
 {
-    private Vector3 velocity = Vector3.zero;
+    private Vector2 velocity = Vector2.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +15,14 @@ public class PickupableObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 movePosition = transform.position;
+        movePosition.x += velocity.x * Time.fixedDeltaTime;
+        movePosition.z += velocity.y * Time.fixedDeltaTime;
+        transform.position = movePosition;
+    }
+
+    public void SetVelocity(Vector3 velocity)
+    {
+        this.velocity = velocity;
     }
 }
