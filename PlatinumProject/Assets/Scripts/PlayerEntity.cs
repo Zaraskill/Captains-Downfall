@@ -130,6 +130,10 @@ public class PlayerEntity : MonoBehaviour
                 velocity -= frictionToApply * frictionDir;
             }
         }
+        else if (velocity == Vector2.zero)
+        {
+            isKnocked = false;
+        }
     }
 
     public void Move(Vector2 dir)
@@ -244,13 +248,10 @@ public class PlayerEntity : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void HittingWall()
     {
-        if (collision.gameObject.tag == "Wall")
-        {
-            isKnocked = false;
-            velocity = Vector2.zero;
-        }
+        isKnocked = false;
+        velocity = Vector2.zero;
     }
 
     #endregion
