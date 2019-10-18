@@ -13,6 +13,9 @@ public class Canon : MonoBehaviour
     public float timeInsideCanon = 0f;
     public float timeToExpel = 3f;
 
+    private Vector2 orientDir = Vector2.right;
+    private float knockPower = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +28,7 @@ public class Canon : MonoBehaviour
         if (isRotating)
         {
             UpdateRotate();
-            EjectPlayer();
+            RotateCanon();
         }
     }
 
@@ -34,13 +37,11 @@ public class Canon : MonoBehaviour
         transform.Rotate(0, rotateSpeed, 0);
     }
 
-    private void EjectPlayer()
+    private void RotateCanon()
     {
         timeInsideCanon += Time.fixedDeltaTime;
         if(timeInsideCanon > timeToExpel || Input.GetButtonDown("PickUp"))
         {
-            // Ejection du Player
-
             timeInsideCanon = 0f;
             isRotating = false;
         }

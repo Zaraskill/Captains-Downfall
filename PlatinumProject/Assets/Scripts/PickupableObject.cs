@@ -8,6 +8,9 @@ public class PickupableObject : MonoBehaviour
     private Vector2 velocity = Vector2.zero;
     private bool isPickable = true;
 
+    private Vector2 orient = Vector2.zero;
+    private float powerKnock = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +20,18 @@ public class PickupableObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Vector3 movePosition = transform.position;
         movePosition.x += velocity.x * Time.fixedDeltaTime;
         movePosition.z += velocity.y * Time.fixedDeltaTime;
         transform.position = movePosition;
+    }
+
+    public void Throw(Vector2 orient, float power)
+    {
+        this.orient = orient;
+        powerKnock = power;
+        velocity = orient * power;
     }
 
     public Vector2 GetVelocity()
@@ -41,5 +52,14 @@ public class PickupableObject : MonoBehaviour
     public void SetPickable(bool pick)
     {
         isPickable = pick;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
+            Destroy(this.gameObject);
+        }
     }
 }
