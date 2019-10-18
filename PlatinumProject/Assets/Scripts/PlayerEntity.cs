@@ -46,7 +46,6 @@ public class PlayerEntity : MonoBehaviour
 
     // Knockback
     private bool isKnocked = false;
-    
 
     //Rigidbody
     [Header("Rigidbody")]
@@ -123,6 +122,7 @@ public class PlayerEntity : MonoBehaviour
             float frictionToApply = friction * Time.fixedDeltaTime;
             if (velocity.sqrMagnitude <= frictionToApply * frictionToApply)
             {
+                isKnocked = false;
                 velocity = Vector2.zero;
             }
             else
@@ -244,6 +244,14 @@ public class PlayerEntity : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            isKnocked = false;
+            velocity = Vector2.zero;
+        }
+    }
 
     #endregion
 }
