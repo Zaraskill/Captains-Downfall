@@ -56,7 +56,7 @@ public class PickupableObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player") && !isPickable)
         {
             collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
             Destroy(this.gameObject);
