@@ -941,6 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd09d2adbed42b34999de6c750fc589b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointToThrow: {fileID: 2101636772452447483}
   rotateSpeed: 30
   isRotating: 0
   timeInsideCanon: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 // Code créé et géré par Siméon
 public class Canon : MonoBehaviour
 {
+
+    public GameObject pointToThrow;
     [Header("Rotation")]
     public float rotateSpeed = 5f;
     public bool isRotating = false;
@@ -37,8 +39,9 @@ public class Canon : MonoBehaviour
 
         if (isShooting)
         {
-            playerCollisionned.transform.position = gameObject.transform.GetChild(0).position;
+            //SoundManager.managerSound.MakeCanonSound();
             playerCollisionned.gameObject.SetActive(true);
+            playerCollisionned.transform.position = pointToThrow.transform.position;
             orientDir = -transform.forward;
             Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
             playerCollisionned.Knockback(orientDirCanon, knockPower);
