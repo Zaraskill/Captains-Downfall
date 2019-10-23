@@ -941,11 +941,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd09d2adbed42b34999de6c750fc589b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 10
+  rotateSpeed: 30
   isRotating: 0
   timeInsideCanon: 0
   timeToExpel: 3
-  knockPower: 30
+  knockPower: 50
 --- !u!1 &8625977081222124244
 GameObject:
   m_ObjectHideFlags: 0
