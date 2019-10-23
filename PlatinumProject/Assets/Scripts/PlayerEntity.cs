@@ -48,6 +48,13 @@ public class PlayerEntity : MonoBehaviour
     // Knockback
     private bool isKnocked = false;
 
+    // Smoke Animation
+    [Header("Throw")]
+    public GameObject smoke;
+    public float startTimeBtwSpawns;
+    public float durationTime;
+    private float timeBtwSpawns;
+
     //Rigidbody
     [Header("Rigidbody")]
     public Rigidbody _rigidbody;
@@ -70,6 +77,7 @@ public class PlayerEntity : MonoBehaviour
             UpdateMove();
             UpdateModelOrient();
             UpdatePostion();
+            UpdateSmoke();
         }
     }
 
@@ -273,4 +281,25 @@ public class PlayerEntity : MonoBehaviour
 
     #endregion
 
+    #region Animations Smoke Fonctions
+
+    private void UpdateSmoke()
+    {
+        if (moveDir != Vector2.zero)
+        {
+            if (timeBtwSpawns <= 0)
+            {
+                //spawn Smoke game object
+                GameObject instance = (GameObject)Instantiate(smoke, transform.position, Quaternion.identity);
+                Destroy(instance, durationTime);
+                timeBtwSpawns = startTimeBtwSpawns;
+            }
+            else
+            {
+                timeBtwSpawns -= Time.deltaTime;
+            }
+        }
+    }
+
+    #endregion
 }

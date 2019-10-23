@@ -176,7 +176,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 563a1dd1b3985de4d8c8cd5b1f15be67, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -352,6 +352,9 @@ MonoBehaviour:
   pointToHold: {fileID: 1700357724}
   powerUpgrade: 20
   powerMax: 30
+  smoke: {fileID: 0}
+  startTimeBtwSpawns: 0
+  durationTime: 0
   _rigidbody: {fileID: 0}
   _debugMode: 0
 --- !u!54 &288079974
@@ -1778,6 +1781,9 @@ MonoBehaviour:
   pointToHold: {fileID: 1173091898}
   powerUpgrade: 20
   powerMax: 30
+  smoke: {fileID: 9052322529045278513, guid: 4eacb2370c1a0044982d492557f7c9ab, type: 3}
+  startTimeBtwSpawns: 0.5
+  durationTime: 1
   _rigidbody: {fileID: 0}
   _debugMode: 1
 --- !u!54 &2078816779
@@ -1835,7 +1841,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099651108}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 300, y: 5, z: 200}
