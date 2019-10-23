@@ -181,7 +181,7 @@ public class PlayerEntity : MonoBehaviour
         }
         pickedObject = targetObjet;
         pickedObject.GetComponent<Rigidbody>().useGravity = false;
-        //pickedObject.GetComponent<PickupableObject>().SetPickable(false);
+        pickedObject.GetComponent<PickupableObject>().SetPickable(false);
         targetObjet = null;
         pickedObject.transform.SetParent(modelObjs[0].transform);
         pickedObject.transform.position = pointToHold.transform.position;        
