@@ -8,6 +8,7 @@ TagManager:
   - Pickable
   - Ball
   - Wall
+  - DeathZone
   layers:
   - Default
   - TransparentFX

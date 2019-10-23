@@ -9,6 +9,7 @@ public class PlayerEntity : MonoBehaviour
     // Player
     [Header("Player")]
     public int playerID = 0;
+    private bool isDead = false;
     
     // Move
     [Header("Move")]
@@ -64,9 +65,12 @@ public class PlayerEntity : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        UpdateMove();
-        UpdateModelOrient();
-        UpdatePostion();
+        if (!isDead)
+        {
+            UpdateMove();
+            UpdateModelOrient();
+            UpdatePostion();
+        }
     }
 
     private void OnGUI()
@@ -92,6 +96,11 @@ public class PlayerEntity : MonoBehaviour
         movePosition.x += velocity.x * Time.fixedDeltaTime;
         movePosition.z += velocity.y * Time.fixedDeltaTime;
         transform.position = movePosition;
+    }
+
+    private void TimeToDie()
+    {
+        isDead = true;
     }
 
     #region Move Fonctions
@@ -248,6 +257,14 @@ public class PlayerEntity : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "DeathZone")
+        {
+            TimeToDie();
+        }
+    }
+
     public void HittingWall()
     {
         isKnocked = false;
@@ -255,4 +272,5 @@ public class PlayerEntity : MonoBehaviour
     }
 
     #endregion
+
 }
