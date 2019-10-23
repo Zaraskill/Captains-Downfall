@@ -13,8 +13,12 @@ public class Canon : MonoBehaviour
     public float timeInsideCanon = 0f;
     public float timeToExpel = 3f;
 
-    private Vector2 orientDir = Vector2.right;
-    private float knockPower = 3f;
+    private Vector2 orientDir = Vector2.zero;
+    public float knockPower = 10f;
+
+    private bool isShooting = false;
+
+    private PlayerEntity playerCollisionned;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +34,14 @@ public class Canon : MonoBehaviour
             UpdateRotate();
             RotateCanon();
         }
+
+        if (isShooting)
+        {
+            playerCollisionned.transform.position = gameObject.transform.GetChild(0).position;
+            playerCollisionned.gameObject.SetActive(true);
+            playerCollisionned.Knockback(orientDir, knockPower);
+            isShooting = false;
+        }
     }
 
     private void UpdateRotate()
@@ -40,10 +52,11 @@ public class Canon : MonoBehaviour
     private void RotateCanon()
     {
         timeInsideCanon += Time.fixedDeltaTime;
-        if(timeInsideCanon > timeToExpel || Input.GetButtonDown("PickUp"))
+        if (timeInsideCanon > timeToExpel || Input.GetKeyDown(KeyCode.A))
         {
-            timeInsideCanon = 0f;
+            isShooting = true;
             isRotating = false;
+            timeInsideCanon = 0f;
         }
     }
 
@@ -52,6 +65,8 @@ public class Canon : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isRotating = true;
+            playerCollisionned = collision.gameObject.GetComponent<PlayerEntity>();
+            playerCollisionned.gameObject.SetActive(false);
         }
     }
 }

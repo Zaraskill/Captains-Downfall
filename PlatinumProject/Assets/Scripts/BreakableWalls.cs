@@ -42,11 +42,11 @@ public class BreakableWalls : MonoBehaviour
         else if(collision.gameObject.CompareTag("Player"))
         {
             PlayerEntity playerEntity = collision.gameObject.GetComponent<PlayerEntity>();
-            playerEntity.HittingWall();
             if (playerEntity.IsKnocked())
             {
                 currentHealthPoints -= 1;
             }
+            playerEntity.HittingWall();
         }
     }
 }
