@@ -41,6 +41,7 @@ public class PlayerEntity : MonoBehaviour
     [Header("Throw")]
     public float powerUpgrade = 50f;
     [Range(0f, 150f)]  public float powerMax = 20f;
+    private bool isChargingPower = false;
     private bool canThrow = false;
     private Vector2 throwDir;
     private float power = 0f;
@@ -66,7 +67,7 @@ public class PlayerEntity : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponentInChildren<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -76,7 +77,7 @@ public class PlayerEntity : MonoBehaviour
         {
             UpdateMove();
             UpdateModelOrient();
-            UpdatePostion();
+            UpdatePosition();
             UpdateSmoke();
         }
     }
@@ -97,9 +98,8 @@ public class PlayerEntity : MonoBehaviour
         GUILayout.EndVertical();
     }
 
-    private void UpdatePostion()
+    private void UpdatePosition()
     {
-        //_rigidbody.velocity = new Vector3(Mathf.Abs(velocity.x * moveDir.x), 0, Mathf.Abs(velocity.y * moveDir.y));
         Vector3 movePosition = transform.position;
         movePosition.x += velocity.x * Time.fixedDeltaTime;
         movePosition.z += velocity.y * Time.fixedDeltaTime;
@@ -155,7 +155,10 @@ public class PlayerEntity : MonoBehaviour
 
     public void Move(Vector2 dir)
     {
-        moveDir = dir;
+        if (!isKnocked)
+        {
+            moveDir = dir;
+        }
     }
 
     private void UpdateModelOrient()
@@ -210,6 +213,16 @@ public class PlayerEntity : MonoBehaviour
         return canThrow;
     }
 
+    public void StartChargingPower()
+    {
+        isChargingPower = true;
+    }
+
+    public bool IsChargingPower()
+    {
+        return isChargingPower;
+    }
+
     public void ImprovePower()
     {
         if (power >= powerMax)
@@ -228,6 +241,7 @@ public class PlayerEntity : MonoBehaviour
         GetComponent<Rigidbody>().mass -= pickedObject.GetComponent<Rigidbody>().mass;
         pickedObject = null;
         isHoldingItem = false;
+        isChargingPower = false;
         power = 0f;
     }
 

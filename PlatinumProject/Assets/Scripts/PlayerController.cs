@@ -24,27 +24,34 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!entity.IsKnocked())
+        float dirX = mainPlayer.GetAxis("HorizontalMove");
+        float dirY = mainPlayer.GetAxis("VerticalMove");
+
+
+        Vector2 moveDir = new Vector2(dirX, dirY);
+        moveDir.Normalize();
+
+        entity.Move(moveDir);
+
+
+        if (mainPlayer.GetButtonDown("PickUp") && entity.CanPick() && !entity.IsHoldingItem())
         {
-            float dirX = mainPlayer.GetAxis("HorizontalMove");
-            float dirY = mainPlayer.GetAxis("VerticalMove");
-
-
-            Vector2 moveDir = new Vector2(dirX, dirY);
-            moveDir.Normalize();
-
-            entity.Move(moveDir);
-
-
-            if (mainPlayer.GetButtonDown("PickUp") && entity.CanPick())
+            entity.PickItem();
+        }
+        else if (!entity.IsChargingPower())
+        {
+            if (mainPlayer.GetButtonDown("PickUp") && entity.IsHoldingItem())
             {
-                entity.PickItem();
+                entity.StartChargingPower();
             }
-            else if (mainPlayer.GetButton("PickUp") && entity.IsHoldingItem())
+        }
+        else if (entity.IsChargingPower())
+        {
+            if (mainPlayer.GetButton("PickUp"))
             {
                 entity.ImprovePower();
             }
-            else if (mainPlayer.GetButtonUp("PickUp") && entity.IsHoldingItem())
+            else
             {
                 entity.Throw();
             }
