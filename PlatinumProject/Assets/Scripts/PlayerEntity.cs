@@ -49,7 +49,7 @@ public class PlayerEntity : MonoBehaviour
     private bool isKnocked = false;
 
     // Smoke Animation
-    [Header("Throw")]
+    [Header("Smoke")]
     public GameObject smoke;
     public float startTimeBtwSpawns;
     public float durationTime;
@@ -190,6 +190,7 @@ public class PlayerEntity : MonoBehaviour
         pickedObject = targetObjet;
         pickedObject.GetComponent<Rigidbody>().useGravity = false;
         pickedObject.GetComponent<PickupableObject>().SetPickable(false);
+        pickedObject.GetComponent<BoxCollider>().enabled = false;
         targetObjet = null;
         pickedObject.transform.SetParent(modelObjs[0].transform);
         pickedObject.transform.position = pointToHold.transform.position;        
@@ -223,6 +224,7 @@ public class PlayerEntity : MonoBehaviour
     {
         pickedObject.transform.parent = null;
         pickedObject.Throw(orientDir, power);
+        pickedObject.GetComponent<BoxCollider>().enabled = true;
         GetComponent<Rigidbody>().mass -= pickedObject.GetComponent<Rigidbody>().mass;
         pickedObject = null;
         isHoldingItem = false;
