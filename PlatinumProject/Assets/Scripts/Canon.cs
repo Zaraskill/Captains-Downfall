@@ -13,7 +13,7 @@ public class Canon : MonoBehaviour
     public float timeInsideCanon = 0f;
     public float timeToExpel = 3f;
 
-    private Vector2 orientDir = Vector2.zero;
+    private Vector3 orientDir = Vector3.zero;
     public float knockPower = 10f;
 
     private bool isShooting = false;
@@ -39,7 +39,9 @@ public class Canon : MonoBehaviour
         {
             playerCollisionned.transform.position = gameObject.transform.GetChild(0).position;
             playerCollisionned.gameObject.SetActive(true);
-            playerCollisionned.Knockback(orientDir, knockPower);
+            orientDir = -transform.forward;
+            Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
+            playerCollisionned.Knockback(orientDirCanon, knockPower);
             isShooting = false;
         }
     }
