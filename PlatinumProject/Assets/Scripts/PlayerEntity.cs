@@ -273,11 +273,12 @@ public class PlayerEntity : MonoBehaviour
         {
             TimeToDie();
         }
-        else if (collision.gameObject.tag == "Wall")
-        {
-            isKnocked = false;
-            velocity = Vector2.zero;
-        }
+    }
+
+    public void HittingWall()
+    {
+        isKnocked = false;
+        velocity = Vector2.zero;
     }
 
     #endregion
