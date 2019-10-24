@@ -945,7 +945,7 @@ MonoBehaviour:
   rotateSpeed: 30
   isRotating: 0
   timeInsideCanon: 0
-  timeToExpel: 3
+  timeToExpel: 2
   knockPower: 50
 --- !u!1 &8625977081222124244
 GameObject:
