@@ -11,10 +11,13 @@ public class PickupableObject : MonoBehaviour
     private Vector2 orient = Vector2.zero;
     private float powerKnock = 0f;
 
+    private float timerSpawn = 5f;
+    private float timer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        timer = timerSpawn;
     }
 
     // Update is called once per frame
@@ -59,10 +62,17 @@ public class PickupableObject : MonoBehaviour
         if(collision.gameObject.CompareTag("Player") && !isPickable)
         {
             collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
+            GameManager.managerGame.SpawnObject();
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
+            GameManager.managerGame.SpawnObject();
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("DeathZone"))
+        {
+            GameManager.managerGame.SpawnObject();
             Destroy(this.gameObject);
         }
     }

@@ -237,6 +237,7 @@ public class PlayerEntity : MonoBehaviour
     {
         pickedObject.transform.parent = null;
         pickedObject.Throw(orientDir, power);
+        pickedObject.GetComponent<Rigidbody>().useGravity = true;
         pickedObject.GetComponent<BoxCollider>().enabled = true;
         GetComponent<Rigidbody>().mass -= pickedObject.GetComponent<Rigidbody>().mass;
         pickedObject = null;

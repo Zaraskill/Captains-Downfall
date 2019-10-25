@@ -7,19 +7,20 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager managerSound;
 
-    public AudioClip canonSound;
+    //public AudioClip canonSound;
 
     // Start is called before the first frame update
     void Awake()
     {
-        if (managerSound!= null)
-        {
-            managerSound = this;
-        }
-        else
-        {
-            Debug.LogError("Too many instances!");
-        }
+        managerSound = this;
+        //if (managerSound != null)
+        //{
+        //    managerSound = this;
+        //}
+        //else
+        //{
+        //    Debug.LogError("Too many instances!");
+        //}
     }
 
     // Update is called once per frame
@@ -35,6 +36,6 @@ public class SoundManager : MonoBehaviour
 
     public void MakeCanonSound()
     {
-        MakeSound(canonSound);
+        //MakeSound(canonSound);
     }
 }
