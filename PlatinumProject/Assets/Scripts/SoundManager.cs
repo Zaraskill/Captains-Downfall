@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Code crée et géré par Corentin
 public class SoundManager : MonoBehaviour
 {
 

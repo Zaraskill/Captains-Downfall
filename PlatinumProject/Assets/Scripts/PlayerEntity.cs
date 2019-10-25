@@ -111,10 +111,6 @@ public class PlayerEntity : MonoBehaviour
         transform.position = movePosition;
     }
 
-    private void TimeToDie()
-    {
-        isDead = true;
-    }
 
     #region Move Fonctions
 
@@ -352,6 +348,15 @@ public class PlayerEntity : MonoBehaviour
                 timeBtwSpawns -= Time.deltaTime;
             }
         }
+    }
+
+    #endregion
+
+    #region Death Fonctions
+
+    private void TimeToDie()
+    {
+        isDead = true;
     }
 
     #endregion
