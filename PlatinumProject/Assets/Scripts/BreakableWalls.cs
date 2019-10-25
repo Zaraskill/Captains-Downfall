@@ -29,6 +29,7 @@ public class BreakableWalls : MonoBehaviour
         }
         else if (currentHealthPoints == 0)
         {
+            SoundManager.managerSound.MakeWallBreakSound();
             Destroy(this.gameObject);
         }
     }
@@ -37,6 +38,7 @@ public class BreakableWalls : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Pickable"))
         {
+            SoundManager.managerSound.MakeWallHitSound();
             currentHealthPoints -= 1;
         }
         else if(collision.gameObject.CompareTag("Player"))
