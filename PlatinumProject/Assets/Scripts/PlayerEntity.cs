@@ -51,6 +51,7 @@ public class PlayerEntity : MonoBehaviour
 
     //Canon
     private bool isInsideCanon = false;
+    private Canon canon = null;
 
     // Smoke Animation
     [Header("Smoke")]
@@ -96,6 +97,7 @@ public class PlayerEntity : MonoBehaviour
         GUILayout.Label("Velocity = " + velocity);
         GUILayout.Label("moveDir = " + moveDir);
         GUILayout.Label(canPick ? "canPick" : "cantPick");
+        GUILayout.Label(isInsideCanon ? "inCanon" : "outCanon");
         GUILayout.Label(isHoldingItem ? "hold" : "empty");
         GUILayout.Label("power = " + power);
         GUILayout.EndVertical();
@@ -271,9 +273,9 @@ public class PlayerEntity : MonoBehaviour
 
     #region Canon Fonctions
 
-    public void GoInsideCanon()
+    public void GoInsideCanon(Canon canon)
     {
-
+        this.canon = canon;
         if (isHoldingItem)
         {
             isHoldingItem = false;
@@ -282,8 +284,15 @@ public class PlayerEntity : MonoBehaviour
             pickedObject = null;
             isChargingPower = false;
             canPick = true;
-            isInsideCanon = true;
         }
+        isInsideCanon = true;
+    }
+
+    public void QuitCanon()
+    {
+        isInsideCanon = false;
+        canon.ForcedEjection();
+        canon = null;
     }
 
     public bool IsInsideCanon()

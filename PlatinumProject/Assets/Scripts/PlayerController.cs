@@ -33,8 +33,11 @@ public class PlayerController : MonoBehaviour
 
         entity.Move(moveDir);
 
-
-        if (mainPlayer.GetButtonDown("PickUp") && entity.CanPick() && !entity.IsHoldingItem())
+        if (mainPlayer.GetButtonDown("PickUp") && entity.IsInsideCanon())
+        {
+            entity.QuitCanon();
+        }
+        else if (mainPlayer.GetButtonDown("PickUp") && entity.CanPick() && !entity.IsHoldingItem())
         {
             entity.PickItem();
         }
