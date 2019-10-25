@@ -68,6 +68,7 @@ public class Canon : MonoBehaviour
         isShooting = true;
         isRotating = false;
         timeInsideCanon = 0f;
+        playerCollisionned.OutCanon();
     }
 
     private void OnCollisionEnter(Collision collision)

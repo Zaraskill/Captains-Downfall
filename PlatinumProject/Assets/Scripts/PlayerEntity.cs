@@ -296,6 +296,11 @@ public class PlayerEntity : MonoBehaviour
         return isInsideCanon;
     }
 
+    public void OutCanon()
+    {
+        isInsideCanon = false;
+    }
+
     #endregion
 
     #region Collisions/Trigger Fonctions
