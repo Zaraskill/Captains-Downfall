@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Barrel : MonoBehaviour
 {
-    public float knockPower;
-    private Vector3 orientDir = Vector3.zero;
+    public float knockPower = 0f;
+    //private Vector3 orientDir = Vector3.zero;
 
     private bool isExploding;
 
@@ -62,10 +62,19 @@ public class Barrel : MonoBehaviour
     {
         for(int i = 0; i < playerIntoArea.Count; i++)
         {
-            Vector2 direction = new Vector2(playerIntoArea[i].transform.position.x, transform.position.y);
-            Vector2 directionNormalized = direction.normalized;
-            playerIntoArea[i].Knockback(-directionNormalized, knockPower);
+            Vector3 orientDir = (playerIntoArea[i].transform.position - transform.position);
+            Vector3 directionNormalized = orientDir.normalized;
+            playerIntoArea[i].Knockback(directionNormalized, knockPower);
             isExploding = false;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        foreach (PlayerEntity item in playerIntoArea)
+        {
+            Gizmos.DrawRay(item.transform.position, item.transform.position - transform.position);
+            //Gizmos.DrawRay(transform.position, item.transform.position - transform.position);
+        }        
     }
 }
