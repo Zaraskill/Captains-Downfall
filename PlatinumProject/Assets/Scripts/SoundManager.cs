@@ -9,7 +9,12 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager managerSound;
 
-    //public AudioClip canonSound;
+    public AudioClip canonSound;
+    public AudioClip wallSound;
+    public AudioClip wallBreakSound;
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -38,6 +43,26 @@ public class SoundManager : MonoBehaviour
 
     public void MakeCanonSound()
     {
-        //MakeSound(canonSound);
+        MakeSound(canonSound);
+    }
+
+    public void MakeWallHitSound()
+    {
+        MakeSound(wallSound);
+    }
+
+    public void MakeWallBreakSound()
+    {
+        MakeSound(wallBreakSound);
+    }
+
+    public void MakeHitSound()
+    {
+        MakeSound(hitSound);
+    }
+
+    public void MakeDeathSound()
+    {
+        MakeSound(deathSound);
     }
 }

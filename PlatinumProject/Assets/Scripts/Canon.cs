@@ -39,7 +39,7 @@ public class Canon : MonoBehaviour
 
         if (isShooting)
         {
-            //SoundManager.managerSound.MakeCanonSound();
+            SoundManager.managerSound.MakeCanonSound();
             playerCollisionned.gameObject.SetActive(true);
             playerCollisionned.transform.position = pointToThrow.transform.position;
             orientDir = -transform.forward;

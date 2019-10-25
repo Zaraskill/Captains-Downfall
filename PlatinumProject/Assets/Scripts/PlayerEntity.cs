@@ -253,7 +253,7 @@ public class PlayerEntity : MonoBehaviour
 
     public void Knockback(Vector2 knockDir, float powerKnock)
     {
-        // Récupère l'orientation de l'objet/canon ainsi que la puissance  afin d'envoyer le player dans le sens
+        SoundManager.managerSound.MakeHitSound();
         isKnocked = true;
         orientDir = knockDir;
         moveDir = Vector2.zero;
@@ -323,6 +323,7 @@ public class PlayerEntity : MonoBehaviour
     {
         if (collision.gameObject.tag == "DeathZone")
         {
+            SoundManager.managerSound.MakeDeathSound();
             TimeToDie();
         }
     }
