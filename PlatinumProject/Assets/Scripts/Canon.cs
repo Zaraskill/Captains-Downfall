@@ -45,6 +45,7 @@ public class Canon : MonoBehaviour
             orientDir = -transform.forward;
             Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
             playerCollisionned.Knockback(orientDirCanon, knockPower);
+            playerCollisionned.GoInsideCanon();
             isShooting = false;
         }
     }
@@ -57,12 +58,17 @@ public class Canon : MonoBehaviour
     private void RotateCanon()
     {
         timeInsideCanon += Time.fixedDeltaTime;
-        if (timeInsideCanon > timeToExpel || Input.GetKeyDown(KeyCode.A))
+        if (timeInsideCanon > timeToExpel)
         {
-            isShooting = true;
-            isRotating = false;
-            timeInsideCanon = 0f;
+            ForcedEjection();
         }
+    }
+
+    private void ForcedEjection()
+    {
+        isShooting = true;
+        isRotating = false;
+        timeInsideCanon = 0f;
     }
 
     private void OnCollisionEnter(Collision collision)
