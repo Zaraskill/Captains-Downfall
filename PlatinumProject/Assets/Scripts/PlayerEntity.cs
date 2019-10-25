@@ -49,6 +49,9 @@ public class PlayerEntity : MonoBehaviour
     // Knockback
     private bool isKnocked = false;
 
+    //Canon
+    private bool isInsideCanon = false;
+
     // Smoke Animation
     [Header("Smoke")]
     public GameObject smoke;
@@ -262,6 +265,30 @@ public class PlayerEntity : MonoBehaviour
     public bool IsKnocked()
     {
         return isKnocked;
+    }
+
+    #endregion
+
+    #region Canon Fonctions
+
+    public void GoInsideCanon()
+    {
+
+        if (isHoldingItem)
+        {
+            isHoldingItem = false;
+            Destroy(pickedObject.gameObject);
+            GameManager.managerGame.SpawnObject();
+            pickedObject = null;
+            isChargingPower = false;
+            canPick = true;
+            isInsideCanon = true;
+        }
+    }
+
+    public bool IsInsideCanon()
+    {
+        return isInsideCanon;
     }
 
     #endregion
