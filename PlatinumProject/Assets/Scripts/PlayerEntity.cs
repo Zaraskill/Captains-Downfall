@@ -357,6 +357,7 @@ public class PlayerEntity : MonoBehaviour
     private void TimeToDie()
     {
         isDead = true;
+        GameManager.managerGame.DeadPlayer(playerID);
     }
 
     #endregion

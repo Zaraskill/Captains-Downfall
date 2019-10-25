@@ -8,14 +8,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager managerGame;
 
-    enum STATE_PLAY { PlayerSelection, Party, Results}
+    enum STATE_PLAY { PlayerSelection, Party, Results, DisplayResults}
 
     private STATE_PLAY gameState;
     public float maxObjectsInGame;
     public GameObject[] listPrefabsPickableItems;
     public GameObject spawnZone;
     private Dictionary<int, bool> players;
-    private int nbPlayersAlive;
+    public int nbPlayersAlive;
     private int idPlayerwinner;
     public Canvas displayResults;
     public Text displayWinner;
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameState = STATE_PLAY.Party;
+        Debug.Log(gameState);
     }
 
     // Update is called once per frame
@@ -60,16 +61,18 @@ public class GameManager : MonoBehaviour
                         {
                             idPlayerwinner = idPlayer;
                             gameState = STATE_PLAY.Results;
-                            break;
+                            Debug.Log(gameState);
                         }
                     }
                 }
                 break;
             case STATE_PLAY.Results:
-                Time.timeScale = 0;
                 idPlayerwinner++;
+                gameState = STATE_PLAY.DisplayResults;
+                break;
+            case STATE_PLAY.DisplayResults:
+                displayResults.gameObject.SetActive(true);
                 displayWinner.text = "Le joueur " + idPlayerwinner + " est le grand vainqueur!!";
-                displayResults.enabled = true;
                 break;
             default:
                 break;

@@ -603,6 +603,7 @@ MonoBehaviour:
   listPrefabsPickableItems:
   - {fileID: 805443151762196027, guid: c4d4c27b7f67ffd4783b98df10bd6f4c, type: 3}
   spawnZone: {fileID: 518152008}
+  nbPlayersAlive: 0
   displayResults: {fileID: 60045468}
   displayWinner: {fileID: 2073945280}
 --- !u!4 &101982922
@@ -4534,7 +4535,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196363126}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.28, y: -99.1, z: 8.1}
+  m_LocalPosition: {x: 5.28, y: -7, z: 8.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7299,7 +7300,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Un chat l\xE0"
+  m_Text: 
 --- !u!222 &2073945281
 CanvasRenderer:
   m_ObjectHideFlags: 0
