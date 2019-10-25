@@ -65,17 +65,17 @@ public class Barrel : MonoBehaviour
         {
             Vector3 orientDir = (playerIntoArea[i].transform.position - transform.position);
             Vector3 directionNormalized = orientDir.normalized;
-            playerIntoArea[i].Knockback(directionNormalized, knockPower);
-            isExploding = false;
+            playerIntoArea[i].Knockback(new Vector2(directionNormalized.x, directionNormalized.z), knockPower);
+            Destroy(this.gameObject);
         }
     }
 
-    private void OnDrawGizmos()
+    /* private void OnDrawGizmos()
     {
         foreach (PlayerEntity item in playerIntoArea)
         {
-            Gizmos.DrawRay(item.transform.position, item.transform.position - transform.position);
+            //Gizmos.DrawRay(item.transform.position, item.transform.position - transform.position);
             //Gizmos.DrawRay(transform.position, item.transform.position - transform.position);
         }        
-    }
+    } */
 }
