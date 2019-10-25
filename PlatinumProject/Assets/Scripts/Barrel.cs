@@ -7,9 +7,11 @@ public class Barrel : MonoBehaviour
     public float knockPower = 0f;
     //private Vector3 orientDir = Vector3.zero;
 
+    private PlayerEntity playerCollisionned;
+
     private bool isExploding;
 
-    public List<PlayerEntity> playerIntoArea;
+    public List<GameObject> objectsToBump;
 
 
     // Start is called before the first frame update
@@ -35,31 +37,13 @@ public class Barrel : MonoBehaviour
         }
         else
         {
-            Debug.Log("ça touche");
             isExploding = true;
-        }
-    }
-
-    private void OnTriggerEnter(Collider collision)
-    {
-        PlayerEntity player = collision.GetComponentInParent<PlayerEntity>();
-        if(player != null)
-        {
-            playerIntoArea.Add(player);
-        }
-    }
-
-    private void OnTriggerExit(Collider collision)
-    {
-        PlayerEntity player = collision.GetComponentInParent<PlayerEntity>();
-        if (player != null)
-        {
-            playerIntoArea.Remove(player);
         }
     }
 
     private void Explosion()
     {
+<<<<<<< HEAD
         for(int i = 0; i < playerIntoArea.Count; i++)
         {
             Vector3 orientDir = (playerIntoArea[i].transform.position - transform.position);
@@ -67,6 +51,9 @@ public class Barrel : MonoBehaviour
             playerIntoArea[i].Knockback(directionNormalized, knockPower);
             isExploding = false;
         }
+=======
+
+>>>>>>> 19a9c0a0bc03bf46bff988c68b61dde72444bc0e
     }
 
     private void OnDrawGizmos()
