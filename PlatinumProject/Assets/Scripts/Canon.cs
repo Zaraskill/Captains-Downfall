@@ -19,6 +19,7 @@ public class Canon : MonoBehaviour
     public float knockPower = 10f;
 
     private bool isShooting = false;
+    private bool canEnter = true;
 
     private PlayerEntity playerCollisionned;
 
@@ -46,6 +47,7 @@ public class Canon : MonoBehaviour
             Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
             playerCollisionned.Knockback(orientDirCanon, knockPower);
             isShooting = false;
+            canEnter = true;
         }
     }
 
@@ -73,12 +75,13 @@ public class Canon : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && canEnter)
         {
             isRotating = true;
             playerCollisionned = collision.gameObject.GetComponent<PlayerEntity>();
             playerCollisionned.gameObject.SetActive(false);
             playerCollisionned.GoInsideCanon(this);
+            canEnter = false;
         }
     }
 }
