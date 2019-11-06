@@ -32,9 +32,9 @@ public class GameManager : MonoBehaviour
     //Gestion Events
     [Header("Events")]
     public float startCooldownEvent = 5f;
-    public float cooldownEvent;
-    public bool isEventComing = false;
-    public bool isEventHere = false;
+    private float cooldownEvent;
+    private bool isEventComing = false;
+    private bool isEventHere = false;
 
     //Affichage résultats
     [Header("Affichage Résultats")]
@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameState = STATE_PLAY.Party;
-        PrepareEvent();
     }
 
     // Update is called once per frame
@@ -89,31 +88,34 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
-                //else
-                //{
-                //    if (!isEventComing)
-                //    {
-                //        if (Random.Range(0, 1) == 1)
-                //        {
-                //            StartComingEvent();
-                //        }
-                //    }
-                //    else if (isEventComing)
-                //    {
-                //        if (cooldownEvent <= 0f)
-                //        {
-                //            StartEvent();
-                //        }
-                //        else
-                //        {
-                //            cooldownEvent -= Time.deltaTime;
-                //        }
-                //    }
-                //    else if (isEventHere)
-                //    {
-                //        PrepareEvent();
-                //    }
-                //}
+                else
+                {
+                    if (nbPlayersAlive > 2 )
+                    {
+                        if (!isEventComing && !isEventHere)
+                        {
+                            if (Random.Range(0, 2) == 1)
+                            {
+                                StartComingEvent();
+                            }
+                        }
+                        else if (isEventComing)
+                        {
+                            if (cooldownEvent <= 0f)
+                            {
+                                StartEvent();
+                            }
+                            else
+                            {
+                                cooldownEvent -= Time.deltaTime;
+                            }
+                        }
+                        else if (isEventHere)
+                        {
+                            PrepareEvent();
+                        }
+                    }                    
+                }
 
                 break;
             case STATE_PLAY.Results:
@@ -150,34 +152,31 @@ public class GameManager : MonoBehaviour
         nbPlayersAlive--;
     }
 
-    private void CreationTeam(List<PlayerEntity> team)
+    private void CreationTeam()
     {
-        int playerID;
+        List<PlayerEntity> listTemp = new List<PlayerEntity>();
+        listTemp = listPlayers;
+        PlayerEntity playerID;
+        int id;
 
-        while (teamOne.Count == 2)
+        while (teamOne.Count < 2)
         {
-            playerID = Random.Range(0, 3);
-            if (!listPlayers[playerID].IsDead())
+            id = Random.Range(0, listTemp.Count);
+            playerID = listTemp[id];
+            if (!playerID.IsDead())
             {
-                if (listPlayers[playerID].teamID != 0)
-                {
-                    team.Add(listPlayers[playerID]);
-                    listPlayers[playerID].teamID = 1;
-                }
+                Debug.Log(playerID);
+                Debug.Log(playerID.teamID);
+                teamOne.Add(playerID);
+                playerID.teamID = 1;
+                listTemp.Remove(playerID);
             }            
         }
-        while ( teamTwo.Count == 2 || (nbPlayersAlive == 3 && teamTwo.Count == 1) )
+        foreach (PlayerEntity player in listTemp)
         {
-            playerID = Random.Range(0, 3);
-            if (!listPlayers[playerID].IsDead())
-            {
-                if (listPlayers[playerID].teamID != 0)
-                {
-                    team.Add(listPlayers[playerID]);
-                    listPlayers[playerID].teamID = 2;
-                }
-            }            
+            player.teamID = 2;
         }
+        teamTwo = listTemp;
     }
 
     #endregion
@@ -198,12 +197,9 @@ public class GameManager : MonoBehaviour
 
     private void PrepareEvent()
     {
-        if (Random.Range(0,1) == 1)
-        {
-            isTeam = true;
-            CreationTeam(teamOne);
-            CreationTeam(teamTwo);
-        }
+        isTeam = true;
+        CreationTeam();
+        isEventHere = false;
     }
 
     #endregion

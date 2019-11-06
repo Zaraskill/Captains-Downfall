@@ -3503,7 +3503,11 @@ MonoBehaviour:
   listPrefabsPickableItems:
   - {fileID: 805443151762196027, guid: c4d4c27b7f67ffd4783b98df10bd6f4c, type: 3}
   spawnZone: {fileID: 1424033533}
-  listPlayers: []
+  listPlayers:
+  - {fileID: 572083701}
+  - {fileID: 1119413037}
+  - {fileID: 922617383}
+  - {fileID: 603965517}
   nbPlayersAlive: 0
   startCooldownEvent: 5
   cooldownEvent: 0
@@ -3519,7 +3523,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997604946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.61, y: 3.9, z: -15.17}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
