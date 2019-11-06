@@ -329,6 +329,23 @@ public class PlayerEntity : MonoBehaviour
             SoundManager.managerSound.MakeDeathSound();
             TimeToDie();
         }
+        /* else if (collision.gameObject.tag == "Wall")
+        {
+            ContactPoint contact = collision.contacts[0];
+
+            Debug.DrawRay(contact.point, contact.normal, Color.white);
+
+            float scalaire = Vector3.Dot(moveDir, contact.normal);
+
+            if (scalaire < 0)
+            {
+                velocity = Vector2.zero;
+            }
+            else
+            {
+                return;
+            }
+        } */
     }
 
     public void HittingWall()

@@ -75,7 +75,7 @@ public class Barrel : MonoBehaviour
         foreach (PlayerEntity item in playerIntoArea)
         {
             //Gizmos.DrawRay(item.transform.position, item.transform.position - transform.position);
-            //Gizmos.DrawRay(transform.position, item.transform.position - transform.position);
+            Gizmos.DrawRay(transform.position, item.transform.position - transform.position);
         }        
     } */
 }

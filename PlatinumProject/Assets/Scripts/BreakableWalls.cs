@@ -51,4 +51,12 @@ public class BreakableWalls : MonoBehaviour
             playerEntity.HittingWall();
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pickable"))
+        {
+            currentHealthPoints -= 1;
+        }
+    }
 }
