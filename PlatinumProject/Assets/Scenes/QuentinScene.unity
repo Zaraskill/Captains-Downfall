@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -449,14 +449,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxObjectsInGame: 15
   listPrefabsPickableItems:
-  - {fileID: 208028245}
+  - {fileID: 805443151762196027, guid: c4d4c27b7f67ffd4783b98df10bd6f4c, type: 3}
   spawnZone: {fileID: 518152008}
-  listPlayers: []
+  listPlayers:
+  - {fileID: 289386981}
+  - {fileID: 288079973}
+  - {fileID: 360729003}
+  - {fileID: 6803268}
   nbPlayersAlive: 0
-  startCooldownEvent: 5
+  startCooldownEvent: 5000
   cooldownEvent: 0
-  isEventComing: 0
-  isEventHere: 0
   displayResults: {fileID: 60045468}
   displayWinner: {fileID: 2073945280}
 --- !u!4 &101982922
@@ -682,12 +684,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &208028245 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 805443151762196027, guid: c4d4c27b7f67ffd4783b98df10bd6f4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 805443150042285841}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &238082767
 GameObject:
   m_ObjectHideFlags: 0
