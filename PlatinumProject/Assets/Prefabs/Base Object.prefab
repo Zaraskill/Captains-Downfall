@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 805443151762196029}
   - component: {fileID: 805443151762196026}
   m_Layer: 0
-  m_Name: Object (2)
+  m_Name: Base Object
   m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ TrailRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 57214bf8f2d2ef94e9db42dd70b4d23a, type: 2}
+  - {fileID: 2100000, guid: 8109a2a754efb4343807ddf25152c517, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
