@@ -42,6 +42,7 @@ public class Canon : MonoBehaviour
         {
             SoundManager.managerSound.MakeCanonSound();
             playerCollisionned.gameObject.SetActive(true);
+            playerCollisionned.OutCanon();
             playerCollisionned.transform.position = pointToThrow.transform.position;
             orientDir = -transform.forward;
             Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);

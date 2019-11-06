@@ -282,7 +282,7 @@ public class PlayerEntity : MonoBehaviour
             GameManager.managerGame.SpawnObject();
             pickedObject = null;
             isChargingPower = false;
-            canPick = true;
+            canPick = false;
         }
         isInsideCanon = true;
     }
@@ -290,6 +290,7 @@ public class PlayerEntity : MonoBehaviour
     public void QuitCanon()
     {
         isInsideCanon = false;
+        canPick = true;
         canon.ForcedEjection();
         canon = null;
     }

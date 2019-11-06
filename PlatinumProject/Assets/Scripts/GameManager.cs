@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     //Gestion players
     [Header("Players")]    
     public List<PlayerEntity> listPlayers;
+    private List<PlayerEntity> listAlivePlayers;
     public int nbPlayersAlive;
     private Dictionary<int, bool> players;
     private int idPlayerwinner;
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
         nbPlayersAlive = 4;
         teamOne = new List<PlayerEntity>();
         teamTwo = new List<PlayerEntity>();
+        listAlivePlayers = new List<PlayerEntity>(listPlayers);
         cooldownEvent = startCooldownEvent;
     }
     // Start is called before the first frame update
@@ -174,11 +176,45 @@ public class GameManager : MonoBehaviour
     {
         players[playerID] = false;
         nbPlayersAlive--;
+        foreach (PlayerEntity player in listAlivePlayers)
+        {
+            if (player == listPlayers[playerID])
+            {
+                listAlivePlayers.Remove(player);
+                break;
+            }
+        }
+        if(isTeam)
+        {
+            if (listPlayers[playerID].teamID == 1)
+            {
+                foreach (PlayerEntity player in teamOne)
+                {
+                    if (player == listPlayers[playerID])
+                    {
+                        teamOne.Remove(player);
+                        break;
+                    }
+                }
+            }
+            else if (listPlayers[playerID].teamID == 2)
+            {
+                foreach (PlayerEntity player in teamTwo)
+                {
+                    if (player == listPlayers[playerID])
+                    {
+                        teamTwo.Remove(player);
+                        break;
+                    }
+                }
+            }
+            listPlayers[playerID].teamID = 0;
+        }
     }
 
     private void CreationTeam()
     {
-        List<PlayerEntity> listTemp = new List<PlayerEntity>(listPlayers);
+        List<PlayerEntity> listTemp = new List<PlayerEntity>(listAlivePlayers);
         PlayerEntity playerID;
         int id;
 
@@ -186,20 +222,15 @@ public class GameManager : MonoBehaviour
         {
             id = Random.Range(0, listTemp.Count);
             playerID = listTemp[id];
-            if (!playerID.IsDead())
-            {
-                Debug.Log(playerID);
-                Debug.Log(playerID.teamID);
-                teamOne.Add(playerID);
-                playerID.teamID = 1;
-                listTemp.Remove(playerID);
-            }            
+            teamOne.Add(playerID);
+            playerID.teamID = 1;
+            listTemp.Remove(playerID);           
         }
         foreach (PlayerEntity player in listTemp)
         {
             player.teamID = 2;
+            teamTwo.Add(player);
         }
-        teamTwo = listTemp;
     }
 
     private void DestroyTeam()
