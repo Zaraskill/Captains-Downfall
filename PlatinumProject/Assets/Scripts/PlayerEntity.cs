@@ -85,6 +85,7 @@ public class PlayerEntity : MonoBehaviour
             UpdateModelOrient();
             UpdatePosition();
             UpdateSmoke();
+            Debug.DrawRay(transform.position, new Vector3(orientDir.x, 0, orientDir.y), Color.red);
         }
     }
 
@@ -108,10 +109,7 @@ public class PlayerEntity : MonoBehaviour
 
     private void UpdatePosition()
     {
-        Vector3 movePosition = transform.position;
-        movePosition.x += velocity.x * Time.fixedDeltaTime;
-        movePosition.z += velocity.y * Time.fixedDeltaTime;
-        transform.position = movePosition;
+        _rigidbody.velocity = new Vector3(velocity.x, 0, velocity.y);
     }
 
 
@@ -330,23 +328,16 @@ public class PlayerEntity : MonoBehaviour
             SoundManager.managerSound.MakeDeathSound();
             TimeToDie();
         }
-        /* else if (collision.gameObject.tag == "Wall")
+        else if (collision.gameObject.tag == "Wall")
         {
-            ContactPoint contact = collision.contacts[0];
-
-            Debug.DrawRay(contact.point, contact.normal, Color.white);
-
-            float scalaire = Vector3.Dot(moveDir, contact.normal);
-
-            if (scalaire < 0)
+            BreakableWalls wall = collision.gameObject.GetComponent<BreakableWalls>();
+            if (IsKnocked())
             {
-                velocity = Vector2.zero;
+                wall.TakeDamage();
             }
-            else
-            {
-                return;
-            }
-        } */
+            HittingWall();
+            
+        }
     }
 
     public void HittingWall()

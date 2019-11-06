@@ -34,6 +34,11 @@ public class BreakableWalls : MonoBehaviour
         }
     }
 
+    public void takeDamage()
+    {
+        currentHealthPoints--;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Pickable"))

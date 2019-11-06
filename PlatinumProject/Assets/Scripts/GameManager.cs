@@ -145,11 +145,39 @@ public class GameManager : MonoBehaviour
                 }
                 else if (idPlayerwinner == 5)
                 {
-                    displayWinner.text = "L'équipe bleue est la grande gagnante!!";
+                    displayWinner.text = "L'équipe";
+                    for (int i = 0; i < teamOne.Count; i++)
+                    {
+                        string displayText;
+                        if (i == 0)
+                        {
+                            displayText = " joueur " + teamOne[i].playerID;
+                        }
+                        else
+                        {
+                            displayText = " et joueur " + teamOne[i].playerID;
+                        }
+                        displayWinner.text += displayText;
+                    }
+                    displayWinner.text += "sont les vainqueurs!!";
                 }
                 else if (idPlayerwinner == 6)
                 {
-                    displayWinner.text = "L'équipe rouge est la grande gagnante!!";
+                    displayWinner.text = "L'équipe";
+                    for (int i = 0; i < teamTwo.Count; i++)
+                    {
+                        string displayText;
+                        if (i == 0)
+                        {
+                            displayText = " joueur " + teamTwo[i].playerID;
+                        }
+                        else
+                        {
+                            displayText = " et joueur " + teamTwo[i].playerID;
+                        }
+                        displayWinner.text += displayText;
+                    }
+                    displayWinner.text += "sont les vainqueurs!!";
                 }                
                 break;
             default:

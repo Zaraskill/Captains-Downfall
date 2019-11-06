@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Barrel" Collapsed="true">
+    <Position X="3.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAABBAACAAAAAAgAAAAAAEAAAAAIAIQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Barrel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BreakableWalls" Collapsed="true">
+    <Position X="5.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQARAAAACAAAAAAAAAAAAAAAAAAAAAIAAAgEAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\BreakableWalls.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager">
+    <Position X="1" Y="1" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="GameManager.STATE_PLAY" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gIQAAAIAQCGAABAEAEQEACgAAhAAAIAUIAGgABAiAEA=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickupableObject" Collapsed="true">
+    <Position X="3.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAQAAEACAgEAAAABEAAAAAAAAAAEAIAQQAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PickupableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerController">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAABAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PlayerController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="entity" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PlayerEntity" Collapsed="true">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IiwCACJoQoBnAeCABABCECAAAREQQgQIXUaAiTAIAkQ=</HashCode>
+      <FileName>Assets\Scripts\PlayerEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
