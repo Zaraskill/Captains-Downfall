@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8132084153086331301}
   - component: {fileID: 8539774190255911206}
+  - component: {fileID: 2828333856982946529}
   m_Layer: 0
   m_Name: Rewired Input Manager
   m_TagString: Untagged
@@ -126,7 +127,7 @@ MonoBehaviour:
         disableKeyboard: 0
         ignoreInputWhenAppNotInFocus: 1
       maxJoysticksPerPlayer: 1
-      autoAssignJoysticks: 1
+      autoAssignJoysticks: 0
       assignJoysticksToPlayingPlayersOnly: 0
       distributeJoysticksEvenly: 1
       reassignJoystickToPreviousOwnerOnReconnect: 1
@@ -512,9 +513,9 @@ MonoBehaviour:
     controllerMapEnablerRuleSets: []
     playerIdCounter: 7
     actionIdCounter: 3
-    actionCategoryIdCounter: 1
+    actionCategoryIdCounter: 2
     inputBehaviorIdCounter: 1
-    mapCategoryIdCounter: 1
+    mapCategoryIdCounter: 2
     joystickLayoutIdCounter: 1
     keyboardLayoutIdCounter: 1
     mouseLayoutIdCounter: 1
@@ -528,3 +529,15 @@ MonoBehaviour:
     controllerMapEnablerSetIdCounter: 0
   _controllerDataFiles: {fileID: 11400000, guid: d21d2b20df8369642b76aafbb2576ba7,
     type: 2}
+--- !u!114 &2828333856982946529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2421097575461954978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691f9cbd502777d4f81ac829f1a5a367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
