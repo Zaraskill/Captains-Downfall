@@ -1143,7 +1143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572083700}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.6, y: 2.85, z: -3.4}
+  m_LocalPosition: {x: -0.2, y: 2.8, z: -6.6}
   m_LocalScale: {x: 1.5, y: 1.5, z: 3}
   m_Children:
   - {fileID: 315974451}
@@ -3509,10 +3509,7 @@ MonoBehaviour:
   - {fileID: 922617383}
   - {fileID: 603965517}
   nbPlayersAlive: 0
-  startCooldownEvent: 5
-  cooldownEvent: 0
-  isEventComing: 0
-  isEventHere: 0
+  startCooldownEvent: 20
   displayResults: {fileID: 983697983}
   displayWinner: {fileID: 198461555}
 --- !u!4 &997604949

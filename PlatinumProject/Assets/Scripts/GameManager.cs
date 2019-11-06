@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
 
     //Gestion Events
     [Header("Events")]
-    public float startCooldownEvent = 5f;
-    private float cooldownEvent;
+    public float startCooldownEvent;
+    public float cooldownEvent;
     private bool isEventComing = false;
     private bool isEventHere = false;
 
@@ -77,7 +77,20 @@ public class GameManager : MonoBehaviour
             case STATE_PLAY.PlayerSelection:
                 break;
             case STATE_PLAY.Party:
-                if (nbPlayersAlive == 1)
+                if (nbPlayersAlive <= 2 && isTeam)
+                {
+                    if (teamOne.Count == 0)
+                    {
+                        idPlayerwinner = 5;
+                        gameState = STATE_PLAY.Results;
+                    }
+                    else if (teamTwo.Count == 0)
+                    {
+                        idPlayerwinner = 4;
+                        gameState = STATE_PLAY.Results;
+                    }
+                }
+                else if (nbPlayersAlive == 1)
                 {
                     foreach(int idPlayer in players.Keys)
                     {
@@ -124,7 +137,18 @@ public class GameManager : MonoBehaviour
                 break;
             case STATE_PLAY.DisplayResults:
                 displayResults.gameObject.SetActive(true);
-                displayWinner.text = "Le joueur " + idPlayerwinner + " est le grand vainqueur!!";
+                if (idPlayerwinner <= 4 )
+                {
+                    displayWinner.text = "Le joueur " + idPlayerwinner + " est le grand vainqueur!!";
+                }
+                else if (idPlayerwinner == 5)
+                {
+                    displayWinner.text = "L'équipe bleue est la grande gagnante!!";
+                }
+                else if (idPlayerwinner == 6)
+                {
+                    displayWinner.text = "L'équipe rouge est la grande gagnante!!";
+                }                
                 break;
             default:
                 break;
@@ -154,8 +178,7 @@ public class GameManager : MonoBehaviour
 
     private void CreationTeam()
     {
-        List<PlayerEntity> listTemp = new List<PlayerEntity>();
-        listTemp = listPlayers;
+        List<PlayerEntity> listTemp = new List<PlayerEntity>(listPlayers);
         PlayerEntity playerID;
         int id;
 
@@ -179,6 +202,16 @@ public class GameManager : MonoBehaviour
         teamTwo = listTemp;
     }
 
+    private void DestroyTeam()
+    {
+        foreach (PlayerEntity player in listPlayers)
+        {
+            player.teamID = 0;
+        }
+        teamOne.Clear();
+        teamTwo.Clear();
+    }
+
     #endregion
 
     #region Events Fonctions
@@ -197,8 +230,16 @@ public class GameManager : MonoBehaviour
 
     private void PrepareEvent()
     {
-        isTeam = true;
-        CreationTeam();
+        if (isTeam)
+        {
+            isTeam = false;
+            DestroyTeam();
+        }
+        else
+        {
+            isTeam = true;
+            CreationTeam();
+        }
         isEventHere = false;
     }
 
