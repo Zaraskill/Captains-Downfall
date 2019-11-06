@@ -9,7 +9,9 @@ public class PlayerEntity : MonoBehaviour
     // Player
     [Header("Player")]
     public int playerID = 0;
+    public int teamID;
     private bool isDead = false;
+    
     
     // Move
     [Header("Move")]
@@ -95,6 +97,7 @@ public class PlayerEntity : MonoBehaviour
 
         GUILayout.BeginVertical();
         GUILayout.Label("Velocity = " + velocity);
+        GUILayout.Label("Team = " + teamID);
         GUILayout.Label("moveDir = " + moveDir);
         GUILayout.Label(canPick ? "canPick" : "cantPick");
         GUILayout.Label(isInsideCanon ? "inCanon" : "outCanon");
@@ -364,6 +367,11 @@ public class PlayerEntity : MonoBehaviour
     {
         isDead = true;
         GameManager.managerGame.DeadPlayer(playerID);
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
     }
 
     #endregion

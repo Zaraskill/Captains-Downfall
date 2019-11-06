@@ -11,38 +11,63 @@ public class GameManager : MonoBehaviour
     enum STATE_PLAY { PlayerSelection, Party, Results, DisplayResults}
 
     private STATE_PLAY gameState;
+    
+
+    //Spawn Objects
+    [Header("Spawn Objects")]
     public float maxObjectsInGame;
     public GameObject[] listPrefabsPickableItems;
     public GameObject spawnZone;
-    private Dictionary<int, bool> players;
+
+    //Gestion players
+    [Header("Players")]    
+    public List<PlayerEntity> listPlayers;
     public int nbPlayersAlive;
+    private Dictionary<int, bool> players;
     private int idPlayerwinner;
+    private bool isTeam = false;
+    private List<PlayerEntity> teamOne;
+    private List<PlayerEntity> teamTwo;
+
+    //Gestion Events
+    [Header("Events")]
+    public float startCooldownEvent = 5f;
+    public float cooldownEvent;
+    public bool isEventComing = false;
+    public bool isEventHere = false;
+
+    //Affichage résultats
+    [Header("Affichage Résultats")]
     public Canvas displayResults;
     public Text displayWinner;
 
     void Awake()
     {
-        managerGame = this;
-        players = new Dictionary<int, bool>();
-        players.Add(0, true);
-        players.Add(1, true);
-        players.Add(2, true);
-        players.Add(3, true);
+        if (managerGame != null)
+        {
+            Debug.LogError("Too many instances!");
+        }
+        else
+        {
+            managerGame = this;
+        }
+        players = new Dictionary<int, bool>
+        {
+            { 0, true },
+            { 1, true },
+            { 2, true },
+            { 3, true }
+        };
         nbPlayersAlive = 4;
-        //if (managerGame != null)
-        //{
-        //    managerGame = this;
-        //}
-        //else
-        //{
-        //    Debug.LogError("Too many instances!");
-        //}
+        teamOne = new List<PlayerEntity>();
+        teamTwo = new List<PlayerEntity>();
+        cooldownEvent = startCooldownEvent;
     }
     // Start is called before the first frame update
     void Start()
     {
         gameState = STATE_PLAY.Party;
-        Debug.Log(gameState);
+        PrepareEvent();
     }
 
     // Update is called once per frame
@@ -61,10 +86,35 @@ public class GameManager : MonoBehaviour
                         {
                             idPlayerwinner = idPlayer;
                             gameState = STATE_PLAY.Results;
-                            Debug.Log(gameState);
                         }
                     }
                 }
+                //else
+                //{
+                //    if (!isEventComing)
+                //    {
+                //        if (Random.Range(0, 1) == 1)
+                //        {
+                //            StartComingEvent();
+                //        }
+                //    }
+                //    else if (isEventComing)
+                //    {
+                //        if (cooldownEvent <= 0f)
+                //        {
+                //            StartEvent();
+                //        }
+                //        else
+                //        {
+                //            cooldownEvent -= Time.deltaTime;
+                //        }
+                //    }
+                //    else if (isEventHere)
+                //    {
+                //        PrepareEvent();
+                //    }
+                //}
+
                 break;
             case STATE_PLAY.Results:
                 idPlayerwinner++;
@@ -79,6 +129,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region Objects Fonctions
+
     public void SpawnObject()
     {
         float x = Random.Range(spawnZone.GetComponent<BoxCollider>().bounds.min.x, spawnZone.GetComponent<BoxCollider>().bounds.max.x);
@@ -88,9 +140,72 @@ public class GameManager : MonoBehaviour
         Instantiate(listPrefabsPickableItems[Random.Range(0, listPrefabsPickableItems.Length - 1)], position, Quaternion.identity);
     }
 
+    #endregion
+
+    #region Players Fonctions
+
     public void DeadPlayer(int playerID)
     {
         players[playerID] = false;
         nbPlayersAlive--;
     }
+
+    private void CreationTeam(List<PlayerEntity> team)
+    {
+        int playerID;
+
+        while (teamOne.Count == 2)
+        {
+            playerID = Random.Range(0, 3);
+            if (!listPlayers[playerID].IsDead())
+            {
+                if (listPlayers[playerID].teamID != 0)
+                {
+                    team.Add(listPlayers[playerID]);
+                    listPlayers[playerID].teamID = 1;
+                }
+            }            
+        }
+        while ( teamTwo.Count == 2 || (nbPlayersAlive == 3 && teamTwo.Count == 1) )
+        {
+            playerID = Random.Range(0, 3);
+            if (!listPlayers[playerID].IsDead())
+            {
+                if (listPlayers[playerID].teamID != 0)
+                {
+                    team.Add(listPlayers[playerID]);
+                    listPlayers[playerID].teamID = 2;
+                }
+            }            
+        }
+    }
+
+    #endregion
+
+    #region Events Fonctions
+
+    private void StartComingEvent()
+    {
+        isEventComing = true;
+    }
+
+    private void StartEvent()
+    {
+        cooldownEvent = startCooldownEvent;
+        isEventComing = false;
+        isEventHere = true;
+    }
+
+    private void PrepareEvent()
+    {
+        if (Random.Range(0,1) == 1)
+        {
+            isTeam = true;
+            CreationTeam(teamOne);
+            CreationTeam(teamTwo);
+        }
+    }
+
+    #endregion
+
 }
