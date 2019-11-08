@@ -17,10 +17,30 @@ namespace Rewired.Demos
     {
         public List<GameObject> playerColor;
 
+        private Player player;
+
+        Joystick joystick;
+
+        private bool isRemovingController = false;
+
         private void Update()
         {
             if (!ReInput.isReady) return;
             AssignJoysticksToPlayers();
+
+            if(isRemovingController)
+            {
+                IList<Joystick> joysticks = ReInput.controllers.Joysticks;
+                for (int i = 0; i < joysticks.Count; i++)
+                {
+                    joystick = joysticks[i];
+
+                    playerColor[i].SetActive(false);
+                player.controllers.RemoveController(joystick);
+                }
+
+                isRemovingController = false;
+            }
         }
 
         private void AssignJoysticksToPlayers()
@@ -32,7 +52,7 @@ namespace Rewired.Demos
             for (int i = 0; i < joysticks.Count; i++)
             {
 
-                Joystick joystick = joysticks[i];
+                joystick = joysticks[i];
                 if (ReInput.controllers.IsControllerAssigned(joystick.type, joystick.id)) continue; // joystick is already assigned to a Player
 
                 // Chec if a button was pressed on the joystick
@@ -40,16 +60,13 @@ namespace Rewired.Demos
                 {
 
                     // Find the next Player without a Joystick
-                    Player player = FindPlayerWithoutJoystick();
+                    player = FindPlayerWithoutJoystick();
                     if (player == null) return; // no free joysticks
 
+                    playerColor[i].SetActive(true);
                     // Assign the joystick to this Player
                     player.controllers.AddController(joystick, false);
 
-                    for (int j = 0; j < joysticks.Count; j++)
-                    {
-                        playerColor[i].SetActive(true);
-                    }
                 }
             }
 
@@ -78,6 +95,11 @@ namespace Rewired.Demos
         private bool DoAllPlayersHaveJoysticks()
         {
             return FindPlayerWithoutJoystick() == null;
+        }
+
+        public void BackToMainMenu()
+        {
+            isRemovingController = true;
         }
     }
 }
