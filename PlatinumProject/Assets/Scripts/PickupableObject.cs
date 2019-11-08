@@ -68,6 +68,8 @@ public class PickupableObject : MonoBehaviour
         else if (collision.gameObject.CompareTag("Wall"))
         {
             GameManager.managerGame.SpawnObject();
+            BreakableWalls wall = collision.gameObject.GetComponent<BreakableWalls>();
+            wall.TakeDamage();
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.CompareTag("DeathZone"))

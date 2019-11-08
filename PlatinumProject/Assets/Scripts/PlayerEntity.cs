@@ -18,13 +18,24 @@ public class PlayerEntity : MonoBehaviour
     [Range(0f, 100f)]  public float acceleration = 20f;
     public float moveSpeedMax = 10f;
     private Vector2 moveDir;
-    private Vector2 velocity = Vector2.zero;
+    private Vector2 speed = Vector2.zero;
     private Vector2 orientDir = Vector2.right;
 
     // Frictions
     [Header("Friction")]
     [Range(0f, 100f)] public float friction;
     [Range(0f, 100f)] public float turnFriction;
+
+    // Gravity
+    [Header("Gravity")]
+    public float gravity = 20f;
+    private float verticalSpeed = 0f;
+    public float verticalSpeedMax = 10f;
+
+    // Ground
+    [Header("Ground")]
+    public float groundY = 0f;
+    private bool isGrounded = false;
 
     // Object Models
     [Header("Models")]
@@ -74,6 +85,7 @@ public class PlayerEntity : MonoBehaviour
     void Awake()
     {
         _rigidbody = GetComponentInChildren<Rigidbody>();
+        _rigidbody.useGravity = false;
     }
 
     // Update is called once per frame
@@ -85,7 +97,6 @@ public class PlayerEntity : MonoBehaviour
             UpdateModelOrient();
             UpdatePosition();
             UpdateSmoke();
-            Debug.DrawRay(transform.position, new Vector3(orientDir.x, 0, orientDir.y), Color.red);
         }
     }
 
@@ -97,7 +108,7 @@ public class PlayerEntity : MonoBehaviour
         }
 
         GUILayout.BeginVertical();
-        GUILayout.Label("Velocity = " + velocity);
+        GUILayout.Label("Speed = " + speed);
         GUILayout.Label("Team = " + teamID);
         GUILayout.Label("moveDir = " + moveDir);
         GUILayout.Label(canPick ? "canPick" : "cantPick");
@@ -109,7 +120,7 @@ public class PlayerEntity : MonoBehaviour
 
     private void UpdatePosition()
     {
-        _rigidbody.velocity = new Vector3(velocity.x, 0, velocity.y);
+        _rigidbody.velocity = new Vector3(speed.x, 0, speed.y);
     }
 
 
@@ -119,37 +130,37 @@ public class PlayerEntity : MonoBehaviour
     {
         if (moveDir != Vector2.zero)
         {
-            float turnAngle = Vector2.SignedAngle(velocity, moveDir);
+            float turnAngle = Vector2.SignedAngle(speed, moveDir);
             turnAngle = Mathf.Abs(turnAngle);
             float frictionRatio = turnAngle / 180f;
             float turnFrictionWithRatio = turnFriction * frictionRatio;
 
-            velocity += moveDir * acceleration * Time.fixedDeltaTime;
-            if (velocity.sqrMagnitude > moveSpeedMax * moveSpeedMax && !isKnocked)
+            speed += moveDir * acceleration * Time.fixedDeltaTime;
+            if (speed.sqrMagnitude > moveSpeedMax * moveSpeedMax && !isKnocked)
             {
-                velocity = velocity.normalized * moveSpeedMax;
+                speed = speed.normalized * moveSpeedMax;
             }
 
-            Vector2 frictionDir = velocity.normalized;
-            velocity -= frictionDir * turnFrictionWithRatio * Time.fixedDeltaTime;
+            Vector2 frictionDir = speed.normalized;
+            speed -= frictionDir * turnFrictionWithRatio * Time.fixedDeltaTime;
 
-            orientDir = velocity.normalized;
+            orientDir = speed.normalized;
         }
-        else if (velocity != Vector2.zero)
+        else if (speed != Vector2.zero)
         {
-            Vector2 frictionDir = velocity.normalized;
+            Vector2 frictionDir = speed.normalized;
             float frictionToApply = friction * Time.fixedDeltaTime;
-            if (velocity.sqrMagnitude <= frictionToApply * frictionToApply)
+            if (speed.sqrMagnitude <= frictionToApply * frictionToApply)
             {
                 isKnocked = false;
-                velocity = Vector2.zero;
+                speed = Vector2.zero;
             }
             else
             {
-                velocity -= frictionToApply * frictionDir;
+                speed -= frictionToApply * frictionDir;
             }
         }
-        else if (velocity == Vector2.zero)
+        else if (speed == Vector2.zero)
         {
             isKnocked = false;
         }
@@ -170,6 +181,46 @@ public class PlayerEntity : MonoBehaviour
         eulerAngles.y = angle;
         modelObjs[0].transform.eulerAngles = eulerAngles;
         modelObjs[1].transform.eulerAngles = eulerAngles;
+    }
+
+    #endregion
+
+    #region Gravity Fonctions
+
+    private void UpdateGravity()
+    {
+        if (isGrounded)
+        {
+            return;
+        }
+        verticalSpeed -= gravity * Time.fixedDeltaTime;
+        if (verticalSpeed < -verticalSpeedMax)
+        {
+            verticalSpeed = -verticalSpeedMax;
+        }
+    }
+
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
+
+    #endregion
+
+    #region Ground Fonctions
+
+    private void UpdateGroundCheck()
+    {
+        if (transform.position.y <= groundY)
+        {
+            isGrounded = true;
+            verticalSpeed = 0f;
+            transform.position = new Vector3(transform.position.x, groundY, transform.position.z);
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 
     #endregion
@@ -258,7 +309,7 @@ public class PlayerEntity : MonoBehaviour
         isKnocked = true;
         orientDir = knockDir;
         moveDir = Vector2.zero;
-        velocity = knockDir * powerKnock;
+        speed = knockDir * powerKnock;
     }
 
     public bool IsKnocked()
@@ -343,7 +394,7 @@ public class PlayerEntity : MonoBehaviour
     public void HittingWall()
     {
         isKnocked = false;
-        velocity = Vector2.zero;
+        speed = Vector2.zero;
     }
 
     #endregion

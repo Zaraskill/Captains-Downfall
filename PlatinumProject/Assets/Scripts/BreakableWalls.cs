@@ -34,34 +34,9 @@ public class BreakableWalls : MonoBehaviour
         }
     }
 
-    public void takeDamage()
+    public void TakeDamage()
     {
         currentHealthPoints--;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Pickable"))
-        {
-            SoundManager.managerSound.MakeWallHitSound();
-            currentHealthPoints -= 1;
-        }
-        else if(collision.gameObject.CompareTag("Player"))
-        {
-            PlayerEntity playerEntity = collision.gameObject.GetComponent<PlayerEntity>();
-            if (playerEntity.IsKnocked())
-            {
-                currentHealthPoints -= 1;
-            }
-            playerEntity.HittingWall();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Pickable"))
-        {
-            currentHealthPoints -= 1;
-        }
-    }
 }
