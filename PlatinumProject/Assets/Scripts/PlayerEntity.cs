@@ -93,6 +93,8 @@ public class PlayerEntity : MonoBehaviour
     {
         if (!isDead)
         {
+            UpdateGroundCheck();
+            UpdateGravity();
             UpdateMove();
             UpdateModelOrient();
             UpdatePosition();
@@ -120,7 +122,7 @@ public class PlayerEntity : MonoBehaviour
 
     private void UpdatePosition()
     {
-        _rigidbody.velocity = new Vector3(speed.x, 0, speed.y);
+        _rigidbody.velocity = new Vector3(speed.x, verticalSpeed, speed.y);
     }
 
 
@@ -180,7 +182,6 @@ public class PlayerEntity : MonoBehaviour
         Vector3 eulerAngles = modelObjs[0].transform.eulerAngles;
         eulerAngles.y = angle;
         modelObjs[0].transform.eulerAngles = eulerAngles;
-        modelObjs[1].transform.eulerAngles = eulerAngles;
     }
 
     #endregion
@@ -244,16 +245,14 @@ public class PlayerEntity : MonoBehaviour
             return;
         }
         pickedObject = targetObjet;
-        pickedObject.GetComponent<Rigidbody>().useGravity = false;
-        pickedObject.GetComponent<PickupableObject>().SetPickable(false);
-        pickedObject.GetComponent<BoxCollider>().enabled = false;
+        pickedObject.Picked();
         targetObjet = null;
+        power = powerMax;
         pickedObject.transform.SetParent(modelObjs[0].transform);
         pickedObject.transform.position = pointToHold.transform.position;        
         canPick = false;
         isHoldingItem = true;
-        GetComponent<Rigidbody>().mass += pickedObject.GetComponent<Rigidbody>().mass;
-
+        canThrow = true;
 
     }
 
@@ -266,36 +265,14 @@ public class PlayerEntity : MonoBehaviour
         return canThrow;
     }
 
-    public void StartChargingPower()
-    {
-        isChargingPower = true;
-    }
-
-    public bool IsChargingPower()
-    {
-        return isChargingPower;
-    }
-
-    public void ImprovePower()
-    {
-        if (power >= powerMax)
-        {
-            power = powerMax;
-            return;
-        }
-        power += powerUpgrade * Time.deltaTime;
-    }
-
     public void Throw()
     {
         pickedObject.transform.parent = null;
         pickedObject.Throw(orientDir, power);
-        pickedObject.GetComponent<Rigidbody>().useGravity = true;
-        pickedObject.GetComponent<BoxCollider>().enabled = true;
-        GetComponent<Rigidbody>().mass -= pickedObject.GetComponent<Rigidbody>().mass;
         pickedObject = null;
         isHoldingItem = false;
-        isChargingPower = false;
+        canThrow = false;
+        canPick = true;
         power = 0f;
     }
 
