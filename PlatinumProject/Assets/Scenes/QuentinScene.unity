@@ -433,11 +433,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab342277f5b843d4aa04d406772afeba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canonSound: {fileID: 8300000, guid: d80137fd82cd5c54ca7b66ee5c38def2, type: 3}
-  wallSound: {fileID: 8300000, guid: 0c8834a1eed3d6e40a2cab2cbbc5afa1, type: 3}
-  wallBreakSound: {fileID: 8300000, guid: c935770e5fe14f04c86b93934da0786f, type: 3}
-  hitSound: {fileID: 8300000, guid: 3851229711e959d49938d7b96094e05f, type: 3}
-  deathSound: {fileID: 8300000, guid: f3e679f807fb7f14a87ecd79964ffc79, type: 3}
+  canonSound: {fileID: 8300000, guid: c37a586231b89f647ae001a3933bb5d0, type: 3}
+  wallSound: {fileID: 8300000, guid: 09253a59bfa1eca4daffba832f46a4fb, type: 3}
+  wallBreakSound: {fileID: 8300000, guid: 8c777b9d0aae7b1489cb7314a6e4f0fe, type: 3}
+  hitSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: c398a21aa63703d4da85d50782ef14f9, type: 3}
 --- !u!114 &101982921
 MonoBehaviour:
   m_ObjectHideFlags: 0
