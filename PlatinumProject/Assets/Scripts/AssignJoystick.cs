@@ -63,7 +63,7 @@ namespace Rewired.Demos
                     player = FindPlayerWithoutJoystick();
                     if (player == null) return; // no free joysticks
 
-                    playerColor[i].SetActive(true);
+                    //playerColor[i].SetActive(true);
                     // Assign the joystick to this Player
                     player.controllers.AddController(joystick, false);
 
