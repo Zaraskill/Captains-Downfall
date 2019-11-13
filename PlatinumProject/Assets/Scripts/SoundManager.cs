@@ -19,15 +19,14 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        managerSound = this;
-        //if (managerSound != null)
-        //{
-        //    managerSound = this;
-        //}
-        //else
-        //{
-        //    Debug.LogError("Too many instances!");
-        //}
+        if (managerSound != null)
+        {
+            Debug.LogError("Too many instances!");            
+        }
+        else
+        {
+            managerSound = this;
+        }
     }
 
     // Update is called once per frame

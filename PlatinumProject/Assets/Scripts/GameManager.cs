@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
             case STATE_PLAY.PlayerSelection:
                 break;
             case STATE_PLAY.Party:
-                if (nbPlayersAlive <= 2 && isTeam)
+                if (nbPlayersAlive == 2 && isTeam)
                 {
                     if (teamOne.Count == 0)
                     {
@@ -141,43 +141,41 @@ public class GameManager : MonoBehaviour
                 displayResults.gameObject.SetActive(true);
                 if (idPlayerwinner <= 4 )
                 {
-                    displayWinner.text = "Le joueur " + idPlayerwinner + " est le grand vainqueur!!";
+                    displayWinner.text = "Victoire du joueur " + idPlayerwinner + ;
                 }
                 else if (idPlayerwinner == 5)
                 {
-                    displayWinner.text = "L'équipe";
+                    displayWinner.text = "Victoire de l'équipe";
                     for (int i = 0; i < teamOne.Count; i++)
                     {
                         string displayText;
                         if (i == 0)
                         {
-                            displayText = " joueur " + teamOne[i].playerID;
+                            displayText = " " + teamOne[i].playerID;
                         }
                         else
                         {
-                            displayText = " et joueur " + teamOne[i].playerID;
+                            displayText = " et " + teamOne[i].playerID;
                         }
                         displayWinner.text += displayText;
-                    }
-                    displayWinner.text += "sont les vainqueurs!!";
+                    }                   
                 }
                 else if (idPlayerwinner == 6)
                 {
-                    displayWinner.text = "L'équipe";
+                    displayWinner.text = "Victoire de l'équipe";
                     for (int i = 0; i < teamTwo.Count; i++)
                     {
                         string displayText;
                         if (i == 0)
                         {
-                            displayText = " joueur " + teamTwo[i].playerID;
+                            displayText = " " + teamTwo[i].playerID;
                         }
                         else
                         {
-                            displayText = " et joueur " + teamTwo[i].playerID;
+                            displayText = " et " + teamTwo[i].playerID;
                         }
                         displayWinner.text += displayText;
                     }
-                    displayWinner.text += "sont les vainqueurs!!";
                 }                
                 break;
             default:
@@ -193,7 +191,7 @@ public class GameManager : MonoBehaviour
         float y = spawnZone.GetComponent<BoxCollider>().bounds.min.y;
         float z = Random.Range(spawnZone.GetComponent<BoxCollider>().bounds.min.z, spawnZone.GetComponent<BoxCollider>().bounds.max.z);
         Vector3 position = new Vector3(x, y, z);
-        Instantiate(listPrefabsPickableItems[Random.Range(0, listPrefabsPickableItems.Length - 1)], position, Quaternion.identity);
+        Instantiate(listPrefabsPickableItems[Random.Range(0, listPrefabsPickableItems.Length)], position, Quaternion.identity);
     }
 
     #endregion
