@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 // Code créé et géré par Siméon
 public class Canon : MonoBehaviour
@@ -41,10 +42,11 @@ public class Canon : MonoBehaviour
         if (isShooting)
         {
             SoundManager.managerSound.MakeCanonSound();
+            CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 1f);
             playerCollisionned.gameObject.SetActive(true);
             playerCollisionned.OutCanon();
             playerCollisionned.transform.position = pointToThrow.transform.position;
-            orientDir = -transform.forward;
+            orientDir = transform.forward;
             Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
             playerCollisionned.Knockback(orientDirCanon, knockPower);
             isShooting = false;
