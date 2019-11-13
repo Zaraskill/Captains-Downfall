@@ -104,19 +104,23 @@ public class PickupableObject : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
             GameManager.managerGame.SpawnObject();
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
             GameManager.managerGame.SpawnObject();
             BreakableWalls wall = collision.gameObject.GetComponent<BreakableWalls>();
             wall.TakeDamage();
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("DeathZone"))
         {
             GameManager.managerGame.SpawnObject();
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Pillar"))
+        {
+            Destroy(gameObject);
         }
     }
 }
