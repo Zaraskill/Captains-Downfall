@@ -9,6 +9,7 @@ TagManager:
   - Ball
   - Wall
   - DeathZone
+  - Pillar
   layers:
   - Default
   - TransparentFX
