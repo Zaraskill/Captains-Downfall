@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf9052f580464c488cca91ec950ba09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockPower: 0
+  knockPower: 70
   playerIntoArea: []
 --- !u!65 &6034642972920455062
 BoxCollider:
