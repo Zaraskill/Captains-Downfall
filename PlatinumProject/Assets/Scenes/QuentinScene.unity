@@ -737,7 +737,6 @@ MonoBehaviour:
   - {fileID: 0}
   nbPlayersAlive: 0
   startCooldownEvent: 5
-  cooldownEvent: 0
   displayResults: {fileID: 60045468}
   displayWinner: {fileID: 2073945280}
 --- !u!4 &101982922
@@ -4346,12 +4345,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a9194d0ad99ae784c9572895a4bad80e, type: 2}
+      objectReference: {fileID: 2100000, guid: 4dc575d218aaa6e47bbd7ee52faf27ce, type: 2}
     - target: {fileID: 1901419186774873626, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bedd0d96f93e46346ad455bb7813f342, type: 2}
+      objectReference: {fileID: 2100000, guid: 4be1799858c6c4c479b59151d95cc001, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 836a6388fdaedac47890666e71c595f7, type: 3}
 --- !u!1001 &1474564760
