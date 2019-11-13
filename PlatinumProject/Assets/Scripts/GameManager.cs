@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
                 displayResults.gameObject.SetActive(true);
                 if (idPlayerwinner <= 4 )
                 {
-                    displayWinner.text = "Victoire du joueur " + idPlayerwinner + ;
+                    displayWinner.text = "Victoire du joueur " + idPlayerwinner;
                 }
                 else if (idPlayerwinner == 5)
                 {

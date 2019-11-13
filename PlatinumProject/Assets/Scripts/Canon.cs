@@ -8,6 +8,8 @@ public class Canon : MonoBehaviour
 {
 
     public GameObject pointToThrow;
+    public GameObject smokeEffect;
+
     [Header("Rotation")]
     public float rotateSpeed = 5f;
     public bool isRotating = false;
@@ -43,6 +45,7 @@ public class Canon : MonoBehaviour
         {
             SoundManager.managerSound.MakeCanonSound();
             CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 1f);
+            //Instantiate(smokeEffect, pointToThrow.transform.position, Quaternion.identity);
             playerCollisionned.gameObject.SetActive(true);
             playerCollisionned.OutCanon();
             playerCollisionned.transform.position = pointToThrow.transform.position;
