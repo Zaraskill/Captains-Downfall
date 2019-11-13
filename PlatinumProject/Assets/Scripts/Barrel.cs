@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class Barrel : MonoBehaviour
 {
@@ -65,6 +66,7 @@ public class Barrel : MonoBehaviour
         {
             Vector3 orientDir = (playerIntoArea[i].transform.position - transform.position);
             Vector3 directionNormalized = orientDir.normalized;
+            CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 1f);
             playerIntoArea[i].Knockback(new Vector2(directionNormalized.x, directionNormalized.z), knockPower);
             Destroy(this.gameObject);
         }

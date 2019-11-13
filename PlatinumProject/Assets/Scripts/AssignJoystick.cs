@@ -20,26 +20,46 @@ namespace Rewired.Demos
         private Player player;
 
         Joystick joystick;
-
+        [SerializeField]
+        private bool isOnFirstScreen = true;
+        [SerializeField]
         private bool isRemovingController = false;
 
         private void Update()
         {
             if (!ReInput.isReady) return;
-            AssignJoysticksToPlayers();
 
-            if(isRemovingController)
+            if (isOnFirstScreen)
             {
                 IList<Joystick> joysticks = ReInput.controllers.Joysticks;
-                for (int i = 0; i < joysticks.Count; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     joystick = joysticks[i];
+                    if (ReInput.controllers.IsControllerAssigned(joystick.type, joystick.id)) continue; // joystick is already assigned to a Player
 
-                    playerColor[i].SetActive(false);
-                player.controllers.RemoveController(joystick);
+
+                        // Find the next Player without a Joystick
+                        player = FindPlayerWithoutJoystick();
+                        if (player == null) return; // no free joysticks
+                        // Assign the joystick to this Player
+                        player.controllers.AddController(joystick, false);
                 }
+            }
+            else
+            {
+                AssignJoysticksToPlayers();
 
-                isRemovingController = false;
+                if (isRemovingController)
+                {
+                    IList<Joystick> joysticks = ReInput.controllers.Joysticks;
+                    for (int i = 1; i < joysticks.Count; i++)
+                    {
+                        joystick = joysticks[i];
+
+                        //playerColor[i].SetActive(false);
+                        player.controllers.RemoveController(joystick);
+                    }
+                }
             }
         }
 
@@ -99,7 +119,12 @@ namespace Rewired.Demos
 
         public void BackToMainMenu()
         {
-            isRemovingController = true;
+            isRemovingController = !isRemovingController;
+        }
+
+        public void ToggleIsOnFirstScreen()
+        {
+            isOnFirstScreen = !isOnFirstScreen;
         }
     }
 }

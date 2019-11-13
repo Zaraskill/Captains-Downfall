@@ -745,6 +745,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82415c0f904d15f44975d2bf044ac82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  verticalSpeedOn: 10
+  groundY: 0
+  isPickable: 1
 --- !u!1 &594869547
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +858,7 @@ GameObject:
   - component: {fileID: 733292063}
   - component: {fileID: 733292062}
   - component: {fileID: 733292065}
+  - component: {fileID: 733292066}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -940,6 +944,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 86cdf4095fd39464988546ea21458d46, type: 2}
+--- !u!114 &733292066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733292061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
+  DefaultRotInfluence: {x: 1, y: 1, z: 1}
+  RestPositionOffset: {x: 0, y: 40.5, z: -12.5}
+  RestRotationOffset: {x: 80, y: 0, z: 0}
 --- !u!1 &741177981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,6 +1723,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82415c0f904d15f44975d2bf044ac82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  verticalSpeedOn: 10
+  groundY: 0
+  isPickable: 1
 --- !u!54 &1401605546
 Rigidbody:
   m_ObjectHideFlags: 0
