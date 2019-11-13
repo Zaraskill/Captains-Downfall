@@ -65,6 +65,8 @@ public class PickupableObject : MonoBehaviour
     public void Throw(Vector2 orient)
     {
         _rigidbody.isKinematic = false;
+        _rigidbody.constraints = RigidbodyConstraints.None;
+        _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         GetComponent<BoxCollider>().enabled = true;
         GetComponent<TrailRenderer>().enabled = true;
         this.orient = orient;
@@ -78,6 +80,7 @@ public class PickupableObject : MonoBehaviour
         GetComponent<TrailRenderer>().enabled = false;
         _rigidbody.useGravity = false;
         _rigidbody.isKinematic = true;
+        _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
     }
 
     public Vector2 GetVelocity()
