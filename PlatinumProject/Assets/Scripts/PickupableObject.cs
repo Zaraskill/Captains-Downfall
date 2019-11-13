@@ -6,14 +6,16 @@ using UnityEngine;
 public class PickupableObject : MonoBehaviour
 {
     private Vector2 velocity = Vector2.zero;
+    public float powerKnock = 50f;
     public float verticalSpeedOn = 10f;
     private float verticalSpeed = 0f;
     public float groundY = 0f;
     private bool isGrounded = false;
     public bool isPickable = true;
 
+    public Transform groundPosition;
+
     private Vector2 orient = Vector2.zero;
-    private float powerKnock = 0f;
 
     private float timerSpawn = 5f;
     private float timer;
@@ -45,11 +47,13 @@ public class PickupableObject : MonoBehaviour
         {
             return;
         }
-        if ( (transform.position.y <= groundY && isPickable) || (!isPickable && velocity == Vector2.zero) )
+        if ( (groundPosition.position.y <= groundY && isPickable) || (!isPickable && velocity == Vector2.zero) )
         {
             isGrounded = true;
             verticalSpeed = 0f;
-            transform.position = new Vector3(transform.position.x, groundY, transform.position.z);
+            float offsetY = groundPosition.position.y - transform.position.y;
+
+            transform.position = new Vector3(transform.position.x, groundY - offsetY, transform.position.z);
         }
         else
         {
@@ -58,13 +62,13 @@ public class PickupableObject : MonoBehaviour
         }
     }
 
-    public void Throw(Vector2 orient, float power)
+    public void Throw(Vector2 orient)
     {
+        _rigidbody.isKinematic = false;
         GetComponent<BoxCollider>().enabled = true;
         GetComponent<TrailRenderer>().enabled = true;
         this.orient = orient;
-        powerKnock = power;
-        velocity = orient * power;
+        velocity = orient * powerKnock;
     }
 
     public void Picked()

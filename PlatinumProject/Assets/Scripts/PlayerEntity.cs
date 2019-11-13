@@ -34,6 +34,7 @@ public class PlayerEntity : MonoBehaviour
 
     // Ground
     [Header("Ground")]
+    public Transform groundCheckPoint;
     public float groundY = 0f;
     private bool isGrounded = false;
 
@@ -52,9 +53,6 @@ public class PlayerEntity : MonoBehaviour
 
     // Throw
     [Header("Throw")]
-    public float powerUpgrade = 50f;
-    [Range(0f, 150f)]  public float powerMax = 20f;
-    private bool isChargingPower = false;
     private bool canThrow = false;
     private Vector2 throwDir;
     private float power = 0f;
@@ -212,11 +210,12 @@ public class PlayerEntity : MonoBehaviour
 
     private void UpdateGroundCheck()
     {
-        if (transform.position.y <= groundY)
+        if (groundCheckPoint.position.y < groundY)
         {
             isGrounded = true;
             verticalSpeed = 0f;
-            transform.position = new Vector3(transform.position.x, groundY, transform.position.z);
+            float offsetY = groundCheckPoint.position.y - transform.position.y;
+            transform.position = new Vector3(transform.position.x, groundY - offsetY, transform.position.z);
         }
         else
         {
@@ -247,7 +246,6 @@ public class PlayerEntity : MonoBehaviour
         pickedObject = targetObjet;
         pickedObject.Picked();
         targetObjet = null;
-        power = powerMax;
         pickedObject.transform.SetParent(modelObjs[0].transform);
         pickedObject.transform.position = pointToHold.transform.position;        
         canPick = false;
@@ -268,12 +266,11 @@ public class PlayerEntity : MonoBehaviour
     public void Throw()
     {
         pickedObject.transform.parent = null;
-        pickedObject.Throw(orientDir, power);
+        pickedObject.Throw(orientDir);
         pickedObject = null;
         isHoldingItem = false;
         canThrow = false;
         canPick = true;
-        power = 0f;
     }
 
     #endregion
@@ -307,7 +304,6 @@ public class PlayerEntity : MonoBehaviour
             Destroy(pickedObject.gameObject);
             GameManager.managerGame.SpawnObject();
             pickedObject = null;
-            isChargingPower = false;
             canPick = false;
         }
         isInsideCanon = true;

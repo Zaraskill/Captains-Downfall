@@ -40,10 +40,12 @@ public class PlayerController : MonoBehaviour
         }
         else if (mainPlayer.GetButtonDown("PickUp") && entity.CanPick() && !entity.IsHoldingItem())
         {
+            Debug.Log("Pickup");
             entity.PickItem();
         }
         else if (mainPlayer.GetButtonUp("PickUp") && entity.CanThrow())
         {
+            Debug.Log("Throw");
             entity.Throw();
         }
     }
