@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager managerGame;
 
-    enum STATE_PLAY { PlayerSelection, Party, Results, DisplayResults}
+    enum STATE_PLAY { PlayerSelection, PrepareParty, PrepareSuddenDeath, Party, Results, DisplayResultsRound, DisplayResultsFinal}
 
     private STATE_PLAY gameState;
     
@@ -23,8 +23,9 @@ public class GameManager : MonoBehaviour
     [Header("Players")]    
     public List<PlayerEntity> listPlayers;
     private List<PlayerEntity> listAlivePlayers;
+    private List<int> listPointsPlayers;
+    private List<int> listWinnerPlayers;
     public int nbPlayersAlive;
-    private Dictionary<int, bool> players;
     private int idPlayerwinner;
     private bool isTeam = false;
     private List<PlayerEntity> teamOne;
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
     //Gestion Events
     [Header("Events")]
     public float startCooldownEvent;
-    public float cooldownEvent;
+    private float cooldownEvent;
     private bool isEventComing = false;
     private bool isEventHere = false;
 
@@ -46,19 +47,18 @@ public class GameManager : MonoBehaviour
     {
         if (managerGame != null)
         {
-            Debug.LogError("Too many instances!");
+            Destroy(this.gameObject);
         }
         else
         {
             managerGame = this;
+            DontDestroyOnLoad(this.gameObject);
         }
-        players = new Dictionary<int, bool>
+        listPointsPlayers = new List<int>()
         {
-            { 0, true },
-            { 1, true },
-            { 2, true },
-            { 3, true }
+            0,0,0,0
         };
+        listWinnerPlayers = new List<int>();
         nbPlayersAlive = 4;
         teamOne = new List<PlayerEntity>();
         teamTwo = new List<PlayerEntity>();
@@ -93,15 +93,9 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 else if (nbPlayersAlive == 1)
-                {
-                    foreach(int idPlayer in players.Keys)
-                    {
-                        if (players[idPlayer])
-                        {
-                            idPlayerwinner = idPlayer;
-                            gameState = STATE_PLAY.Results;
-                        }
-                    }
+                {                    
+                    idPlayerwinner = listAlivePlayers[0].playerID;
+                    gameState = STATE_PLAY.Results;      
                 }
                 else
                 {
@@ -134,49 +128,14 @@ public class GameManager : MonoBehaviour
 
                 break;
             case STATE_PLAY.Results:
-                idPlayerwinner++;
-                gameState = STATE_PLAY.DisplayResults;
+                UpdatePoints();
+                CheckWinner();
                 break;
-            case STATE_PLAY.DisplayResults:
-                displayResults.gameObject.SetActive(true);
-                if (idPlayerwinner <= 4 )
-                {
-                    displayWinner.text = "Victoire du joueur " + idPlayerwinner + ;
-                }
-                else if (idPlayerwinner == 5)
-                {
-                    displayWinner.text = "Victoire de l'équipe";
-                    for (int i = 0; i < teamOne.Count; i++)
-                    {
-                        string displayText;
-                        if (i == 0)
-                        {
-                            displayText = " " + teamOne[i].playerID;
-                        }
-                        else
-                        {
-                            displayText = " et " + teamOne[i].playerID;
-                        }
-                        displayWinner.text += displayText;
-                    }                   
-                }
-                else if (idPlayerwinner == 6)
-                {
-                    displayWinner.text = "Victoire de l'équipe";
-                    for (int i = 0; i < teamTwo.Count; i++)
-                    {
-                        string displayText;
-                        if (i == 0)
-                        {
-                            displayText = " " + teamTwo[i].playerID;
-                        }
-                        else
-                        {
-                            displayText = " et " + teamTwo[i].playerID;
-                        }
-                        displayWinner.text += displayText;
-                    }
-                }                
+            case STATE_PLAY.DisplayResultsRound:
+                DisplayRoundResults();
+                WaitingForInput();
+                break;
+            case STATE_PLAY.DisplayResultsFinal:
                 break;
             default:
                 break;
@@ -200,7 +159,6 @@ public class GameManager : MonoBehaviour
 
     public void DeadPlayer(int playerID)
     {
-        players[playerID] = false;
         nbPlayersAlive--;
         foreach (PlayerEntity player in listAlivePlayers)
         {
@@ -269,6 +227,52 @@ public class GameManager : MonoBehaviour
         teamTwo.Clear();
     }
 
+    private void UpdatePoints()
+    {
+        if (idPlayerwinner < 4)
+        {
+            listPointsPlayers[idPlayerwinner]++;
+        }
+        else if (idPlayerwinner == 4)
+        {
+            foreach (PlayerEntity player in teamOne)
+            {
+                listPointsPlayers[player.playerID]++;
+            }
+        }
+        else
+        {
+            foreach (PlayerEntity player in teamTwo)
+            {
+                listPointsPlayers[player.playerID]++;
+            }
+        }        
+    }
+
+    private void CheckWinner()
+    {
+        for (int index = 0; index < listPointsPlayers.Count; index++)
+        {
+            if (listPointsPlayers[index] == 5)
+            {
+                listWinnerPlayers.Add(index);
+            }
+        }
+        if (listWinnerPlayers.Count == 1)
+        {
+            gameState = STATE_PLAY.DisplayResultsFinal;
+        }
+        else if (listWinnerPlayers.Count >= 2)
+        {
+
+        }
+        else
+        {
+            gameState = STATE_PLAY.DisplayResultsRound;
+        }
+        idPlayerwinner++;
+    }
+
     #endregion
 
     #region Events Fonctions
@@ -298,6 +302,76 @@ public class GameManager : MonoBehaviour
             CreationTeam();
         }
         isEventHere = false;
+    }
+
+    #endregion
+
+    #region UI Fonctions
+
+    private void DisplayRoundResults()
+    {
+        displayResults.gameObject.SetActive(true);
+        if (idPlayerwinner <= 4)
+        {
+            displayWinner.text = "Victoire du joueur " + idPlayerwinner;
+        }
+        else if (idPlayerwinner == 5)
+        {
+            displayWinner.text = "Victoire de l'équipe";
+            for (int i = 0; i < teamOne.Count; i++)
+            {
+                string displayText;
+                if (i == 0)
+                {
+                    displayText = " " + teamOne[i].playerID++;
+                }
+                else
+                {
+                    displayText = " et " + teamOne[i].playerID++;
+                }
+                displayWinner.text += displayText;
+            }
+        }
+        else if (idPlayerwinner == 6)
+        {
+            displayWinner.text = "Victoire de l'équipe";
+            for (int i = 0; i < teamTwo.Count; i++)
+            {
+                string displayText;
+                if (i == 0)
+                {
+                    displayText = " " + teamTwo[i].playerID;
+                }
+                else
+                {
+                    displayText = " et " + teamTwo[i].playerID;
+                }
+                displayWinner.text += displayText;
+            }
+        }
+    }
+
+    #endregion
+
+    #region Input Fonctions
+
+    private void WaitingForInput()
+    {
+        if (Input.GetButtonDown("UISubmit"))
+        {
+            if (listPointsPlayers.Count == 1)
+            {
+                gameState = STATE_PLAY.DisplayResultsFinal;
+            }
+            else if (listPointsPlayers.Count > 1)
+            {
+                gameState = STATE_PLAY.PrepareSuddenDeath;
+            }
+            else
+            {
+                gameState = STATE_PLAY.PrepareParty;
+            }
+        }
     }
 
     #endregion
