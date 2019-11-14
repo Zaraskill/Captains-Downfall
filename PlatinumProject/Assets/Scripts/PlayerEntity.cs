@@ -282,7 +282,7 @@ public class PlayerEntity : MonoBehaviour
 
     public void Knockback(Vector2 knockDir, float powerKnock)
     {
-        SoundManager.managerSound.MakeHitSound();
+        //SoundManager.managerSound.MakeHitSound();
         isKnocked = true;
         orientDir = knockDir;
         moveDir = Vector2.zero;
@@ -374,6 +374,10 @@ public class PlayerEntity : MonoBehaviour
             }
             HittingWall();
             
+        }
+        else if (collision.gameObject.tag == "Pickable" && !collision.gameObject.GetComponent<PickupableObject>().isPickable)
+        {
+            SoundManager.managerSound.MakeHitSound();
         }
     }
 
