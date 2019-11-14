@@ -11,13 +11,13 @@ public class GameManager : MonoBehaviour
     enum STATE_PLAY { PlayerSelection, PrepareParty, PrepareSuddenDeath, Party, Results, DisplayResultsRound, DisplayResultsFinal}
 
     private STATE_PLAY gameState;
-    
 
     //Spawn Objects
     [Header("Spawn Objects")]
     public float maxObjectsInGame;
     public GameObject[] listPrefabsPickableItems;
     public GameObject spawnZone;
+    private int randomObject;
 
     //Gestion players
     [Header("Players")]    
@@ -30,13 +30,6 @@ public class GameManager : MonoBehaviour
     private bool isTeam = false;
     private List<PlayerEntity> teamOne;
     private List<PlayerEntity> teamTwo;
-
-    //Gestion Events
-    [Header("Events")]
-    public float startCooldownEvent;
-    private float cooldownEvent;
-    private bool isEventComing = false;
-    private bool isEventHere = false;
 
     //Affichage résultats
     [Header("Affichage Résultats")]
@@ -59,11 +52,8 @@ public class GameManager : MonoBehaviour
             0,0,0,0
         };
         listWinnerPlayers = new List<int>();
-        nbPlayersAlive = 4;
         teamOne = new List<PlayerEntity>();
         teamTwo = new List<PlayerEntity>();
-        listAlivePlayers = new List<PlayerEntity>(listPlayers);
-        cooldownEvent = startCooldownEvent;
     }
     // Start is called before the first frame update
     void Start()
@@ -77,6 +67,12 @@ public class GameManager : MonoBehaviour
         switch(gameState)
         {
             case STATE_PLAY.PlayerSelection:
+                break;
+            case STATE_PLAY.PrepareParty:
+                PrepareParty();
+                break;
+            case STATE_PLAY.PrepareSuddenDeath:
+                PrepareSuddenDeath();
                 break;
             case STATE_PLAY.Party:
                 if (nbPlayersAlive == 2 && isTeam)
@@ -97,35 +93,6 @@ public class GameManager : MonoBehaviour
                     idPlayerwinner = listAlivePlayers[0].playerID;
                     gameState = STATE_PLAY.Results;      
                 }
-                else
-                {
-                    if (nbPlayersAlive > 2 )
-                    {
-                        if (!isEventComing && !isEventHere)
-                        {
-                            if (Random.Range(0, 2) == 1)
-                            {
-                                StartComingEvent();
-                            }
-                        }
-                        else if (isEventComing)
-                        {
-                            if (cooldownEvent <= 0f)
-                            {
-                                StartEvent();
-                            }
-                            else
-                            {
-                                cooldownEvent -= Time.deltaTime;
-                            }
-                        }
-                        else if (isEventHere)
-                        {
-                            PrepareEvent();
-                        }
-                    }                    
-                }
-
                 break;
             case STATE_PLAY.Results:
                 UpdatePoints();
@@ -136,6 +103,8 @@ public class GameManager : MonoBehaviour
                 WaitingForInput();
                 break;
             case STATE_PLAY.DisplayResultsFinal:
+                DisplayFinalResults();
+                WaitingForInput();
                 break;
             default:
                 break;
@@ -150,7 +119,16 @@ public class GameManager : MonoBehaviour
         float y = spawnZone.GetComponent<BoxCollider>().bounds.min.y;
         float z = Random.Range(spawnZone.GetComponent<BoxCollider>().bounds.min.z, spawnZone.GetComponent<BoxCollider>().bounds.max.z);
         Vector3 position = new Vector3(x, y, z);
-        Instantiate(listPrefabsPickableItems[Random.Range(0, listPrefabsPickableItems.Length)], position, Quaternion.identity);
+        Instantiate(listPrefabsPickableItems[randomObject], position, Quaternion.identity);
+    }
+
+    private void GenerateObjects()
+    {
+        randomObject = Random.Range(0, listPrefabsPickableItems.Length);
+        for (int i = 0; i < 15; i++)
+        {
+            SpawnObject();
+        }
     }
 
     #endregion
@@ -219,6 +197,7 @@ public class GameManager : MonoBehaviour
 
     private void DestroyTeam()
     {
+        isTeam = false;
         foreach (PlayerEntity player in listPlayers)
         {
             player.teamID = 0;
@@ -246,7 +225,8 @@ public class GameManager : MonoBehaviour
             {
                 listPointsPlayers[player.playerID]++;
             }
-        }        
+        }
+        listAlivePlayers.Clear();
     }
 
     private void CheckWinner()
@@ -277,31 +257,29 @@ public class GameManager : MonoBehaviour
 
     #region Events Fonctions
 
-    private void StartComingEvent()
+    private void PrepareParty()
     {
-        isEventComing = true;
-    }
-
-    private void StartEvent()
-    {
-        cooldownEvent = startCooldownEvent;
-        isEventComing = false;
-        isEventHere = true;
-    }
-
-    private void PrepareEvent()
-    {
-        if (isTeam)
-        {
-            isTeam = false;
-            DestroyTeam();
-        }
-        else
+        DestroyTeam();
+        listWinnerPlayers.Clear();
+        idPlayerwinner = -1;
+        listAlivePlayers = listPlayers;
+        nbPlayersAlive = 4;
+        if (Random.Range(0, 2) == 1)
         {
             isTeam = true;
             CreationTeam();
         }
-        isEventHere = false;
+        else
+        {
+            isTeam = false;
+        }
+        GenerateObjects();
+    }
+
+    private void PrepareSuddenDeath()
+    {
+        DestroyTeam();
+        idPlayerwinner = -1;
     }
 
     #endregion
@@ -349,6 +327,11 @@ public class GameManager : MonoBehaviour
                 displayWinner.text += displayText;
             }
         }
+    }
+
+    private void DisplayFinalResults()
+    {
+
     }
 
     #endregion

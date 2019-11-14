@@ -265,12 +265,15 @@ public class PlayerEntity : MonoBehaviour
 
     public void Throw()
     {
-        pickedObject.transform.parent = null;
-        pickedObject.Throw(orientDir);
-        pickedObject = null;
-        isHoldingItem = false;
-        canThrow = false;
-        canPick = true;
+        if(canThrow)
+        {
+            pickedObject.transform.parent = null;
+            pickedObject.Throw(orientDir);
+            pickedObject = null;
+            isHoldingItem = false;
+            canThrow = false;
+        }
+        
     }
 
     #endregion
@@ -304,6 +307,7 @@ public class PlayerEntity : MonoBehaviour
             Destroy(pickedObject.gameObject);
             GameManager.managerGame.SpawnObject();
             pickedObject = null;
+            canThrow = false;
             canPick = false;
         }
         isInsideCanon = true;
@@ -342,6 +346,15 @@ public class PlayerEntity : MonoBehaviour
                 targetObjet = objectPick;
             }
             
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Pickable" && !isHoldingItem)
+        {
+            canPick = false;
+            targetObjet = null;
         }
     }
 

@@ -1392,7 +1392,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1e-45}
+  m_BoundingSphereOverride: {x: 0, y: 1.285698e-39, z: -3.11e-43, w: -1.114e-42}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1572,7 +1572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &983697981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1711,7 +1711,6 @@ MonoBehaviour:
   - {fileID: 1283600002}
   - {fileID: 1267224933}
   nbPlayersAlive: 0
-  startCooldownEvent: 10
   displayResults: {fileID: 983697983}
   displayWinner: {fileID: 198461555}
 --- !u!4 &997604949
