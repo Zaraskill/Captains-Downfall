@@ -880,6 +880,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3996566874212664614, guid: 651ec8902940b6c4cbf2de851bcf3bbd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 651ec8902940b6c4cbf2de851bcf3bbd, type: 3}
 --- !u!1 &436613641
@@ -1689,6 +1694,7 @@ MonoBehaviour:
   wallBreakSound: {fileID: 8300000, guid: c935770e5fe14f04c86b93934da0786f, type: 3}
   hitSound: {fileID: 8300000, guid: 3851229711e959d49938d7b96094e05f, type: 3}
   deathSound: {fileID: 8300000, guid: f3e679f807fb7f14a87ecd79964ffc79, type: 3}
+  barrelExplosionSound: {fileID: 0}
 --- !u!114 &997604948
 MonoBehaviour:
   m_ObjectHideFlags: 0

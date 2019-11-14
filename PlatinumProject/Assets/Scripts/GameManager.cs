@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public GameObject spawnZone;
     private int randomObject;
 
+    //Gestion Map
+    private BreakableWalls[] listWalls;
+
     //Gestion players
     [Header("Players")]    
     public List<PlayerEntity> listPlayers;
@@ -28,6 +31,7 @@ public class GameManager : MonoBehaviour
     public int nbPlayersAlive;
     private int idPlayerwinner;
     private bool isTeam = false;
+    private bool isSuddenDeath = false;
     private List<PlayerEntity> teamOne;
     private List<PlayerEntity> teamTwo;
 
@@ -51,6 +55,7 @@ public class GameManager : MonoBehaviour
         {
             0,0,0,0
         };
+        listWalls = FindObjectsOfType<BreakableWalls>();
         listWinnerPlayers = new List<int>();
         teamOne = new List<PlayerEntity>();
         teamTwo = new List<PlayerEntity>();
@@ -58,7 +63,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameState = STATE_PLAY.Party;
+        gameState = STATE_PLAY.PrepareParty;
     }
 
     // Update is called once per frame
@@ -128,6 +133,15 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 15; i++)
         {
             SpawnObject();
+        }
+    }
+
+    private void ClearMap()
+    {
+        PickupableObject[] listObjectsinGame = FindObjectsOfType<PickupableObject>();
+        foreach(PickupableObject objects in listObjectsinGame)
+        {
+            Destroy(objects.gameObject);
         }
     }
 
@@ -259,7 +273,9 @@ public class GameManager : MonoBehaviour
 
     private void PrepareParty()
     {
+
         DestroyTeam();
+        ClearMap();
         listWinnerPlayers.Clear();
         idPlayerwinner = -1;
         listAlivePlayers = listPlayers;
@@ -274,12 +290,34 @@ public class GameManager : MonoBehaviour
             isTeam = false;
         }
         GenerateObjects();
+        gameState = STATE_PLAY.Party;
     }
 
     private void PrepareSuddenDeath()
     {
         DestroyTeam();
+        ClearMap();
+        listAlivePlayers.Clear();
         idPlayerwinner = -1;
+        foreach (int index in listWinnerPlayers)
+        {
+            listAlivePlayers.Add(listPlayers[index]);
+        }
+        listWinnerPlayers.Clear();
+        isSuddenDeath = true;
+        GenerateObjects();
+    }
+
+    #endregion
+
+    #region Map Fonctions
+
+    private void PrepareMap()
+    {
+        foreach(BreakableWalls wall in listWalls)
+        {
+            wall.gameObject.SetActive(true);
+        }
     }
 
     #endregion

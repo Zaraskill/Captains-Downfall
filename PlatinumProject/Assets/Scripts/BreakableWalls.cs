@@ -30,7 +30,7 @@ public class BreakableWalls : MonoBehaviour
         else if (currentHealthPoints == 0)
         {
             SoundManager.managerSound.MakeWallBreakSound();
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 
