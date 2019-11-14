@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 // Code créé et géré par Siméon
 public class BreakableWalls : MonoBehaviour
@@ -30,6 +31,7 @@ public class BreakableWalls : MonoBehaviour
         else if (currentHealthPoints == 0)
         {
             SoundManager.managerSound.MakeWallBreakSound();
+            CameraShaker.Instance.ShakeOnce(1f, 1f, 0.1f, 1f);
             this.gameObject.SetActive(false);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 
 // Code crée et géré par Corentin
@@ -363,6 +364,7 @@ public class PlayerEntity : MonoBehaviour
         if (collision.gameObject.tag == "DeathZone")
         {
             SoundManager.managerSound.MakeDeathSound();
+            CameraShaker.Instance.ShakeOnce(1f, 1f, 0.1f, 1f);
             TimeToDie();
         }
         else if (collision.gameObject.tag == "Wall")

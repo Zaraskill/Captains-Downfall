@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -745,9 +745,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82415c0f904d15f44975d2bf044ac82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerKnock: 50
   verticalSpeedOn: 10
   groundY: 0
   isPickable: 1
+  groundPosition: {fileID: 0}
 --- !u!1 &594869547
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,14 +789,13 @@ MonoBehaviour:
   turnFriction: 10
   gravity: 20
   verticalSpeedMax: 10
+  groundCheckPoint: {fileID: 0}
   groundY: 0
   modelObjs:
   - {fileID: 1334341582}
   - {fileID: 1012900460}
   pickedObject: {fileID: 0}
   pointToHold: {fileID: 130110037}
-  powerUpgrade: 50
-  powerMax: 30
   smoke: {fileID: 9052322529045278513, guid: 4eacb2370c1a0044982d492557f7c9ab, type: 3}
   startTimeBtwSpawns: 0
   durationTime: 0
@@ -929,7 +930,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
 --- !u!114 &733292065
 MonoBehaviour:
@@ -999,14 +1000,13 @@ MonoBehaviour:
   turnFriction: 10
   gravity: 20
   verticalSpeedMax: 10
+  groundCheckPoint: {fileID: 0}
   groundY: 0
   modelObjs:
   - {fileID: 1714152066}
   - {fileID: 1293473196}
   pickedObject: {fileID: 0}
   pointToHold: {fileID: 1915201755}
-  powerUpgrade: 50
-  powerMax: 10
   smoke: {fileID: 2421097575461954978, guid: 06aba8b005f0e4647a181567ec481ca9, type: 3}
   startTimeBtwSpawns: 0
   durationTime: 0
@@ -1214,6 +1214,7 @@ MonoBehaviour:
   wallBreakSound: {fileID: 8300000, guid: c935770e5fe14f04c86b93934da0786f, type: 3}
   hitSound: {fileID: 8300000, guid: 3851229711e959d49938d7b96094e05f, type: 3}
   deathSound: {fileID: 8300000, guid: f3e679f807fb7f14a87ecd79964ffc79, type: 3}
+  barrelExplosionSound: {fileID: 0}
 --- !u!114 &908826363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,8 +1232,6 @@ MonoBehaviour:
   spawnZone: {fileID: 0}
   listPlayers: []
   nbPlayersAlive: 0
-  startCooldownEvent: 0
-  cooldownEvent: 0
   displayResults: {fileID: 0}
   displayWinner: {fileID: 0}
 --- !u!4 &908826364
@@ -1723,9 +1722,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82415c0f904d15f44975d2bf044ac82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerKnock: 50
   verticalSpeedOn: 10
   groundY: 0
   isPickable: 1
+  groundPosition: {fileID: 0}
 --- !u!54 &1401605546
 Rigidbody:
   m_ObjectHideFlags: 0
