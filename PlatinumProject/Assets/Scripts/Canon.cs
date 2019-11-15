@@ -26,10 +26,12 @@ public class Canon : MonoBehaviour
 
     private PlayerEntity playerCollisionned;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,7 +47,8 @@ public class Canon : MonoBehaviour
         {
             SoundManager.managerSound.MakeCanonSound();
             CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 1f);
-            //Instantiate(smokeEffect, pointToThrow.transform.position, Quaternion.identity);
+            animator.SetBool("isShooting", true);
+            Instantiate(smokeEffect, pointToThrow.transform.position, Quaternion.identity);
             playerCollisionned.gameObject.SetActive(true);
             playerCollisionned.OutCanon();
             playerCollisionned.transform.position = pointToThrow.transform.position;
@@ -83,6 +86,7 @@ public class Canon : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && canEnter)
         {
+            animator.SetBool("isShooting", false);
             isRotating = true;
             playerCollisionned = collision.gameObject.GetComponent<PlayerEntity>();
             playerCollisionned.gameObject.SetActive(false);

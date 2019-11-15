@@ -402,17 +402,7 @@ public class PlayerEntity : MonoBehaviour
     {
         if (moveDir != Vector2.zero)
         {
-            if (timeBtwSpawns <= 0)
-            {
-                //spawn Smoke game object
-                GameObject instance = (GameObject)Instantiate(smoke, transform.position, Quaternion.identity);
-                Destroy(instance, durationTime);
-                timeBtwSpawns = startTimeBtwSpawns;
-            }
-            else
-            {
-                timeBtwSpawns -= Time.deltaTime;
-            }
+            Instantiate(smoke, transform.position, Quaternion.identity);
         }
     }
 

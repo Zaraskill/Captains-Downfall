@@ -733,14 +733,15 @@ MonoBehaviour:
   - {fileID: 3077946126571208657, guid: e95c108fad48e1449944333bca9d41bf, type: 3}
   spawnZone: {fileID: 518152008}
   listPlayers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 974614573}
+  - {fileID: 1026640553}
+  - {fileID: 620057177}
+  - {fileID: 2071628434}
+  listAlivePlayers: []
   nbPlayersAlive: 0
-  startCooldownEvent: 5
   displayResults: {fileID: 60045468}
   displayWinner: {fileID: 2073945280}
+  displayPointsRounds: {fileID: 0}
 --- !u!4 &101982922
 Transform:
   m_ObjectHideFlags: 0
@@ -3310,31 +3311,6 @@ Transform:
   m_Father: {fileID: 1433250075}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1220056865 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4924481080926444053, guid: 651ec8902940b6c4cbf2de851bcf3bbd,
-    type: 3}
-  m_PrefabInstance: {fileID: 3996566873369427672}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1220056866
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1220056865}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1558c898d2889444a8b2427c70a23afb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1306544370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5608,6 +5584,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4924481080926444053, guid: 651ec8902940b6c4cbf2de851bcf3bbd,
         type: 3}
       propertyPath: m_Name
@@ -6078,5 +6058,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 651ec8902940b6c4cbf2de851bcf3bbd, type: 3}

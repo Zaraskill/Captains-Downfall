@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6045044167209978310}
   - component: {fileID: 6045044167209978311}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: ParticulRun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,13 +40,13 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6045044167209978312}
   serializedVersion: 6
-  lengthInSec: 3
+  lengthInSec: 0.2
   simulationSpeed: 0.9
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2

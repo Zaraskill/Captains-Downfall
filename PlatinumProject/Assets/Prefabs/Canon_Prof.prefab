@@ -431,6 +431,8 @@ GameObject:
   - component: {fileID: 8217974942224246790}
   - component: {fileID: 3996566874212664615}
   - component: {fileID: 3996566874212664614}
+  - component: {fileID: 8144772488471761641}
+  - component: {fileID: 8856567866206164655}
   m_Layer: 0
   m_Name: Canon_Prof
   m_TagString: Untagged
@@ -491,11 +493,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointToThrow: {fileID: 6304602504167852033}
+  smokeEffect: {fileID: 5038769139394652529, guid: 43cf31b05c2269645a9ac5b471ad1146,
+    type: 3}
   rotateSpeed: 10
   isRotating: 0
   timeInsideCanon: 2
   timeToExpel: 3
   knockPower: 50
+--- !u!95 &8144772488471761641
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4924481080926444053}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1558c898d2889444a8b2427c70a23afb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8856567866206164655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4924481080926444053}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015b08653191eda4eba58fe487481aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5068187307022175236
 GameObject:
   m_ObjectHideFlags: 0
