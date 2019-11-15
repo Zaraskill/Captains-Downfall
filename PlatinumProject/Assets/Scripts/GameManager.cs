@@ -206,11 +206,13 @@ public class GameManager : MonoBehaviour
             playerID = listTemp[id];
             teamOne.Add(playerID);
             playerID.teamID = 1;
-            listTemp.Remove(playerID);           
+            listTemp.Remove(playerID);
+            //playerID.body.color = Color.blue;
         }
         foreach (PlayerEntity player in listTemp)
         {
             player.teamID = 2;
+            //player.body.color = Color.red;
             teamTwo.Add(player);
         }
     }
