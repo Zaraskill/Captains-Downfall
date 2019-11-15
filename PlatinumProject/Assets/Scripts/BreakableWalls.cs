@@ -14,6 +14,8 @@ public class BreakableWalls : MonoBehaviour
     [Header("Components")]
     private Animator myAnimator;
 
+    public GameObject destructionEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class BreakableWalls : MonoBehaviour
         {
             SoundManager.managerSound.MakeWallBreakSound();
             CameraShaker.Instance.ShakeOnce(1f, 1f, 0.1f, 1f);
+            Instantiate(destructionEffect, transform.position, Quaternion.identity);
             this.gameObject.SetActive(false);
         }
     }

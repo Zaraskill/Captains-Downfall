@@ -10,23 +10,33 @@ public class Barrel : MonoBehaviour
 
     private PlayerEntity playerCollisionned;
 
-    private bool isExploding;
+    public bool isExploding;
+
+    public bool isTouchingPlayer;
 
     public List<PlayerEntity> playerIntoArea;
+
+    private Animator animator;
+
+    public GameObject explosionEffect;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isExploding)
+        if(isTouchingPlayer)
         {
             Explosion();
+        }
+        else if(isExploding)
+        {
+            Destruction();
         }
     }
 
@@ -36,9 +46,9 @@ public class Barrel : MonoBehaviour
         {
             return;
         }
-        else
+        else if (collision.gameObject.CompareTag("Player"))
         {
-            isExploding = true;
+            isTouchingPlayer = true;
         }
     }
 
@@ -62,16 +72,23 @@ public class Barrel : MonoBehaviour
 
     private void Explosion()
     {
-        for(int i = 0; i < playerIntoArea.Count; i++)
+        animator.SetBool("isExploding", true);
+    }
+
+    private void Destruction()
+    {
+        for (int i = 0; i < playerIntoArea.Count; i++)
         {
             Vector3 orientDir = (playerIntoArea[i].transform.position - transform.position);
             Vector3 directionNormalized = orientDir.normalized;
             SoundManager.managerSound.MakeBarrelExplosionSound();
             CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 1f);
             playerIntoArea[i].Knockback(new Vector2(directionNormalized.x, directionNormalized.z), knockPower);
-            Destroy(this.gameObject);
+            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
+
 
     /* private void OnDrawGizmos()
     {
