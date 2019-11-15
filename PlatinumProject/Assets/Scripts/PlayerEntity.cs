@@ -80,11 +80,18 @@ public class PlayerEntity : MonoBehaviour
     [Header("Debug")]
     public bool _debugMode = false;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Awake()
     {
         _rigidbody = GetComponentInChildren<Rigidbody>();
         _rigidbody.useGravity = false;
+    }
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

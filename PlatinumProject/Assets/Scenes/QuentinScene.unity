@@ -3647,7 +3647,7 @@ PrefabInstance:
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: moveSpeedMax
-      value: 18
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -4217,17 +4217,17 @@ PrefabInstance:
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: moveSpeedMax
-      value: 200
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: friction
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: turnFriction
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -4360,6 +4360,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: edd2638ead29fe5468bf6ff3f904c823, type: 2}
+    - target: {fileID: 2522967404550544915, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 836a6388fdaedac47890666e71c595f7, type: 3}
 --- !u!1001 &1326318000
@@ -5043,7 +5048,7 @@ PrefabInstance:
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: moveSpeedMax
-      value: 18
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -6056,7 +6061,7 @@ PrefabInstance:
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: moveSpeedMax
-      value: 18
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}

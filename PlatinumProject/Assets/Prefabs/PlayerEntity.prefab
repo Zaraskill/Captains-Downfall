@@ -143,9 +143,9 @@ MonoBehaviour:
   playerID: 0
   teamID: 0
   acceleration: 100
-  moveSpeedMax: 200
-  friction: 31.7
-  turnFriction: 31.7
+  moveSpeedMax: 22
+  friction: 100
+  turnFriction: 100
   gravity: 20
   verticalSpeedMax: 10
   groundCheckPoint: {fileID: 4422004457748270449}
@@ -167,7 +167,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7913258810617097839}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7dd86cbf4e96add47a1344155ad60dff, type: 2}
   m_CullingMode: 0

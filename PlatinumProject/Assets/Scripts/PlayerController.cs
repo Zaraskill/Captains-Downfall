@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
         entity.Move(moveDir);
 
+        entity.GetComponent<Animator>().SetFloat("Move", moveDir.magnitude);
+
         if (mainPlayer.GetButtonDown("PickUp") && entity.IsInsideCanon())
         {
             entity.QuitCanon();
