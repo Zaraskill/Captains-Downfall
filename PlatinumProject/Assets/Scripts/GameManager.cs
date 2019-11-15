@@ -330,6 +330,7 @@ public class GameManager : MonoBehaviour
 
     private void DisplayRoundResults()
     {
+        int idPlayer = 0;
         displayResults.gameObject.SetActive(true);
         if (idPlayerwinner <= 4)
         {
@@ -341,13 +342,14 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < teamOne.Count; i++)
             {
                 string displayText;
+                idPlayer = teamOne[i].playerID + 1;
                 if (i == 0)
                 {
-                    displayText = " " + teamOne[i].playerID++;
+                    displayText = " " + idPlayer;
                 }
                 else
                 {
-                    displayText = " et " + teamOne[i].playerID++ + "\n";
+                    displayText = " et " + idPlayer + "\n";
                 }
                 displayWinner.text += displayText;
             }
@@ -358,13 +360,14 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < teamTwo.Count; i++)
             {
                 string displayText;
+                idPlayer = teamOne[i].playerID + 1;
                 if (i == 0)
                 {
-                    displayText = " " + teamTwo[i].playerID;
+                    displayText = " " + idPlayer;
                 }
                 else
                 {
-                    displayText = " et " + teamTwo[i].playerID + "\n";
+                    displayText = " et " + idPlayer + "\n";
                 }
                 displayWinner.text += displayText;
             }
@@ -372,7 +375,8 @@ public class GameManager : MonoBehaviour
         displayPointsRounds.text = "Scores : ";
         for (int index = 0; index < listPointsPlayers.Count; index++)
         {
-            displayPointsRounds.text += "joueur " + index++ + ", points : " + listPointsPlayers[index] + "\n";
+            idPlayer = index + 1;
+            displayPointsRounds.text += "joueur " + idPlayer + ", points : " + listPointsPlayers[index] + "\n";
         }
     }
 
