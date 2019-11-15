@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
     private void GenerateObjects()
     {
         randomObject = Random.Range(0, listPrefabsPickableItems.Length);
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < maxObjectsInGame; i++)
         {
             SpawnObject();
         }
