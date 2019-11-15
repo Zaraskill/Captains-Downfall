@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 7913258810617097827}
   - component: {fileID: 7913258810617097836}
   - component: {fileID: 7913258810617097838}
+  - component: {fileID: 2522967404550544915}
   m_Layer: 0
   m_Name: PlayerEntity
   m_TagString: Player
@@ -153,11 +154,30 @@ MonoBehaviour:
   - {fileID: 3627408514360096768}
   pickedObject: {fileID: 0}
   pointToHold: {fileID: 7913258809843175882}
-  smoke: {fileID: 9052322529045278513, guid: 4eacb2370c1a0044982d492557f7c9ab, type: 3}
-  startTimeBtwSpawns: 0
-  durationTime: 0
+  smoke: {fileID: 6045044167209978312, guid: 765d68cb023497b49b2b5e3874c4d589, type: 3}
+  startTimeBtwSpawns: 0.5
+  durationTime: 5
   _rigidbody: {fileID: 0}
   _debugMode: 1
+--- !u!95 &2522967404550544915
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7913258810617097839}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7dd86cbf4e96add47a1344155ad60dff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8786853768443306677
 GameObject:
   m_ObjectHideFlags: 0
