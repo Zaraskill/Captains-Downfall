@@ -421,6 +421,12 @@ public class PlayerEntity : MonoBehaviour
         return isDead;
     }
 
+    public void Respawn()
+    {
+        isDead = false;
+        groundY = 0f;
+    }
+
     #endregion
 
 }

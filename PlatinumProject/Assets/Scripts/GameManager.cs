@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Rewired;
 
 // Code crée et géré par Corentin
 public class GameManager : MonoBehaviour
@@ -25,7 +26,9 @@ public class GameManager : MonoBehaviour
     //Gestion players
     [Header("Players")]    
     public List<PlayerEntity> listPlayers;
-    public List<PlayerEntity> listAlivePlayers;
+    public List<GameObject> listSpawnPoint;
+    private List<PlayerEntity> listAlivePlayers;
+    private Player mainPlayer;
     private List<int> listPointsPlayers;
     private List<int> listWinnerPlayers;
     public int nbPlayersAlive;
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour
         listWinnerPlayers = new List<int>();
         teamOne = new List<PlayerEntity>();
         teamTwo = new List<PlayerEntity>();
+        mainPlayer = ReInput.players.GetPlayer(0);
     }
     // Start is called before the first frame update
     void Start()
@@ -269,16 +273,26 @@ public class GameManager : MonoBehaviour
         idPlayerwinner++;
     }
 
+    private void RespawnPlayers()
+    {
+        foreach (PlayerEntity player in listPlayers)
+        {
+            player.Respawn();
+        }
+    }
+
     #endregion
 
     #region Events Fonctions
 
     private void PrepareParty()
-    {
+    {        
         DestroyTeam();
         ClearMap();
+        PrepareMap();
         listWinnerPlayers.Clear();
         idPlayerwinner = -1;
+        RespawnPlayers();
         listAlivePlayers = new List<PlayerEntity>(listPlayers);
         nbPlayersAlive = 4;
         if (Random.Range(0, 2) == 1)
@@ -293,6 +307,7 @@ public class GameManager : MonoBehaviour
             isTeam = false;
         }
         GenerateObjects();
+        displayResults.gameObject.SetActive(false);
         gameState = STATE_PLAY.Party;
     }
 
@@ -321,6 +336,11 @@ public class GameManager : MonoBehaviour
         foreach(BreakableWalls wall in listWalls)
         {
             wall.gameObject.SetActive(true);
+            wall.Rebuilt();
+        }
+        for (int index = 0; index < listPlayers.Count; index++)
+        {
+            listPlayers[index].transform.position = listSpawnPoint[index].transform.position;
         }
     }
 
@@ -360,7 +380,7 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < teamTwo.Count; i++)
             {
                 string displayText;
-                idPlayer = teamOne[i].playerID + 1;
+                idPlayer = teamTwo[i].playerID + 1;
                 if (i == 0)
                 {
                     displayText = " " + idPlayer;
@@ -391,13 +411,13 @@ public class GameManager : MonoBehaviour
 
     private void WaitingForInput()
     {
-        if (Input.GetButtonDown("UISubmit"))
+        if (mainPlayer.GetButtonDown("UISubmit"))
         {
-            if (listPointsPlayers.Count == 1)
+            if (listWinnerPlayers.Count == 1)
             {
                 gameState = STATE_PLAY.DisplayResultsFinal;
             }
-            else if (listPointsPlayers.Count > 1)
+            else if (listWinnerPlayers.Count > 1)
             {
                 gameState = STATE_PLAY.PrepareSuddenDeath;
             }

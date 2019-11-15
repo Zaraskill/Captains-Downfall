@@ -41,4 +41,9 @@ public class BreakableWalls : MonoBehaviour
         currentHealthPoints--;
     }
 
+    public void Rebuilt()
+    {
+        currentHealthPoints = startHealthPoints;
+    }
+
 }
