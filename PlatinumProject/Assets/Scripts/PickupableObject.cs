@@ -12,6 +12,7 @@ public class PickupableObject : MonoBehaviour
     public float groundY = 0f;
     private bool isGrounded = false;
     public bool isPickable = true;
+    private bool isThrown = false;
 
     public Transform groundPosition;
 
@@ -64,6 +65,7 @@ public class PickupableObject : MonoBehaviour
 
     public void Throw(Vector2 orient)
     {
+        isThrown = true;
         _rigidbody.isKinematic = false;
         _rigidbody.constraints = RigidbodyConstraints.None;
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
@@ -100,13 +102,14 @@ public class PickupableObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player") && !isPickable)
+        if(collision.gameObject.CompareTag("Player") && isThrown)
         {
+            SoundManager.managerSound.MakeHitSound();
             collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
             GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
         }
-        else if (collision.gameObject.CompareTag("Wall"))
+        else if (collision.gameObject.CompareTag("Wall") && isThrown)
         {
             GameManager.managerGame.SpawnObject();
             BreakableWalls wall = collision.gameObject.GetComponent<BreakableWalls>();

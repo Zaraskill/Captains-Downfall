@@ -38,7 +38,7 @@ public class SoundManager : MonoBehaviour
 
     private void MakeSound(AudioClip originalClip)
     {
-        AudioSource.PlayClipAtPoint(originalClip, transform.position);
+        //AudioSource.PlayClipAtPoint(originalClip, transform.position);
     }
 
     public void MakeCanonSound()

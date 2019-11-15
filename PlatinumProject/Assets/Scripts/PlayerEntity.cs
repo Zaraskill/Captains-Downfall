@@ -346,7 +346,12 @@ public class PlayerEntity : MonoBehaviour
                 canPick = true;
                 targetObjet = objectPick;
             }
-            
+
+        }
+        else if (other.gameObject.tag == "DeathZone")
+        {
+            groundY = -2f;
+            TimeToDie();
         }
     }
 

@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     //Gestion players
     [Header("Players")]    
     public List<PlayerEntity> listPlayers;
-    private List<PlayerEntity> listAlivePlayers;
+    public List<PlayerEntity> listAlivePlayers;
     private List<int> listPointsPlayers;
     private List<int> listWinnerPlayers;
     public int nbPlayersAlive;
@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     [Header("Affichage Résultats")]
     public Canvas displayResults;
     public Text displayWinner;
+    public Text displayPointsRounds;
 
     void Awake()
     {
@@ -112,6 +113,7 @@ public class GameManager : MonoBehaviour
                 WaitingForInput();
                 break;
             default:
+                Application.Quit();
                 break;
         }
     }
@@ -273,20 +275,21 @@ public class GameManager : MonoBehaviour
 
     private void PrepareParty()
     {
-
         DestroyTeam();
         ClearMap();
         listWinnerPlayers.Clear();
         idPlayerwinner = -1;
-        listAlivePlayers = listPlayers;
+        listAlivePlayers = new List<PlayerEntity>(listPlayers);
         nbPlayersAlive = 4;
         if (Random.Range(0, 2) == 1)
         {
+            Debug.Log("Team match");
             isTeam = true;
             CreationTeam();
         }
         else
         {
+            Debug.Log("FFA");
             isTeam = false;
         }
         GenerateObjects();
@@ -303,6 +306,7 @@ public class GameManager : MonoBehaviour
         {
             listAlivePlayers.Add(listPlayers[index]);
         }
+        nbPlayersAlive = listWinnerPlayers.Count;
         listWinnerPlayers.Clear();
         isSuddenDeath = true;
         GenerateObjects();
@@ -343,7 +347,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    displayText = " et " + teamOne[i].playerID++;
+                    displayText = " et " + teamOne[i].playerID++ + "\n";
                 }
                 displayWinner.text += displayText;
             }
@@ -360,10 +364,15 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    displayText = " et " + teamTwo[i].playerID;
+                    displayText = " et " + teamTwo[i].playerID + "\n";
                 }
                 displayWinner.text += displayText;
             }
+        }
+        displayPointsRounds.text = "Scores : ";
+        for (int index = 0; index < listPointsPlayers.Count; index++)
+        {
+            displayPointsRounds.text += "joueur " + index++ + ", points : " + listPointsPlayers[index] + "\n";
         }
     }
 

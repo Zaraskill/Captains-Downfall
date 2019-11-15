@@ -334,7 +334,7 @@ PrefabInstance:
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -508,7 +508,7 @@ PrefabInstance:
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.5
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -518,7 +518,7 @@ PrefabInstance:
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1
+      value: -5.8
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -543,7 +543,7 @@ PrefabInstance:
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 240122765}
   m_Layer: 0
   m_Name: GameObject (3)
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -811,7 +811,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 3, z: 16.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &400199424
 PrefabInstance:
@@ -863,7 +863,7 @@ PrefabInstance:
     - target: {fileID: 8217974942224246790, guid: 651ec8902940b6c4cbf2de851bcf3bbd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8217974942224246790, guid: 651ec8902940b6c4cbf2de851bcf3bbd,
         type: 3}
@@ -899,7 +899,7 @@ GameObject:
   - component: {fileID: 436613643}
   m_Layer: 0
   m_Name: GameObject (2)
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 590999382}
   m_Layer: 0
   m_Name: GameObject (6)
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1054,7 +1054,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &661334506 stripped
 Transform:
@@ -1105,7 +1105,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &810600875
 GameObject:
@@ -1249,7 +1249,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 3, z: 15.46677}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 1.062, z: -2.282}
 --- !u!1 &897803259
 GameObject:
@@ -1413,7 +1413,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &953447830
 GameObject:
@@ -1557,7 +1557,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 3, z: 14.051194}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: -53.496002, z: 0.19100001}
 --- !u!1 &983697980
 GameObject:
@@ -1716,9 +1716,9 @@ MonoBehaviour:
   - {fileID: 218517906}
   - {fileID: 1283600002}
   - {fileID: 1267224933}
-  nbPlayersAlive: 0
   displayResults: {fileID: 983697983}
   displayWinner: {fileID: 198461555}
+  displayPointsRounds: {fileID: 0}
 --- !u!4 &997604949
 Transform:
   m_ObjectHideFlags: 0
@@ -1881,7 +1881,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 3, z: 14.116324}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0.020000001, y: -131.81401, z: 0.35900003}
 --- !u!1 &1110198724
 GameObject:
@@ -2025,7 +2025,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 3, z: 15.79776}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 50.779003, z: 0}
 --- !u!114 &1158964060 stripped
 MonoBehaviour:
@@ -2082,7 +2082,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1175027059
 GameObject:
@@ -2096,7 +2096,7 @@ GameObject:
   - component: {fileID: 1175027061}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2140,7 +2140,7 @@ GameObject:
   - component: {fileID: 1200207822}
   m_Layer: 0
   m_Name: GameObject (1)
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2222,7 +2222,7 @@ PrefabInstance:
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -2353,7 +2353,7 @@ PrefabInstance:
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -2477,51 +2477,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1313324402
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1313324404}
-  - component: {fileID: 1313324403}
-  m_Layer: 0
-  m_Name: Death Zone
-  m_TagString: DeathZone
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1313324403
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313324402}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 30000, y: 5, z: 30000}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1313324404
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313324402}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.28, y: -7, z: 8.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1355566832
 GameObject:
@@ -2566,7 +2522,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1424033533
 GameObject:
@@ -2610,7 +2566,7 @@ Transform:
   m_LocalScale: {x: 0.75223714, y: 1.5189319, z: 0.8733363}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1473360600
 PrefabInstance:
@@ -2662,7 +2618,7 @@ PrefabInstance:
     - target: {fileID: 9062348813547473708, guid: 9c160ae8326f7b947a6236481635563c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 9062348813547473708, guid: 9c160ae8326f7b947a6236481635563c,
         type: 3}
@@ -2942,7 +2898,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 3, z: 13.738403}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: -90.037, z: 1.8340001}
 --- !u!1 &1577250989 stripped
 GameObject:
@@ -2974,7 +2930,7 @@ GameObject:
   - component: {fileID: 1774896031}
   m_Layer: 0
   m_Name: GameObject (7)
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3018,7 +2974,7 @@ GameObject:
   - component: {fileID: 1795445228}
   m_Layer: 0
   m_Name: GameObject (5)
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3192,7 +3148,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 3, z: 15.881909}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -90.037, z: 1.8340001}
 --- !u!1 &1801972603 stripped
 GameObject:
@@ -3236,7 +3192,7 @@ Transform:
   - {fileID: 590999381}
   - {fileID: 1774896030}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1837108618
 GameObject:
@@ -3380,7 +3336,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 3, z: 15.317399}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -51.125004, z: 0}
 --- !u!1 &1913735490
 GameObject:
@@ -3460,7 +3416,7 @@ Transform:
   m_LocalScale: {x: 2.6368, y: 3.5192552, z: 1.5612229}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 90, y: 51.771004, z: 51.798004}
 --- !u!1 &1991783505
 GameObject:
@@ -3551,7 +3507,7 @@ Transform:
   m_LocalScale: {x: 1.0483, y: 1.2273186, z: 1.0538815}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 64.04, y: 0, z: 0}
 --- !u!1 &2045721665 stripped
 GameObject:
@@ -3571,7 +3527,7 @@ GameObject:
   - component: {fileID: 2121204533}
   m_Layer: 0
   m_Name: GameObject (4)
-  m_TagString: Untagged
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
