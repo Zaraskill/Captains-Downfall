@@ -348,7 +348,7 @@ public class PlayerEntity : MonoBehaviour
             }
 
         }
-        else if (other.gameObject.tag == "DeathZone")
+        else if (other.gameObject.tag == "DeathZone" && !isDead)
         {
             groundY = -2f;
             TimeToDie();
@@ -425,6 +425,7 @@ public class PlayerEntity : MonoBehaviour
     {
         isDead = false;
         groundY = 0f;
+        speed = Vector2.zero;
     }
 
     #endregion
