@@ -499,7 +499,7 @@ MonoBehaviour:
   isRotating: 0
   timeInsideCanon: 2
   timeToExpel: 3
-  knockPower: 50
+  knockPower: 60
 --- !u!95 &8144772488471761641
 Animator:
   serializedVersion: 3
