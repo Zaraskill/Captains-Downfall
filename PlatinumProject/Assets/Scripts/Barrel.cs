@@ -3,22 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 
+// Code créé et géré par Siméon
 public class Barrel : MonoBehaviour
 {
-    public float knockPower = 0f;
-    //private Vector3 orientDir = Vector3.zero;
-
-    private PlayerEntity playerCollisionned;
-
-    public bool isExploding;
-
-    public bool isTouchingPlayer;
-
+    [Header("Players To Knock")]
     public List<PlayerEntity> playerIntoArea;
 
-    private Animator animator;
-
+    [Header("Explosion")]
+    public float knockPower = 0f;
+    public bool isTouchingPlayer;
+    public bool isExploding;
     public GameObject explosionEffect;
+
+    [Header("Camera Shaker")]
+    public float magnitude;
+    public float roughness;
+    public float fadeInTime;
+    public float fadeOutTime;
+
+    [Header("Components")]
+    private PlayerEntity playerCollisionned;
+    private Animator animator;
 
 
     // Start is called before the first frame update
@@ -82,7 +87,7 @@ public class Barrel : MonoBehaviour
             Vector3 orientDir = (playerIntoArea[i].transform.position - transform.position);
             Vector3 directionNormalized = orientDir.normalized;
             SoundManager.managerSound.MakeBarrelExplosionSound();
-            CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 1f);
+            CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
             playerIntoArea[i].Knockback(new Vector2(directionNormalized.x, directionNormalized.z), knockPower);
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);

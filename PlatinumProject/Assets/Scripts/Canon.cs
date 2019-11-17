@@ -6,26 +6,28 @@ using EZCameraShake;
 // Code créé et géré par Siméon
 public class Canon : MonoBehaviour
 {
-
-    public GameObject pointToThrow;
-    public GameObject smokeEffect;
-
     [Header("Rotation")]
     public float rotateSpeed = 5f;
     public bool isRotating = false;
-
-    [Header("Éjection")]
-    public float timeInsideCanon = 0f;
-    public float timeToExpel = 3f;
-
-    private Vector3 orientDir = Vector3.zero;
-    public float knockPower = 10f;
-
-    private bool isShooting = false;
     private bool canEnter = true;
 
-    private PlayerEntity playerCollisionned;
+    [Header("Éjection")]
+    public float knockPower = 10f;
+    public GameObject pointToThrow;
+    public GameObject smokeEffect;
+    public float timeInsideCanon = 0f;
+    public float timeToExpel = 3f;
+    private bool isShooting = false;
+    private Vector3 orientDir = Vector3.zero;
 
+    [Header("Camera Shaker")]
+    public float magnitude;
+    public float roughness;
+    public float fadeInTime;
+    public float fadeOutTime;
+
+    [Header("Components")]
+    private PlayerEntity playerCollisionned;
     private Animator animator;
 
     // Start is called before the first frame update
@@ -46,7 +48,7 @@ public class Canon : MonoBehaviour
         if (isShooting)
         {
             SoundManager.managerSound.MakeCanonSound();
-            CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 1f);
+            CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
             animator.SetBool("isShooting", true);
             Instantiate(smokeEffect, pointToThrow.transform.position, Quaternion.identity);
             playerCollisionned.gameObject.SetActive(true);

@@ -5,22 +5,27 @@ using UnityEngine;
 // Code créé et géré par Siméon
 public class PickupableObject : MonoBehaviour
 {
-    private Vector2 velocity = Vector2.zero;
+    [Header("Pick & Throw")]
     public float powerKnock = 50f;
-    public float verticalSpeedOn = 10f;
-    private float verticalSpeed = 0f;
-    public float groundY = 0f;
-    private bool isGrounded = false;
     public bool isPickable = true;
     private bool isThrown = false;
-
-    public Transform groundPosition;
-
     private Vector2 orient = Vector2.zero;
 
+    [Header("Speed")]
+    public float verticalSpeedOn = 10f;
+    private Vector2 velocity = Vector2.zero;
+    private float verticalSpeed = 0f;
+
+    [Header("Ground")]
+    public float groundY = 0f;
+    private bool isGrounded = false;
+    public Transform groundPosition;
+
+    [Header("Spawn")]
     private float timerSpawn = 5f;
     private float timer;
 
+    [Header("Components")]
     private Rigidbody _rigidbody;
 
     // Start is called before the first frame update

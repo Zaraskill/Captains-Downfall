@@ -11,10 +11,17 @@ public class BreakableWalls : MonoBehaviour
     [SerializeField]
     private int currentHealthPoints;
 
+    [Header("Particules")]
+    public GameObject destructionEffect;
+
+    [Header("Camera Shaker")]
+    public float magnitude;
+    public float roughness;
+    public float fadeInTime;
+    public float fadeOutTime;
+
     [Header("Components")]
     private Animator myAnimator;
-
-    public GameObject destructionEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +40,7 @@ public class BreakableWalls : MonoBehaviour
         else if (currentHealthPoints == 0)
         {
             SoundManager.managerSound.MakeWallBreakSound();
-            CameraShaker.Instance.ShakeOnce(1f, 1f, 0.1f, 1f);
+            CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
             Instantiate(destructionEffect, transform.position, Quaternion.identity);
             this.gameObject.SetActive(false);
         }
