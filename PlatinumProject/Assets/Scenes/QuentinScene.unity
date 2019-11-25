@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.447999, g: 0.49800277, b: 0.5755069, a: 1}
+  m_IndirectSpecularColor: {r: 0.4479987, g: 0.4980021, b: 0.5755057, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3664,6 +3664,11 @@ PrefabInstance:
       propertyPath: playerID
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 2100000, guid: 041e703d4e09cf5448f9e477292fc7c2, type: 2}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4275,6 +4280,11 @@ PrefabInstance:
       propertyPath: modelObjs.Array.data[0]
       value: 
       objectReference: {fileID: 413165438}
+    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 2100000, guid: edd2638ead29fe5468bf6ff3f904c823, type: 2}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5065,6 +5075,11 @@ PrefabInstance:
       propertyPath: playerID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 2100000, guid: 4be1799858c6c4c479b59151d95cc001, type: 2}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6078,6 +6093,11 @@ PrefabInstance:
       propertyPath: playerID
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 2100000, guid: 51261d07acb32f7448a48d8a3b3f80ea, type: 2}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_LocalPosition.x
