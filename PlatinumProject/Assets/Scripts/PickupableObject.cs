@@ -82,12 +82,15 @@ public class PickupableObject : MonoBehaviour
 
     public void Picked()
     {
-        isPickable = false;
-        GetComponent<BoxCollider>().enabled = false;
-        GetComponent<TrailRenderer>().enabled = false;
-        _rigidbody.useGravity = false;
-        _rigidbody.isKinematic = true;
-        _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        if (isPickable)
+        {
+            isPickable = false;
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<TrailRenderer>().enabled = false;
+            _rigidbody.useGravity = false;
+            _rigidbody.isKinematic = true;
+            _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        }        
     }
 
     public Vector2 GetVelocity()
