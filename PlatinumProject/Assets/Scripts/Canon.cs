@@ -44,22 +44,6 @@ public class Canon : MonoBehaviour
             UpdateRotate();
             RotateCanon();
         }
-
-        if (isShooting)
-        {
-            SoundManager.managerSound.MakeCanonSound();
-            CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
-            animator.SetBool("isShooting", true);
-            Instantiate(smokeEffect, pointToThrow.transform.position, Quaternion.identity);
-            playerCollisionned.gameObject.SetActive(true);
-            playerCollisionned.OutCanon();
-            playerCollisionned.transform.position = pointToThrow.transform.position;
-            orientDir = transform.forward;
-            Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
-            playerCollisionned.Knockback(orientDirCanon, knockPower);
-            isShooting = false;
-            canEnter = true;
-        }
     }
 
     private void UpdateRotate()
@@ -78,10 +62,22 @@ public class Canon : MonoBehaviour
 
     public void ForcedEjection()
     {
-        isShooting = true;
         isRotating = false;
         timeInsideCanon = 0f;
         playerCollisionned.OutCanon();
+        SoundManager.managerSound.MakeCanonSound();
+        CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
+        animator.SetBool("isShooting", true);
+        Instantiate(smokeEffect, pointToThrow.transform.position, Quaternion.identity);
+        playerCollisionned.gameObject.SetActive(true);
+        playerCollisionned.OutCanon();
+        playerCollisionned.transform.position = pointToThrow.transform.position;
+        orientDir = transform.forward;
+        Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
+        playerCollisionned.Knockback(orientDirCanon, knockPower);
+        isShooting = false;
+        canEnter = true;
+        playerCollisionned = null;
     }
 
     private void OnCollisionEnter(Collision collision)
