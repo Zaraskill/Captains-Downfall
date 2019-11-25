@@ -88,12 +88,12 @@ public class Canon : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && canEnter)
         {
+            canEnter = false;
             animator.SetBool("isShooting", false);
             isRotating = true;
             playerCollisionned = collision.gameObject.GetComponent<PlayerEntity>();
             playerCollisionned.gameObject.SetActive(false);
             playerCollisionned.GoInsideCanon(this);
-            canEnter = false;
         }
     }
 }
