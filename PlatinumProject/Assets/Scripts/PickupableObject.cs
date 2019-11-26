@@ -28,6 +28,11 @@ public class PickupableObject : MonoBehaviour
     [Header("Components")]
     private Rigidbody _rigidbody;
 
+    private bool isKnocked = false;
+    private Vector2 orientDir = Vector2.right;
+    private Vector2 moveDir;
+    private Vector2 speed = Vector2.zero;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,6 +113,15 @@ public class PickupableObject : MonoBehaviour
         return isPickable;
     }
 
+    public void Knockback(Vector2 knockDir, float powerKnock)
+    {
+        //SoundManager.managerSound.MakeHitSound();
+        isKnocked = true;
+        orientDir = knockDir;
+        moveDir = Vector2.zero;
+        speed = knockDir * powerKnock;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player") && isThrown)
@@ -123,6 +137,12 @@ public class PickupableObject : MonoBehaviour
             BreakableWalls wall = collision.gameObject.GetComponent<BreakableWalls>();
             wall.TakeDamage();
             Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Barrel") && isThrown)
+        {
+            GameManager.managerGame.SpawnObject();
+            _rigidbody.velocity = Vector3.zero;
+            velocity = Vector2.zero;
         }
         else if (collision.gameObject.CompareTag("DeathZone"))
         {

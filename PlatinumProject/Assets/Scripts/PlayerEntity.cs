@@ -252,14 +252,16 @@ public class PlayerEntity : MonoBehaviour
             return;
         }
         pickedObject = targetObjet;
-        pickedObject.Picked();
-        targetObjet = null;
-        pickedObject.transform.SetParent(modelObjs[0].transform);
-        pickedObject.transform.position = pointToHold.transform.position;        
-        canPick = false;
-        isHoldingItem = true;
-        canThrow = true;
-
+        if (pickedObject.isPickable)
+        {
+            pickedObject.Picked();
+            targetObjet = null;
+            pickedObject.transform.SetParent(modelObjs[0].transform);
+            pickedObject.transform.position = pointToHold.transform.position;
+            canPick = false;
+            isHoldingItem = true;
+            canThrow = true;
+        }
     }
 
     #endregion

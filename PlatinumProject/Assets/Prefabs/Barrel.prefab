@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1233758741409006127}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,10 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf9052f580464c488cca91ec950ba09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockPower: 70
-  isExploding: 0
-  isTouchingPlayer: 0
   playerIntoArea: []
+  knockPower: 70
+  isTouchingPlayer: 0
+  isExploding: 0
   explosionEffect: {fileID: 7792458997231541035, guid: a31bf91599d75494993f32af622a2e6f,
     type: 3}
   magnitude: 3
