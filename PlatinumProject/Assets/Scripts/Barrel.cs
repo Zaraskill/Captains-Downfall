@@ -8,7 +8,7 @@ public class Barrel : MonoBehaviour
 {
     [Header("Players To Knock")]
     public List<PlayerEntity> playerIntoArea;
-    public List<PickupableObject> objetIntoArea;
+    //public List<PickupableObject> objetIntoArea;
 
     [Header("Explosion")]
     public float knockPower = 0f;
@@ -64,10 +64,10 @@ public class Barrel : MonoBehaviour
         {
             playerIntoArea.Add(collision.gameObject.GetComponent<PlayerEntity>());
         }
-        else if(collision.gameObject.CompareTag("Pickable"))
-        {
-            objetIntoArea.Add(collision.gameObject.GetComponent<PickupableObject>());
-        }
+        //else if(collision.gameObject.CompareTag("Pickable"))
+        //{
+        //    objetIntoArea.Add(collision.gameObject.GetComponent<PickupableObject>());
+        //}
     }
 
     private void OnTriggerExit(Collider collision)
@@ -76,10 +76,10 @@ public class Barrel : MonoBehaviour
         {
             playerIntoArea.Remove(collision.gameObject.GetComponent<PlayerEntity>());
         }
-        else if (collision.gameObject.CompareTag("Pickable"))
-        {
-            objetIntoArea.Remove(collision.gameObject.GetComponent<PickupableObject>());
-        }
+        //else if (collision.gameObject.CompareTag("Pickable"))
+        //{
+        //    objetIntoArea.Remove(collision.gameObject.GetComponent<PickupableObject>());
+        //}
     }
 
     private void Explosion()
@@ -104,20 +104,20 @@ public class Barrel : MonoBehaviour
                 Destroy(gameObject);
         }
         
-        if(objetIntoArea.Count >= 1)
-        {
-            for (int i = objetIntoArea.Count; 0<=--i;)
-            {
-                Vector3 orientDir = (objetIntoArea[i].transform.position - transform.position);
-                Vector3 directionNormalized = orientDir.normalized;
-                objetIntoArea[i].Knockback(new Vector2(directionNormalized.x, directionNormalized.z), knockPower);
-            }
+        //if(objetIntoArea.Count >= 1)
+        //{
+        //    for (int i = objetIntoArea.Count; 0<=--i;)
+        //    {
+        //        Vector3 orientDir = (objetIntoArea[i].transform.position - transform.position);
+        //        Vector3 directionNormalized = orientDir.normalized;
+        //        objetIntoArea[i].Knockback(new Vector2(directionNormalized.x, directionNormalized.z), knockPower);
+        //    }
 
-            SoundManager.managerSound.MakeBarrelExplosionSound();
-            CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
-            Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
+        //    SoundManager.managerSound.MakeBarrelExplosionSound();
+        //    CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
+        //    Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        //    Destroy(gameObject);
+        //}
     }
 
 

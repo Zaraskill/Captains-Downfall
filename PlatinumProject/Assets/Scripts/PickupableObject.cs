@@ -141,8 +141,9 @@ public class PickupableObject : MonoBehaviour
         else if (collision.gameObject.CompareTag("Barrel") && isThrown)
         {
             GameManager.managerGame.SpawnObject();
-            _rigidbody.velocity = Vector3.zero;
-            velocity = Vector2.zero;
+            //_rigidbody.velocity = Vector3.zero;
+            //velocity = Vector2.zero;
+            Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("DeathZone"))
         {
@@ -151,6 +152,7 @@ public class PickupableObject : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Pillar"))
         {
+            GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
         }
     }
