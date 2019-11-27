@@ -25,13 +25,12 @@ public class PickupableObject : MonoBehaviour
     private float timerSpawn = 5f;
     private float timer;
 
+    [Header("Barrel")]
+    private bool isInRangeBarrel = false;
+    private Barrel barrel;
+
     [Header("Components")]
     private Rigidbody _rigidbody;
-
-    private bool isKnocked = false;
-    private Vector2 orientDir = Vector2.right;
-    private Vector2 moveDir;
-    private Vector2 speed = Vector2.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -113,13 +112,16 @@ public class PickupableObject : MonoBehaviour
         return isPickable;
     }
 
-    public void Knockback(Vector2 knockDir, float powerKnock)
+    public void GoInsideRangeBarrel(Barrel barrel)
     {
-        //SoundManager.managerSound.MakeHitSound();
-        isKnocked = true;
-        orientDir = knockDir;
-        moveDir = Vector2.zero;
-        speed = knockDir * powerKnock;
+        isInRangeBarrel = true;
+        this.barrel = barrel;
+    }
+
+    public void ExitInsideRangeBarrel()
+    {
+        isInRangeBarrel = false;
+        barrel = null;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -141,8 +143,8 @@ public class PickupableObject : MonoBehaviour
         else if (collision.gameObject.CompareTag("Barrel") && isThrown)
         {
             GameManager.managerGame.SpawnObject();
-            //_rigidbody.velocity = Vector3.zero;
-            //velocity = Vector2.zero;
+            _rigidbody.velocity = Vector3.zero;
+            velocity = Vector2.zero;
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("DeathZone"))
@@ -154,6 +156,14 @@ public class PickupableObject : MonoBehaviour
         {
             GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Pickable"))
+        {
+            _rigidbody.velocity = Vector3.zero;
+            velocity = Vector2.zero;
+            collision.gameObject.GetComponent<PickupableObject>().Throw(orient);
+            isPickable = true;
+            
         }
     }
 }

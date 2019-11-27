@@ -12,6 +12,7 @@ public class PlayerEntity : MonoBehaviour
     public int playerID = 0;
     public int teamID;
     private bool isDead = false;
+    public TextMesh text;
     
     
     // Move
