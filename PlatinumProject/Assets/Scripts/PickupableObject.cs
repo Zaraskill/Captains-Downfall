@@ -5,22 +5,31 @@ using UnityEngine;
 // Code créé et géré par Siméon
 public class PickupableObject : MonoBehaviour
 {
-    private Vector2 velocity = Vector2.zero;
+    [Header("Pick & Throw")]
     public float powerKnock = 50f;
-    public float verticalSpeedOn = 10f;
-    private float verticalSpeed = 0f;
-    public float groundY = 0f;
-    private bool isGrounded = false;
     public bool isPickable = true;
     private bool isThrown = false;
-
-    public Transform groundPosition;
-
     private Vector2 orient = Vector2.zero;
 
+    [Header("Speed")]
+    public float verticalSpeedOn = 10f;
+    private Vector2 velocity = Vector2.zero;
+    private float verticalSpeed = 0f;
+
+    [Header("Ground")]
+    public float groundY = 0f;
+    private bool isGrounded = false;
+    public Transform groundPosition;
+
+    [Header("Spawn")]
     private float timerSpawn = 5f;
     private float timer;
 
+    [Header("Barrel")]
+    private bool isInRangeBarrel = false;
+    private Barrel barrel;
+
+    [Header("Components")]
     private Rigidbody _rigidbody;
 
     // Start is called before the first frame update
@@ -77,12 +86,15 @@ public class PickupableObject : MonoBehaviour
 
     public void Picked()
     {
-        isPickable = false;
-        GetComponent<BoxCollider>().enabled = false;
-        GetComponent<TrailRenderer>().enabled = false;
-        _rigidbody.useGravity = false;
-        _rigidbody.isKinematic = true;
-        _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        if (isPickable)
+        {
+            isPickable = false;
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<TrailRenderer>().enabled = false;
+            _rigidbody.useGravity = false;
+            _rigidbody.isKinematic = true;
+            _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        }        
     }
 
     public Vector2 GetVelocity()
@@ -98,6 +110,18 @@ public class PickupableObject : MonoBehaviour
     public bool IsPickable()
     {
         return isPickable;
+    }
+
+    public void GoInsideRangeBarrel(Barrel barrel)
+    {
+        isInRangeBarrel = true;
+        this.barrel = barrel;
+    }
+
+    public void ExitInsideRangeBarrel()
+    {
+        isInRangeBarrel = false;
+        barrel = null;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -116,6 +140,13 @@ public class PickupableObject : MonoBehaviour
             wall.TakeDamage();
             Destroy(gameObject);
         }
+        else if (collision.gameObject.CompareTag("Barrel") && isThrown)
+        {
+            GameManager.managerGame.SpawnObject();
+            _rigidbody.velocity = Vector3.zero;
+            velocity = Vector2.zero;
+            Destroy(gameObject);
+        }
         else if (collision.gameObject.CompareTag("DeathZone"))
         {
             GameManager.managerGame.SpawnObject();
@@ -123,7 +154,16 @@ public class PickupableObject : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Pillar"))
         {
+            GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Pickable"))
+        {
+            _rigidbody.velocity = Vector3.zero;
+            velocity = Vector2.zero;
+            collision.gameObject.GetComponent<PickupableObject>().Throw(orient);
+            isPickable = true;
+            
         }
     }
 }

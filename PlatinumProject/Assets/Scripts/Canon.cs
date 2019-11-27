@@ -6,26 +6,28 @@ using EZCameraShake;
 // Code créé et géré par Siméon
 public class Canon : MonoBehaviour
 {
-
-    public GameObject pointToThrow;
-    public GameObject smokeEffect;
-
     [Header("Rotation")]
     public float rotateSpeed = 5f;
     public bool isRotating = false;
-
-    [Header("Éjection")]
-    public float timeInsideCanon = 0f;
-    public float timeToExpel = 3f;
-
-    private Vector3 orientDir = Vector3.zero;
-    public float knockPower = 10f;
-
-    private bool isShooting = false;
     private bool canEnter = true;
 
-    private PlayerEntity playerCollisionned;
+    [Header("Éjection")]
+    public float knockPower = 10f;
+    public GameObject pointToThrow;
+    public GameObject smokeEffect;
+    public float timeInsideCanon = 0f;
+    public float timeToExpel = 3f;
+    private bool isShooting = false;
+    private Vector3 orientDir = Vector3.zero;
 
+    [Header("Camera Shaker")]
+    public float magnitude;
+    public float roughness;
+    public float fadeInTime;
+    public float fadeOutTime;
+
+    [Header("Components")]
+    private PlayerEntity playerCollisionned;
     private Animator animator;
 
     // Start is called before the first frame update
@@ -41,22 +43,6 @@ public class Canon : MonoBehaviour
         {
             UpdateRotate();
             RotateCanon();
-        }
-
-        if (isShooting)
-        {
-            SoundManager.managerSound.MakeCanonSound();
-            CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 1f);
-            animator.SetBool("isShooting", true);
-            Instantiate(smokeEffect, pointToThrow.transform.position, Quaternion.identity);
-            playerCollisionned.gameObject.SetActive(true);
-            playerCollisionned.OutCanon();
-            playerCollisionned.transform.position = pointToThrow.transform.position;
-            orientDir = transform.forward;
-            Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
-            playerCollisionned.Knockback(orientDirCanon, knockPower);
-            isShooting = false;
-            canEnter = true;
         }
     }
 
@@ -76,22 +62,34 @@ public class Canon : MonoBehaviour
 
     public void ForcedEjection()
     {
-        isShooting = true;
         isRotating = false;
         timeInsideCanon = 0f;
         playerCollisionned.OutCanon();
+        SoundManager.managerSound.MakeCanonSound();
+        CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
+        animator.SetBool("isShooting", true);
+        Instantiate(smokeEffect, pointToThrow.transform.position, Quaternion.identity);
+        playerCollisionned.gameObject.SetActive(true);
+        playerCollisionned.OutCanon();
+        playerCollisionned.transform.position = pointToThrow.transform.position;
+        orientDir = transform.forward;
+        Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
+        playerCollisionned.Knockback(orientDirCanon, knockPower);
+        isShooting = false;
+        canEnter = true;
+        playerCollisionned = null;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player") && canEnter)
         {
+            canEnter = false;
             animator.SetBool("isShooting", false);
             isRotating = true;
             playerCollisionned = collision.gameObject.GetComponent<PlayerEntity>();
             playerCollisionned.gameObject.SetActive(false);
             playerCollisionned.GoInsideCanon(this);
-            canEnter = false;
         }
     }
 }

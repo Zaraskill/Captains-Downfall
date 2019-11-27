@@ -12,6 +12,7 @@ public class PlayerEntity : MonoBehaviour
     public int playerID = 0;
     public int teamID;
     private bool isDead = false;
+    public TextMesh text;
     
     
     // Move
@@ -252,14 +253,16 @@ public class PlayerEntity : MonoBehaviour
             return;
         }
         pickedObject = targetObjet;
-        pickedObject.Picked();
-        targetObjet = null;
-        pickedObject.transform.SetParent(modelObjs[0].transform);
-        pickedObject.transform.position = pointToHold.transform.position;        
-        canPick = false;
-        isHoldingItem = true;
-        canThrow = true;
-
+        if (pickedObject.isPickable)
+        {
+            pickedObject.Picked();
+            targetObjet = null;
+            pickedObject.transform.SetParent(modelObjs[0].transform);
+            pickedObject.transform.position = pointToHold.transform.position;
+            canPick = false;
+            isHoldingItem = true;
+            canThrow = true;
+        }
     }
 
     #endregion
@@ -389,6 +392,10 @@ public class PlayerEntity : MonoBehaviour
             HittingWall();
             
         }
+        else if (collision.gameObject.tag == "Pillar")
+        {
+            HittingWall();
+        }
         else if (collision.gameObject.tag == "Pickable" && !collision.gameObject.GetComponent<PickupableObject>().isPickable)
         {
             SoundManager.managerSound.MakeHitSound();
@@ -399,6 +406,7 @@ public class PlayerEntity : MonoBehaviour
     {
         isKnocked = false;
         speed = Vector2.zero;
+        _rigidbody.velocity = Vector3.zero;
     }
 
     #endregion

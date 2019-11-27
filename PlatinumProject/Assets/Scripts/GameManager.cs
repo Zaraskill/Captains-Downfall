@@ -69,6 +69,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameState = STATE_PLAY.PrepareParty;
+        for (int i = 0; i < listPlayers.Count; i++)
+        {
+            listPlayers[i].GetComponentInChildren<TextMesh>().text = "J" + (i + 1);
+        }
     }
 
     // Update is called once per frame
@@ -196,6 +200,7 @@ public class GameManager : MonoBehaviour
 
     private void CreationTeam()
     {
+
         List<PlayerEntity> listTemp = new List<PlayerEntity>(listAlivePlayers);
         PlayerEntity playerID;
         int id;
@@ -206,12 +211,14 @@ public class GameManager : MonoBehaviour
             playerID = listTemp[id];
             teamOne.Add(playerID);
             playerID.teamID = 1;
+            playerID.gameObject.GetComponentInChildren<TextMesh>().color = Color.blue;
             listTemp.Remove(playerID);
             //playerID.body.color = Color.blue;
         }
         foreach (PlayerEntity player in listTemp)
         {
             player.teamID = 2;
+            player.gameObject.GetComponentInChildren<TextMesh>().color = Color.red;
             //player.body.color = Color.red;
             teamTwo.Add(player);
         }
@@ -280,6 +287,22 @@ public class GameManager : MonoBehaviour
         foreach (PlayerEntity player in listPlayers)
         {
             player.Respawn();
+            if (player.playerID == 0)
+            {
+                player.gameObject.GetComponentInChildren<TextMesh>().color = Color.blue;
+            }
+            else if ( player.playerID == 1)
+            {
+                player.gameObject.GetComponentInChildren<TextMesh>().color = Color.red;
+            }
+            else if (player.playerID == 2)
+            {
+                player.gameObject.GetComponentInChildren<TextMesh>().color = Color.green;
+            }
+            else if (player.playerID == 3)
+            {
+                player.gameObject.GetComponentInChildren<TextMesh>().color = Color.yellow;
+            }
         }
     }
 
