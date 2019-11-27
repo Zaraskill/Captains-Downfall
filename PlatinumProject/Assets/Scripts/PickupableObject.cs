@@ -152,11 +152,6 @@ public class PickupableObject : MonoBehaviour
             GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
         }
-        else if (collision.gameObject.CompareTag("Pillar"))
-        {
-            GameManager.managerGame.SpawnObject();
-            Destroy(gameObject);
-        }
         else if (collision.gameObject.CompareTag("Pickable"))
         {
             _rigidbody.velocity = Vector3.zero;
@@ -164,6 +159,15 @@ public class PickupableObject : MonoBehaviour
             collision.gameObject.GetComponent<PickupableObject>().Throw(orient);
             isPickable = true;
             
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "DeathZone")
+        {
+            GameManager.managerGame.SpawnObject();
+            Destroy(gameObject);
         }
     }
 }
