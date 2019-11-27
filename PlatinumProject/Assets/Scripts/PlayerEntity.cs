@@ -392,6 +392,10 @@ public class PlayerEntity : MonoBehaviour
             HittingWall();
             
         }
+        else if (collision.gameObject.tag == "Pillar")
+        {
+            HittingWall();
+        }
         else if (collision.gameObject.tag == "Pickable" && !collision.gameObject.GetComponent<PickupableObject>().isPickable)
         {
             SoundManager.managerSound.MakeHitSound();
@@ -402,6 +406,7 @@ public class PlayerEntity : MonoBehaviour
     {
         isKnocked = false;
         speed = Vector2.zero;
+        _rigidbody.velocity = Vector3.zero;
     }
 
     #endregion
