@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3195229763863212020}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 21.7, y: 1.851, z: -18.299}
-  m_LocalScale: {x: 6.1890616, y: 4.705544, z: 4.457003}
+  m_LocalPosition: {x: 21.7, y: 1.9035, z: -18.5}
+  m_LocalScale: {x: 3.2741995, y: 2.4893742, z: 2.3578885}
   m_Children:
   - {fileID: 6878775214228383104}
   m_Father: {fileID: 0}
@@ -244,9 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerKnock: 80
+  isPickable: 1
   verticalSpeedOn: 10
   groundY: 0
-  isPickable: 1
   groundPosition: {fileID: 6878775214228383104}
 --- !u!1 &6878775214228383107
 GameObject:

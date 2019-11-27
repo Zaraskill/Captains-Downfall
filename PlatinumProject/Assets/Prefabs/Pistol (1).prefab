@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 6611940170725083520}
   m_LocalRotation: {x: 0.000000013143778, y: -0.000000017461748, z: 0.71362406, w: 0.7005289}
   m_LocalPosition: {x: 7.92, y: 1.75, z: -27.22}
-  m_LocalScale: {x: 1.1110013, y: 0.8922651, z: 0.83176535}
+  m_LocalScale: {x: 0.7429438, y: 0.5966716, z: 0.55621445}
   m_Children:
   - {fileID: 2946402659857489035}
   m_Father: {fileID: 0}
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerKnock: 80
+  isPickable: 1
   verticalSpeedOn: 10
   groundY: 0
-  isPickable: 1
   groundPosition: {fileID: 2946402659857489035}
