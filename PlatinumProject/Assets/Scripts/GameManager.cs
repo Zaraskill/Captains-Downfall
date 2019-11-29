@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     //Gestion Map
     private BreakableWalls[] listWalls;
+    private Barrel[] listBarrels;
 
     //Gestion players
     [Header("Players")]    

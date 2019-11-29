@@ -90,6 +90,7 @@ public class PickupableObject : MonoBehaviour
         {
             isPickable = false;
             GetComponent<BoxCollider>().enabled = false;
+            GetComponent<SphereCollider>().enabled = false;
             GetComponent<TrailRenderer>().enabled = false;
             _rigidbody.useGravity = false;
             _rigidbody.isKinematic = true;
