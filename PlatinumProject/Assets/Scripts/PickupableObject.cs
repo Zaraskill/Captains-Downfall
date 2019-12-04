@@ -46,25 +46,42 @@ public class PickupableObject : MonoBehaviour
     void FixedUpdate()
     {
         UpdateGroundCheck();
+        UpdateMove();
         UpdatePosition();
     }
 
     private void UpdatePosition()
     {
+        _rigidbody.velocity = new Vector3(velocity.x, verticalSpeed, velocity.y);
+    }
+
+    private void UpdateMove()
+    {
         if (isGrounded)
         {
-            velocity -= (friction * Time.fixedDeltaTime) * velocity.normalized;
-        }
-        if (velocity == Vector2.zero)
-        {
-            isThrown = false;
-        }
-        if (velocity.magnitude <= maxSpeedToPick)
-        {
-            isPickable = true;
-        }
-
-        _rigidbody.velocity = new Vector3(velocity.x, verticalSpeed, velocity.y);
+            if (velocity != Vector2.zero)
+            {
+                Vector2 frictionDir = velocity.normalized;
+                float frictionToApply = friction * Time.fixedDeltaTime;
+                if (velocity.sqrMagnitude <= frictionToApply * frictionToApply)
+                {
+                    velocity = Vector2.zero;
+                }
+                else if (velocity.sqrMagnitude <= (maxSpeedToPick * maxSpeedToPick) && isThrown)
+                {
+                    isPickable = true;
+                    GetComponent<SphereCollider>().enabled = true;
+                }
+                else
+                {
+                    velocity -= frictionToApply * frictionDir;
+                }
+            }
+            else
+            {
+                isThrown = false;
+            }
+        }        
     }
 
     private void UpdateGroundCheck()
@@ -180,6 +197,7 @@ public class PickupableObject : MonoBehaviour
             _rigidbody.velocity = Vector3.zero;
             velocity = Vector2.zero;
             collision.gameObject.GetComponent<PickupableObject>().Throw(orient);
+            GetComponent<SphereCollider>().enabled = true;
             isPickable = true;
             
         }
