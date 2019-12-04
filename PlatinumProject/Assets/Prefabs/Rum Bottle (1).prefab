@@ -245,7 +245,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerKnock: 80
   isPickable: 1
+  isThrown: 0
   verticalSpeedOn: 10
+  speedTravel: 20
   groundY: 0
   groundPosition: {fileID: 5214968777180337625}
 --- !u!1 &5214968777180337626

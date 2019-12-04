@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 8856567866206164655}
   m_Layer: 0
   m_Name: Canon_Prof
-  m_TagString: Pillar
+  m_TagString: Canon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
