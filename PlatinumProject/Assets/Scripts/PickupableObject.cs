@@ -19,7 +19,7 @@ public class PickupableObject : MonoBehaviour
     private float verticalSpeed = 0f;
 
     [Header("Ground")]
-    [Range(0f, 100f)] public float friction;
+    [Range(0f, 1000f)] public float friction;
     public float groundY = 0f;
     private bool isGrounded = false;
     public Transform groundPosition;
