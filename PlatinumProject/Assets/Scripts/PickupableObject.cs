@@ -10,6 +10,8 @@ public class PickupableObject : MonoBehaviour
     public bool isPickable = true;
     public bool isThrown = false;
     private Vector2 orient = Vector2.zero;
+    private float timing = 0f;
+    public AnimationCurve curveThrow;
 
     [Header("Speed")]
     public float verticalSpeedOn = 10f;
@@ -57,30 +59,16 @@ public class PickupableObject : MonoBehaviour
 
     private void UpdateMove()
     {
+        if (isThrown)
+        {
+            timing += Time.fixedDeltaTime;
+            transform.position = new Vector3(transform.position.x, curveThrow.Evaluate(timing), transform.position.z);
+        }
         if (isGrounded)
         {
-            if (velocity != Vector2.zero)
-            {
-                Vector2 frictionDir = velocity.normalized;
-                float frictionToApply = friction * Time.fixedDeltaTime;
-                if (velocity.sqrMagnitude <= frictionToApply * frictionToApply)
-                {
-                    velocity = Vector2.zero;
-                }
-                else if (velocity.sqrMagnitude <= (maxSpeedToPick * maxSpeedToPick) && isThrown)
-                {
-                    isPickable = true;
-                    GetComponent<SphereCollider>().enabled = true;
-                }
-                else
-                {
-                    velocity -= frictionToApply * frictionDir;
-                }
-            }
-            else
-            {
-                isThrown = false;
-            }
+            timing = 0f;
+            velocity = Vector2.zero;
+            isThrown = false;
         }        
     }
 

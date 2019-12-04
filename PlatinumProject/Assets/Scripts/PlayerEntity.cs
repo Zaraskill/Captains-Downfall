@@ -432,8 +432,11 @@ public class PlayerEntity : MonoBehaviour
 
     private void TimeToDie()
     {
-        isDead = true;
-        GameManager.managerGame.DeadPlayer(playerID);
+        if (!isDead)
+        {
+            isDead = true;
+            GameManager.managerGame.DeadPlayer(playerID);
+        }
     }
 
     public bool IsDead()
