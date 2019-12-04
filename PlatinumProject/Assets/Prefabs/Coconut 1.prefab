@@ -276,7 +276,42 @@ MonoBehaviour:
   powerKnock: 80
   isPickable: 1
   isThrown: 0
+  curveThrow:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2.5
+      inSlope: 5.1410894
+      outSlope: 5.1410894
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.40275103
+      value: 4.570579
+      inSlope: -1.2558153
+      outSlope: -1.2558153
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -7.65272
+      outSlope: -7.65272
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   verticalSpeedOn: 10
-  speedTravel: 80
+  maxSpeedToPick: 2
+  speedTravel: 40
+  friction: 0
   groundY: 0
   groundPosition: {fileID: 4176145647281534055}

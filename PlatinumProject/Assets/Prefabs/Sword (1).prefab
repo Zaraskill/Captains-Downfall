@@ -30,14 +30,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981794686783467036}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.8, y: 2.5, z: -11.3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8, y: 2.5, z: -4.3}
   m_LocalScale: {x: 5.373292, y: 4.617397, z: 6.899098}
   m_Children:
   - {fileID: 7539398315296030767}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5800883312786794041
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -246,8 +246,43 @@ MonoBehaviour:
   powerKnock: 80
   isPickable: 1
   isThrown: 0
+  curveThrow:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 4
+      inSlope: 7.2489786
+      outSlope: 7.2489786
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.33609527
+      value: 6.4363475
+      inSlope: -0.46973324
+      outSlope: -0.46973324
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -8.188445
+      outSlope: -8.188445
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   verticalSpeedOn: 10
-  speedTravel: 80
+  maxSpeedToPick: 2
+  speedTravel: 40
+  friction: 0
   groundY: 0
   groundPosition: {fileID: 7539398315296030767}
 --- !u!1 &7539398315296030764

@@ -243,13 +243,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82415c0f904d15f44975d2bf044ac82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerKnock: 120
+  powerKnock: 100
   isPickable: 1
   isThrown: 0
+  curveThrow:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2.5
+      inSlope: 3.816531
+      outSlope: 3.816531
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.34962943
+      value: 3.8343716
+      inSlope: 1.7209017
+      outSlope: 1.7209017
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1943563
+    - serializedVersion: 3
+      time: 0.48367557
+      value: 3.8692598
+      inSlope: -1.8347542
+      outSlope: -1.8347542
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.08984652
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -7.4938545
+      outSlope: -7.4938545
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   verticalSpeedOn: 10
   maxSpeedToPick: 2
-  speedTravel: 30
-  friction: 0
+  speedTravel: 20
+  friction: 100
   groundY: 0
   groundPosition: {fileID: 6455596325417272274}
 --- !u!1 &6455596325417272273
