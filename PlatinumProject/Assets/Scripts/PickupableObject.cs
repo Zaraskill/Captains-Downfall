@@ -53,7 +53,7 @@ public class PickupableObject : MonoBehaviour
     {
         if (isGrounded)
         {
-            velocity -= (Time.fixedDeltaTime) * velocity.normalized;
+            velocity -= (friction * Time.fixedDeltaTime) * velocity.normalized;
         }
         if (velocity == Vector2.zero)
         {
