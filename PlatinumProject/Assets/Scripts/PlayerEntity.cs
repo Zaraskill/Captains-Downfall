@@ -106,6 +106,11 @@ public class PlayerEntity : MonoBehaviour
             UpdateModelOrient();
             UpdatePosition();
             UpdateSmoke();
+
+            if(pickedObject == null)
+            {
+                isHoldingItem = false;
+            }
         }
     }
 
