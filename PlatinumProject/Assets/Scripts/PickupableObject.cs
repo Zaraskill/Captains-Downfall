@@ -13,11 +13,13 @@ public class PickupableObject : MonoBehaviour
 
     [Header("Speed")]
     public float verticalSpeedOn = 10f;
+    public float maxSpeedToPick = 2f;
     public float speedTravel = 20f;
     private Vector2 velocity = Vector2.zero;
     private float verticalSpeed = 0f;
 
     [Header("Ground")]
+    [Range(0f, 100f)] public float friction;
     public float groundY = 0f;
     private bool isGrounded = false;
     public Transform groundPosition;
@@ -49,6 +51,19 @@ public class PickupableObject : MonoBehaviour
 
     private void UpdatePosition()
     {
+        if (isGrounded)
+        {
+            velocity -= (Time.fixedDeltaTime) * velocity.normalized;
+        }
+        if (velocity == Vector2.zero)
+        {
+            isThrown = false;
+        }
+        if (velocity.magnitude <= maxSpeedToPick)
+        {
+            isPickable = true;
+        }
+
         _rigidbody.velocity = new Vector3(velocity.x, verticalSpeed, velocity.y);
     }
 
@@ -132,6 +147,11 @@ public class PickupableObject : MonoBehaviour
         {
             SoundManager.managerSound.MakeHitSound();
             collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
+            GameManager.managerGame.SpawnObject();
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Pillar") || collision.gameObject.CompareTag("Canon"))
+        {
             GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
         }
