@@ -8,11 +8,12 @@ public class PickupableObject : MonoBehaviour
     [Header("Pick & Throw")]
     public float powerKnock = 50f;
     public bool isPickable = true;
-    private bool isThrown = false;
+    public bool isThrown = false;
     private Vector2 orient = Vector2.zero;
 
     [Header("Speed")]
     public float verticalSpeedOn = 10f;
+    public float speedTravel = 20f;
     private Vector2 velocity = Vector2.zero;
     private float verticalSpeed = 0f;
 
@@ -81,7 +82,7 @@ public class PickupableObject : MonoBehaviour
         GetComponent<BoxCollider>().enabled = true;
         GetComponent<TrailRenderer>().enabled = true;
         this.orient = orient;
-        velocity = orient * powerKnock;
+        velocity = orient * speedTravel;
     }
 
     public void Picked()
@@ -155,6 +156,7 @@ public class PickupableObject : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Pickable"))
         {
+            isThrown = false;
             _rigidbody.velocity = Vector3.zero;
             velocity = Vector2.zero;
             collision.gameObject.GetComponent<PickupableObject>().Throw(orient);
