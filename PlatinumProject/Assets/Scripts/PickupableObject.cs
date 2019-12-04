@@ -5,21 +5,27 @@ using UnityEngine;
 // Code créé et géré par Siméon
 public class PickupableObject : MonoBehaviour
 {
+    // Pick Throw
     [Header("Pick & Throw")]
     public float powerKnock = 50f;
     public bool isPickable = true;
     public bool isThrown = false;
     private Vector2 orient = Vector2.zero;
 
+    // Speed
     [Header("Speed")]
     public float verticalSpeedOn = 10f;
+    private float currentSpeed = 0f;
+    public float maxSpeedToPick = 2f;
     public float speedTravel = 20f;
     private Vector2 velocity = Vector2.zero;
     private float verticalSpeed = 0f;
 
+    //Ground
     [Header("Ground")]
+    [Range(0f, 100f)] public float friction;
     public float groundY = 0f;
-    private bool isGrounded = false;
+    private bool isGrounded = false;    
     public Transform groundPosition;
 
     [Header("Spawn")]
@@ -49,6 +55,18 @@ public class PickupableObject : MonoBehaviour
 
     private void UpdatePosition()
     {
+        if (isGrounded)
+        {
+            velocity -= (friction * Time.fixedDeltaTime) * velocity.normalized;
+            if (velocity == Vector2.zero)
+            {
+                isThrown = false;
+            }
+            if (velocity.magnitude <= maxSpeedToPick)
+            {
+                isPickable = true;
+            }
+        }
         _rigidbody.velocity = new Vector3(velocity.x, verticalSpeed, velocity.y);
     }
 
@@ -76,13 +94,14 @@ public class PickupableObject : MonoBehaviour
     public void Throw(Vector2 orient)
     {
         isThrown = true;
+        currentSpeed = speedTravel;
         _rigidbody.isKinematic = false;
         _rigidbody.constraints = RigidbodyConstraints.None;
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         GetComponent<BoxCollider>().enabled = true;
         GetComponent<TrailRenderer>().enabled = true;
         this.orient = orient;
-        velocity = orient * speedTravel;
+        velocity = orient * currentSpeed;
     }
 
     public void Picked()
@@ -132,6 +151,11 @@ public class PickupableObject : MonoBehaviour
         {
             SoundManager.managerSound.MakeHitSound();
             collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
+            GameManager.managerGame.SpawnObject();
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Pillar") || collision.gameObject.CompareTag("Canon"))
+        {
             GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
         }
