@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4479987, g: 0.4980021, b: 0.5755057, a: 1}
+  m_IndirectSpecularColor: {r: 0.447999, g: 0.49800277, b: 0.5755069, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4380,15 +4380,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: edd2638ead29fe5468bf6ff3f904c823, type: 2}
-    - target: {fileID: 2522967404550544915, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2376336353835143215, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522967404550544915, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 836a6388fdaedac47890666e71c595f7, type: 3}
@@ -6781,6 +6781,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canon_Prof
+      objectReference: {fileID: 0}
+    - target: {fileID: 4924481080926444053, guid: 651ec8902940b6c4cbf2de851bcf3bbd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Canon
       objectReference: {fileID: 0}
     - target: {fileID: 8217974942224246790, guid: 651ec8902940b6c4cbf2de851bcf3bbd,
         type: 3}

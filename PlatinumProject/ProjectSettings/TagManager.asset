@@ -12,6 +12,7 @@ TagManager:
   - Pillar
   - Body
   - Barrel
+  - Canon
   layers:
   - Default
   - TransparentFX
