@@ -247,7 +247,9 @@ MonoBehaviour:
   isPickable: 1
   isThrown: 0
   verticalSpeedOn: 10
+  maxSpeedToPick: 2
   speedTravel: 80
+  friction: 0
   groundY: 0
   groundPosition: {fileID: 6878775214228383104}
 --- !u!1 &6878775214228383107

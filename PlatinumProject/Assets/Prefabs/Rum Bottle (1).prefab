@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4287047991879369359}
   m_LocalRotation: {x: -0.09327252, y: 0.7009282, z: 0.70092803, w: 0.09327252}
   m_LocalPosition: {x: 11.49, y: 1.7682, z: -27.53}
-  m_LocalScale: {x: 8.012908, y: 8.01539, z: 4.092916}
+  m_LocalScale: {x: 5.188288, y: 5.3693204, z: 3.3971202}
   m_Children:
   - {fileID: 5214968777180337625}
   m_Father: {fileID: 0}
@@ -247,7 +247,9 @@ MonoBehaviour:
   isPickable: 1
   isThrown: 0
   verticalSpeedOn: 10
+  maxSpeedToPick: 2
   speedTravel: 80
+  friction: 0
   groundY: 0
   groundPosition: {fileID: 5214968777180337625}
 --- !u!1 &5214968777180337626
