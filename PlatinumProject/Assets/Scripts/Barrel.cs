@@ -104,9 +104,12 @@ public class Barrel : MonoBehaviour
         {
             for (int i = playerIntoArea.Count; 0 <= --i;)
             {
+                if(playerIntoArea[i])
+                {
                 Vector3 orientDir = (playerIntoArea[i].transform.position - transform.position);
                 Vector3 directionNormalized = orientDir.normalized;
                 playerIntoArea[i].Knockback(new Vector2(directionNormalized.x, directionNormalized.z), knockPower);
+                }
             }            
         }
 
@@ -114,9 +117,12 @@ public class Barrel : MonoBehaviour
         {
             for (int i = objetIntoArea.Count; 0 <= --i;)
             {
+                if(objetIntoArea[i])
+                {
                 Vector3 orientDir = (objetIntoArea[i].transform.position - transform.position);
                 Vector3 directionNormalized = orientDir.normalized;
                 objetIntoArea[i].Throw(new Vector2(directionNormalized.x, directionNormalized.z));
+                }
             }            
         }
 
