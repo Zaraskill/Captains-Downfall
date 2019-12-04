@@ -122,7 +122,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6611940170725083520}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -275,6 +275,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerKnock: 80
   isPickable: 1
+  isThrown: 0
   verticalSpeedOn: 10
+  speedTravel: 80
   groundY: 0
   groundPosition: {fileID: 2946402659857489035}

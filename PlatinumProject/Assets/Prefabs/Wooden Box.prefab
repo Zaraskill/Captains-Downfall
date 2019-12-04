@@ -152,9 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82415c0f904d15f44975d2bf044ac82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerKnock: 100
+  powerKnock: 120
   isPickable: 1
+  isThrown: 0
   verticalSpeedOn: 10
+  speedTravel: 30
   groundY: 0
   groundPosition: {fileID: 3092312072770626891}
 --- !u!54 &8137009637942026712
@@ -165,7 +167,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6470534001642990695}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
