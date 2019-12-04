@@ -107,10 +107,6 @@ public class PlayerEntity : MonoBehaviour
             UpdatePosition();
             UpdateSmoke();
         }
-        if (pickedObject == null)
-        {
-            isHoldingItem = false;
-        }
     }
 
     private void OnGUI()
