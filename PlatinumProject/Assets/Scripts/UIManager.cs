@@ -20,8 +20,6 @@ public class UIManager : MonoBehaviour
     //Prepare Round
     [Header("Begin Round")]
     public GameObject beginRound;
-    public Image fightType;
-    public Image displayCharacter;
     public List<Image> characterSlotsFFA;
     public List<Image> characterSlotsTF;
     public GameObject roundFFA;
