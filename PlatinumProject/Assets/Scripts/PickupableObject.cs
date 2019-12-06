@@ -8,6 +8,7 @@ public class PickupableObject : MonoBehaviour
     [Header("Pick & Throw")]
     public float powerKnock = 50f;
     public bool isPickable = true;
+    private bool isHolded = false;
     public bool isThrown = false;
     private Vector2 orient = Vector2.zero;
     private float timing = 0f;
@@ -59,26 +60,40 @@ public class PickupableObject : MonoBehaviour
 
     private void UpdateMove()
     {
-        if (isThrown)
-        {
-            timing += Time.fixedDeltaTime;
-            transform.position = new Vector3(transform.position.x, curveThrow.Evaluate(timing), transform.position.z);
-        }
         if (isGrounded)
         {
-            timing = 0f;
-            velocity = Vector2.zero;
-            isThrown = false;
-        }        
+            if (velocity != Vector2.zero)
+            {
+                Vector2 frictionDir = velocity.normalized;
+                float frictionToApply = friction * Time.fixedDeltaTime;
+                if (velocity.sqrMagnitude <= frictionToApply * frictionToApply)
+                {
+                    velocity = Vector2.zero;
+                }
+                else
+                {
+                    velocity -= frictionToApply * frictionDir;
+                }
+            }
+            else
+            {
+                isThrown = false;
+            }
+            if (velocity.sqrMagnitude <= (maxSpeedToPick * maxSpeedToPick) && isThrown)
+            {
+                isPickable = true;
+                GetComponent<SphereCollider>().enabled = true;
+            }
+        }
     }
 
     private void UpdateGroundCheck()
     {
-        if (!isPickable)
+        if (isHolded)
         {
-            return;
+            verticalSpeed = 0f;
         }
-        if ( (groundPosition.position.y <= groundY && isPickable) || (!isPickable && velocity == Vector2.zero) )
+        else if (groundPosition.position.y <= groundY)
         {
             isGrounded = true;
             verticalSpeed = 0f;
@@ -89,7 +104,7 @@ public class PickupableObject : MonoBehaviour
         else
         {
             isGrounded = false;
-            verticalSpeed =  -verticalSpeedOn;
+            verticalSpeed = -verticalSpeedOn;
         }
     }
 
@@ -110,6 +125,7 @@ public class PickupableObject : MonoBehaviour
         if (isPickable)
         {
             isPickable = false;
+            isHolded = true;
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<SphereCollider>().enabled = false;
             GetComponent<TrailRenderer>().enabled = false;
