@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     public GameObject beginRound;
     public Image fightType;
     public Image displayCharacter;
+    public List<Image> characterSlotsFFA;
+    public List<Image> characterSlotsTF;
     public GameObject roundFFA;
     public GameObject roundTF;
 
@@ -76,16 +78,15 @@ public class UIManager : MonoBehaviour
         if (roundType == 1)
         {
             roundFFA.SetActive(true);
-            Image[] displayImages = roundFFA.GetComponentsInChildren<Image>();
-            for (int index = 0; index < displayImages.Length; index++)
+            for (int index = 0; index < characterSlotsFFA.Count; index++)
             {
                 if (index % 2 == 0)
                 {
-                    displayImages[index].sprite = playerSkinsFFALeft[index];
+                    characterSlotsFFA[index].sprite = playerSkinsFFALeft[index];
                 }
                 else
                 {
-                    displayImages[index].sprite = playerSkinsFFARight[index];
+                    characterSlotsFFA[index].sprite = playerSkinsFFARight[index];
                 }
                 
             }
@@ -94,25 +95,24 @@ public class UIManager : MonoBehaviour
         else if (roundType == 2)
         {
             roundTF.SetActive(true);
-            Image[] displayImages = roundTF.GetComponentsInChildren<Image>();
-            DisplayTeamOne(displayImages);
-            DisplayTeamTwo(displayImages);
+            DisplayTeamOne();
+            DisplayTeamTwo();
         }
     }
 
-    private void DisplayTeamOne(Image[] images)
+    private void DisplayTeamOne()
     {
         List<PlayerEntity> team = GameManager.managerGame.GetTeamOne();
-        images[0].sprite = playerSkinsTFLeft[team[0].playerID];
-        images[1].sprite = playerSkinsTFLeft[team[1].playerID];
+        characterSlotsTF[0].sprite = playerSkinsTFLeft[team[0].playerID];
+        characterSlotsTF[1].sprite = playerSkinsTFLeft[team[1].playerID];
 
     }
 
-    private void DisplayTeamTwo(Image[] images)
+    private void DisplayTeamTwo()
     {
         List<PlayerEntity> team = GameManager.managerGame.GetTeamTwo();
-        images[2].sprite = playerSkinsTFRight[team[0].playerID];
-        images[3].sprite = playerSkinsTFRight[team[1].playerID];
+        characterSlotsTF[2].sprite = playerSkinsTFRight[team[0].playerID];
+        characterSlotsTF[3].sprite = playerSkinsTFRight[team[1].playerID];
 
     }
 

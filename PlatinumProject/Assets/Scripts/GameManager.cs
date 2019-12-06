@@ -120,11 +120,9 @@ public class GameManager : MonoBehaviour
                 CheckWinner();
                 break;
             case STATE_PLAY.DisplayResultsRound:
-                DisplayRoundResults();
                 WaitingForInput();
                 break;
             case STATE_PLAY.DisplayResultsFinal:
-                DisplayFinalResults();
                 WaitingForInput();
                 break;
             default:
@@ -401,67 +399,6 @@ public class GameManager : MonoBehaviour
         {
             listPlayers[index].transform.position = listSpawnPoint[index].transform.position;
         }
-    }
-
-    #endregion
-
-    #region UI Fonctions
-
-    private void DisplayRoundResults()
-    {
-        int idPlayer = 0;
-        displayResults.gameObject.SetActive(true);
-        if (idPlayerwinner <= 4)
-        {
-            displayWinner.text = "Victoire du joueur " + idPlayerwinner;
-        }
-        else if (idPlayerwinner == 5)
-        {
-            displayWinner.text = "Victoire de l'équipe";
-            for (int i = 0; i < teamOne.Count; i++)
-            {
-                string displayText;
-                idPlayer = teamOne[i].playerID + 1;
-                if (i == 0)
-                {
-                    displayText = " " + idPlayer;
-                }
-                else
-                {
-                    displayText = " et " + idPlayer + "\n";
-                }
-                displayWinner.text += displayText;
-            }
-        }
-        else if (idPlayerwinner == 6)
-        {
-            displayWinner.text = "Victoire de l'équipe";
-            for (int i = 0; i < teamTwo.Count; i++)
-            {
-                string displayText;
-                idPlayer = teamTwo[i].playerID + 1;
-                if (i == 0)
-                {
-                    displayText = " " + idPlayer;
-                }
-                else
-                {
-                    displayText = " et " + idPlayer + "\n";
-                }
-                displayWinner.text += displayText;
-            }
-        }
-        displayPointsRounds.text = "Scores : ";
-        for (int index = 0; index < listPointsPlayers.Count; index++)
-        {
-            idPlayer = index + 1;
-            displayPointsRounds.text += "joueur " + idPlayer + ", points : " + listPointsPlayers[index] + "\n";
-        }
-    }
-
-    private void DisplayFinalResults()
-    {
-
     }
 
     #endregion
