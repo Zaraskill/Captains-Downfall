@@ -103,7 +103,7 @@ public class PlayerEntity : MonoBehaviour
         UpdateMove();
         UpdateModelOrient();
         UpdatePosition();
-        UpdateSmoke();
+        UpdateSmoke();    
 
         if(pickedObject == null)
         {
@@ -126,6 +126,7 @@ public class PlayerEntity : MonoBehaviour
         GUILayout.Label(isInsideCanon ? "inCanon" : "outCanon");
         GUILayout.Label(isHoldingItem ? "hold" : "empty");
         GUILayout.Label("power = " + power);
+        GUILayout.Label("" + isDead);
         GUILayout.EndVertical();
     }
 
@@ -174,7 +175,7 @@ public class PlayerEntity : MonoBehaviour
         else if (speed == Vector2.zero)
         {
             isKnocked = false;
-        }
+        }        
     }
 
     public void Move(Vector2 dir)
@@ -433,6 +434,8 @@ public class PlayerEntity : MonoBehaviour
         if (!isDead)
         {
             isDead = true;
+            isKnocked = true;
+            speed *= 5;
             GameManager.managerGame.DeadPlayer(playerID);
         }
     }

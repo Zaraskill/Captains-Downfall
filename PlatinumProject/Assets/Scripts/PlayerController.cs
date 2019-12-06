@@ -27,25 +27,22 @@ public class PlayerController : MonoBehaviour
         float dirX = 0f;
         float dirY = 0f;
 
-        if (!entity.IsDead() || entity.IsKnocked())
-        {
-            dirX = mainPlayer.GetAxis("HorizontalMove");
-            dirY = mainPlayer.GetAxis("VerticalMove");
+        dirX = mainPlayer.GetAxis("HorizontalMove");
+        dirY = mainPlayer.GetAxis("VerticalMove");
 
-            if (mainPlayer.GetButtonDown("PickUp") && entity.IsInsideCanon())
-            {
-                entity.QuitCanon();
-            }
-            else if (mainPlayer.GetButtonDown("PickUp") && entity.CanPick() && !entity.IsHoldingItem())
-            {
-                Debug.Log("Pickup");
-                entity.PickItem();
-            }
-            else if (mainPlayer.GetButtonUp("PickUp") && entity.CanThrow())
-            {
-                Debug.Log("Throw");
-                entity.Throw();
-            }
+        if (mainPlayer.GetButtonDown("PickUp") && entity.IsInsideCanon())
+        {
+            entity.QuitCanon();
+        }
+        else if (mainPlayer.GetButtonDown("PickUp") && entity.CanPick() && !entity.IsHoldingItem())
+        {
+            Debug.Log("Pickup");
+            entity.PickItem();
+        }
+        else if (mainPlayer.GetButtonUp("PickUp") && entity.CanThrow())
+        {
+            Debug.Log("Throw");
+            entity.Throw();
         }
 
         Vector2 moveDir = new Vector2(dirX, dirY);
