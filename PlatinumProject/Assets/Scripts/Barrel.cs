@@ -58,7 +58,10 @@ public class Barrel : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Pickable"))
             {
-                RemoveObject(collision.gameObject.GetComponent<PickupableObject>());
+                if (objetIntoArea.Contains(collision.gameObject.GetComponent<PickupableObject>()))
+                {
+                    objetIntoArea.Remove(collision.gameObject.GetComponent<PickupableObject>());
+                }                
             }
             isTouchingPlayer = true;
         }

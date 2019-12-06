@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (entity.IsDead() 
+        if (entity.IsDead()) 
         {
             float dirX = mainPlayer.GetAxis("HorizontalMove");
             float dirY = mainPlayer.GetAxis("VerticalMove");
