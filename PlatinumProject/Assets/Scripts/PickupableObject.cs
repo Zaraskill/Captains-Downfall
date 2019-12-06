@@ -38,6 +38,8 @@ public class PickupableObject : MonoBehaviour
     [Header("Components")]
     private Rigidbody _rigidbody;
 
+    public GameObject hitParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -177,9 +179,13 @@ public class PickupableObject : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && isThrown)
         {
+            if(hitParticle != null)
+            {
+                Instantiate(hitParticle, transform.position, Quaternion.identity);
+            }
             SoundManager.managerSound.MakeHitSound();
             collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
-            GameManager.managerGame.SpawnObject();
+            GameManager.managerGame.SpawnObject(); 
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Pillar") || collision.gameObject.CompareTag("Canon"))
