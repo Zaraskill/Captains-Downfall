@@ -68,12 +68,18 @@ public class Barrel : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            playerIntoArea.Add(collision.gameObject.GetComponent<PlayerEntity>());
+            if (playerIntoArea.Contains(collision.gameObject.GetComponent<PlayerEntity>()) )
+            {
+                playerIntoArea.Add(collision.gameObject.GetComponent<PlayerEntity>());
+            }            
         }
         else if (collision.gameObject.CompareTag("Pickable"))
         {
-            objetIntoArea.Add(collision.gameObject.GetComponent<PickupableObject>());
-            collision.gameObject.GetComponent<PickupableObject>().GoInsideRangeBarrel(this);
+            if (objetIntoArea.Contains(collision.gameObject.GetComponent<PickupableObject>()) )
+            {
+                objetIntoArea.Add(collision.gameObject.GetComponent<PickupableObject>());
+                collision.gameObject.GetComponent<PickupableObject>().GoInsideRangeBarrel(this);
+            }            
         }
     }
 
@@ -85,7 +91,7 @@ public class Barrel : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Pickable"))
         {
-            RemoveObject(collision.gameObject.GetComponent<PickupableObject>());
+            objetIntoArea.Remove(collision.gameObject.GetComponent<PickupableObject>());
             collision.gameObject.GetComponent<PickupableObject>().ExitInsideRangeBarrel();
         }
     }
@@ -134,11 +140,11 @@ public class Barrel : MonoBehaviour
 
     #endregion
 
-    private void RemoveObject(PickupableObject objectToRemove)
+    public void objectLeaveRange(PickupableObject item)
     {
-        while (objetIntoArea.Contains(objectToRemove))
+        if (objetIntoArea.Contains(item))
         {
-            objetIntoArea.Remove(objectToRemove);
+            objetIntoArea.Remove(item);
         }
     }
 

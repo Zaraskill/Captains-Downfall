@@ -132,6 +132,11 @@ public class PickupableObject : MonoBehaviour
             _rigidbody.useGravity = false;
             _rigidbody.isKinematic = true;
             _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            if (isInRangeBarrel)
+            {
+                barrel.objectLeaveRange(this);
+                ExitInsideRangeBarrel();
+            }
         }        
     }
 
