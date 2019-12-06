@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public float maxObjectsInGame;
     public GameObject[] listPrefabsPickableItems;
     public GameObject spawnZone;
+    public Transform[] arrayItemsSpawnPoints;
     private int randomObject;
 
     //Gestion Map
@@ -131,11 +132,12 @@ public class GameManager : MonoBehaviour
 
     public void SpawnObject()
     {
-        float x = Random.Range(spawnZone.GetComponent<BoxCollider>().bounds.min.x, spawnZone.GetComponent<BoxCollider>().bounds.max.x);
+        /*float x = Random.Range(spawnZone.GetComponent<BoxCollider>().bounds.min.x, spawnZone.GetComponent<BoxCollider>().bounds.max.x);
         float y = spawnZone.GetComponent<BoxCollider>().bounds.min.y;
         float z = Random.Range(spawnZone.GetComponent<BoxCollider>().bounds.min.z, spawnZone.GetComponent<BoxCollider>().bounds.max.z);
-        Vector3 position = new Vector3(x, y, z);
-        Instantiate(listPrefabsPickableItems[randomObject], position, Quaternion.identity);
+        Vector3 position = new Vector3(x, y, z);*/
+        int randomSpawnPoints = Random.Range(0, arrayItemsSpawnPoints.Length);
+        Instantiate(listPrefabsPickableItems[randomObject], arrayItemsSpawnPoints[randomSpawnPoints].transform.position, Quaternion.identity);
     }
 
     private void GenerateObjects()
