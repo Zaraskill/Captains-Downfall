@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.36306742, g: 0.5662926, b: 0.84370035, a: 1}
+  m_IndirectSpecularColor: {r: 0.36286044, g: 0.56616193, b: 0.84371287, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -812,6 +812,22 @@ MonoBehaviour:
   - {fileID: 6611940170725083520, guid: cf530fcded655694abd82c1f53f49d39, type: 3}
   - {fileID: 4287047991879369359, guid: 1b292590269e87f47bf87b47eba388aa, type: 3}
   spawnZone: {fileID: 518152008}
+  arrayItemsSpawnPoints:
+  - {fileID: 632896701}
+  - {fileID: 1581094079}
+  - {fileID: 2027112160}
+  - {fileID: 369209721}
+  - {fileID: 776360144}
+  - {fileID: 1474077087}
+  - {fileID: 639390129}
+  - {fileID: 122915231}
+  - {fileID: 613663780}
+  - {fileID: 117079934}
+  - {fileID: 941789681}
+  - {fileID: 382167398}
+  - {fileID: 2006895470}
+  - {fileID: 1220252510}
+  - {fileID: 2045244305}
   listPlayers:
   - {fileID: 974614573}
   - {fileID: 1026640553}
