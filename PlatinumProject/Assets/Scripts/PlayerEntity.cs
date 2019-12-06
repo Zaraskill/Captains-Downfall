@@ -98,19 +98,16 @@ public class PlayerEntity : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!isDead)
-        {
-            UpdateGroundCheck();
-            UpdateGravity();
-            UpdateMove();
-            UpdateModelOrient();
-            UpdatePosition();
-            UpdateSmoke();
+        UpdateGroundCheck();
+        UpdateGravity();
+        UpdateMove();
+        UpdateModelOrient();
+        UpdatePosition();
+        UpdateSmoke();
 
-            if(pickedObject == null)
-            {
-                isHoldingItem = false;
-            }
+        if(pickedObject == null)
+        {
+            isHoldingItem = false;
         }
     }
 
