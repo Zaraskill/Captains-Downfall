@@ -344,8 +344,13 @@ public class GameManager : MonoBehaviour
             UIManager.managerUI.DisplayRoundBeginning(1);
         }
         GenerateObjects();
-
+        StartCoroutine(WaitSeconds());
         gameState = STATE_PLAY.Party;
+    }
+
+    IEnumerator WaitSeconds()
+    {
+        yield return new WaitForSeconds(3);
     }
 
     private void PrepareSuddenDeath()
