@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
         teamTwo = new List<PlayerEntity>();
         mainPlayer = ReInput.players.GetPlayer(0);
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -132,10 +133,6 @@ public class GameManager : MonoBehaviour
 
     public void SpawnObject()
     {
-        /*float x = Random.Range(spawnZone.GetComponent<BoxCollider>().bounds.min.x, spawnZone.GetComponent<BoxCollider>().bounds.max.x);
-        float y = spawnZone.GetComponent<BoxCollider>().bounds.min.y;
-        float z = Random.Range(spawnZone.GetComponent<BoxCollider>().bounds.min.z, spawnZone.GetComponent<BoxCollider>().bounds.max.z);
-        Vector3 position = new Vector3(x, y, z);*/
         int randomSpawnPoints = Random.Range(0, arrayItemsSpawnPoints.Length);
         Instantiate(listPrefabsPickableItems[randomObject], arrayItemsSpawnPoints[randomSpawnPoints].transform.position, Quaternion.identity);
     }
