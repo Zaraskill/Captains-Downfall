@@ -419,7 +419,8 @@ public class PlayerEntity : MonoBehaviour
     {
         if (moveDir != Vector2.zero)
         {
-            Instantiate(smoke, transform.position, Quaternion.identity);
+            GameObject _instance = Instantiate(smoke, transform.position, Quaternion.identity);
+            Destroy(_instance, 2f);
         }
     }
 

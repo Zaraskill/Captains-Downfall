@@ -140,7 +140,8 @@ public class Barrel : MonoBehaviour
 
         SoundManager.managerSound.MakeBarrelExplosionSound();
         CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
-        Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        GameObject _instance = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        Destroy(_instance, 2f);
         gameObject.SetActive(false);
     }
 

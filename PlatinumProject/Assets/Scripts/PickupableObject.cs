@@ -181,7 +181,8 @@ public class PickupableObject : MonoBehaviour
         {
             if(hitParticle != null)
             {
-                Instantiate(hitParticle, transform.position, Quaternion.identity);
+                GameObject _instance = Instantiate(hitParticle, transform.position, Quaternion.identity);
+                Destroy(_instance, 2f);
             }
             SoundManager.managerSound.MakeHitSound();
             collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
@@ -192,7 +193,8 @@ public class PickupableObject : MonoBehaviour
         {
             if (hitParticle != null)
             {
-                Instantiate(hitParticle, transform.position, Quaternion.identity);
+                GameObject _instance = Instantiate(hitParticle, transform.position, Quaternion.identity);
+                Destroy(_instance, 2f);
             }
             GameManager.managerGame.SpawnObject();
             Destroy(gameObject);

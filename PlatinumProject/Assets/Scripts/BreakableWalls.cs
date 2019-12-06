@@ -33,15 +33,12 @@ public class BreakableWalls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentHealthPoints == 1)
-        {
-            myAnimator.SetTrigger("1HPLeft");
-        }
-        else if (currentHealthPoints == 0)
+        if (currentHealthPoints == 0)
         {
             SoundManager.managerSound.MakeWallBreakSound();
             CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
-            Instantiate(destructionEffect, transform.position, Quaternion.identity);
+            GameObject _instance = Instantiate(destructionEffect, transform.position, Quaternion.identity);
+            Destroy(_instance, 2f);
             this.gameObject.SetActive(false);
         }
     }

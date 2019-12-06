@@ -68,7 +68,8 @@ public class Canon : MonoBehaviour
         SoundManager.managerSound.MakeCanonSound();
         CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
         animator.SetBool("isShooting", true);
-        Instantiate(smokeEffect, pointToThrow.transform.position, Quaternion.identity);
+        GameObject _instance = Instantiate(smokeEffect, pointToThrow.transform.position, Quaternion.identity);
+        Destroy(_instance, 2f);
         playerCollisionned.gameObject.SetActive(true);
         playerCollisionned.OutCanon();
         playerCollisionned.transform.position = pointToThrow.transform.position;
