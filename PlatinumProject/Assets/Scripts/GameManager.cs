@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     public Canvas displayResults;
     public Text displayWinner;
     public Text displayPointsRounds;
+    private float startTimer = 3f;
+    private float timer;
+    
 
     void Awake()
     {
@@ -66,6 +69,7 @@ public class GameManager : MonoBehaviour
         teamOne = new List<PlayerEntity>();
         teamTwo = new List<PlayerEntity>();
         mainPlayer = ReInput.players.GetPlayer(0);
+        timer = startTimer;
     }
 
     // Start is called before the first frame update
@@ -321,36 +325,49 @@ public class GameManager : MonoBehaviour
     #region Events Fonctions
 
     private void PrepareParty()
-    {        
-        DestroyTeam();
-        ClearMap();
-        PrepareMap();
-        listWinnerPlayers.Clear();
-        idPlayerwinner = -1;
-        RespawnPlayers();
-        listAlivePlayers = new List<PlayerEntity>(listPlayers);
-        nbPlayersAlive = 4;
-        if (Random.Range(0, 2) == 1)
+    {
+        if (timer == startTimer)
         {
-            Debug.Log("Team match");
-            isTeam = true;
-            CreationTeam();
-            UIManager.managerUI.DisplayRoundBeginning(2);
+            DestroyTeam();
+            ClearMap();
+            PrepareMap();
+            listWinnerPlayers.Clear();
+            idPlayerwinner = -1;
+            RespawnPlayers();
+            listAlivePlayers = new List<PlayerEntity>(listPlayers);
+            nbPlayersAlive = 4;
+            if (Random.Range(0, 2) == 1)
+            {
+                Debug.Log("Team match");
+                isTeam = true;
+                CreationTeam();
+                UIManager.managerUI.DisplayRoundBeginning(2);
+            }
+            else
+            {
+                Debug.Log("FFA");
+                isTeam = false;
+                UIManager.managerUI.DisplayRoundBeginning(1);
+            }
+            GenerateObjects();
+        }        
+        if (timer <= 0f)
+        {
+            UIManager.managerUI.StartRound();
+            gameState = STATE_PLAY.Party;
+            timer = startTimer;
         }
         else
         {
-            Debug.Log("FFA");
-            isTeam = false;
-            UIManager.managerUI.DisplayRoundBeginning(1);
+            timer -= Time.deltaTime;
         }
-        GenerateObjects();
-        StartCoroutine(WaitSeconds());
-        gameState = STATE_PLAY.Party;
+        //StartCoroutine(WaitSeconds());
+        
     }
 
     IEnumerator WaitSeconds()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
     }
 
     private void PrepareSuddenDeath()

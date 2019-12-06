@@ -115,4 +115,12 @@ public class UIManager : MonoBehaviour
         images[3].sprite = playerSkinsTFRight[team[1].playerID];
 
     }
+
+    public void StartRound()
+    {
+        roundFFA.SetActive(false);
+        roundTF.SetActive(false);
+        beginRound.SetActive(false);
+    }
+
 }
