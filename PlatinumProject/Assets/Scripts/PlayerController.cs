@@ -24,18 +24,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (entity.IsDead()) 
+        float dirX = 0f;
+        float dirY = 0f;
+
+        if (!entity.IsDead())
         {
-            float dirX = mainPlayer.GetAxis("HorizontalMove");
-            float dirY = mainPlayer.GetAxis("VerticalMove");
-
-
-            Vector2 moveDir = new Vector2(dirX, dirY);
-            moveDir.Normalize();
-
-            entity.Move(moveDir);
-
-            entity.GetComponent<Animator>().SetFloat("Move", moveDir.magnitude);
+            dirX = mainPlayer.GetAxis("HorizontalMove");
+            dirY = mainPlayer.GetAxis("VerticalMove");
 
             if (mainPlayer.GetButtonDown("PickUp") && entity.IsInsideCanon())
             {
@@ -51,6 +46,13 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Throw");
                 entity.Throw();
             }
-        }        
+        }
+
+        Vector2 moveDir = new Vector2(dirX, dirY);
+        moveDir.Normalize();
+
+        entity.Move(moveDir);
+
+        entity.GetComponent<Animator>().SetFloat("Move", moveDir.magnitude);
     }
 }
