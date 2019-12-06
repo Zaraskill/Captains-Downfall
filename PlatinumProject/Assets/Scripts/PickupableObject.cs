@@ -60,8 +60,14 @@ public class PickupableObject : MonoBehaviour
 
     private void UpdateMove()
     {
+        if (isThrown)
+        {
+            timing += Time.fixedDeltaTime;
+            transform.position = new Vector3(transform.position.x, curveThrow.Evaluate(timing), transform.position.z);
+        }
         if (isGrounded)
         {
+            timing = 0f;
             if (velocity != Vector2.zero)
             {
                 Vector2 frictionDir = velocity.normalized;
