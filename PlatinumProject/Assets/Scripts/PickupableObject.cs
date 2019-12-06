@@ -190,6 +190,10 @@ public class PickupableObject : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Pillar") || collision.gameObject.CompareTag("Canon"))
         {
+            if (hitParticle != null)
+            {
+                Instantiate(hitParticle, transform.position, Quaternion.identity);
+            }
             GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
         }
