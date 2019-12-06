@@ -203,6 +203,7 @@ MonoBehaviour:
   friction: 100
   groundY: 0
   groundPosition: {fileID: 3092312072770626891}
+  hitParticle: {fileID: 173668, guid: 5d476fdbb7a864646aa6a217aa4e6166, type: 3}
 --- !u!54 &8137009637942026712
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -315,4 +315,4 @@ MonoBehaviour:
   friction: 0
   groundY: 0
   groundPosition: {fileID: 4176145647281534055}
-  hitParticle: {fileID: 0}
+  hitParticle: {fileID: 173668, guid: 5d476fdbb7a864646aa6a217aa4e6166, type: 3}

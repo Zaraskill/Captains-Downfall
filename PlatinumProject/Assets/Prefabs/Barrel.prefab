@@ -126,8 +126,7 @@ MonoBehaviour:
   knockPower: 70
   isTouchingPlayer: 0
   isExploding: 0
-  explosionEffect: {fileID: 7792458997231541035, guid: a31bf91599d75494993f32af622a2e6f,
-    type: 3}
+  explosionEffect: {fileID: 150222, guid: 9f03f372adf02874cb666857a9f97abd, type: 3}
   magnitude: 3
   roughness: 3
   fadeInTime: 0.1
