@@ -15,7 +15,7 @@ MonoBehaviour:
   debugViews:
     m_Enabled: 1
     m_Settings:
-      mode: 0
+      mode: 2
       depth:
         scale: 1
       motionVectors:
@@ -34,7 +34,7 @@ MonoBehaviour:
     m_Settings:
       method: 0
       fxaaSettings:
-        preset: 3
+        preset: 4
       taaSettings:
         jitterSpread: 0.75
         sharpen: 0.3

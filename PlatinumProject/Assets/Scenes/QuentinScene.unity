@@ -311,9 +311,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.38
-  m_Height: 2.87
+  m_Height: 1.87
   m_Direction: 2
-  m_Center: {x: -0.05, y: -0.10223412, z: 0.017549038}
+  m_Center: {x: -0.05, y: -0.10223412, z: -0.3}
 --- !u!4 &44014009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 22e1a177d5b01be47b422c78ee94ebf0,
@@ -809,9 +809,8 @@ MonoBehaviour:
   - {fileID: 5392298871816794809, guid: 45a14105f542c0f4eb61b5eb6f9fef7c, type: 3}
   - {fileID: 6470534001642990695, guid: a3f02a03e87f805409f360da52c382f7, type: 3}
   - {fileID: 3195229763863212020, guid: 1edd75d994b14934d9788dc34568e398, type: 3}
-  - {fileID: 1981794686783467036, guid: 148dab92884b9fa4eb9ca3717b6938e3, type: 3}
-  - {fileID: 4287047991879369359, guid: 1b292590269e87f47bf87b47eba388aa, type: 3}
   - {fileID: 6611940170725083520, guid: cf530fcded655694abd82c1f53f49d39, type: 3}
+  - {fileID: 4287047991879369359, guid: 1b292590269e87f47bf87b47eba388aa, type: 3}
   spawnZone: {fileID: 518152008}
   listPlayers:
   - {fileID: 974614573}
@@ -1386,9 +1385,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.38
-  m_Height: 2.87
+  m_Height: 1.87
   m_Direction: 2
-  m_Center: {x: -0.05, y: -0.10223412, z: 0.017549038}
+  m_Center: {x: -0.05, y: -0.10223412, z: -0.3}
 --- !u!4 &413211099 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 22e1a177d5b01be47b422c78ee94ebf0,
@@ -2927,7 +2926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961550689}
   m_LocalRotation: {x: -0, y: -0.37989348, z: -0, w: 0.9250303}
-  m_LocalPosition: {x: -5.8, y: -39.553123, z: 25.2}
+  m_LocalPosition: {x: -8.1, y: -39.553123, z: 27.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 821822837}
@@ -3938,9 +3937,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.38
-  m_Height: 2.87
+  m_Height: 1.87
   m_Direction: 2
-  m_Center: {x: -0.05, y: -0.10223412, z: 0.017549038}
+  m_Center: {x: -0.05, y: -0.10223412, z: -0.3}
 --- !u!4 &1109905940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 22e1a177d5b01be47b422c78ee94ebf0,
@@ -4098,9 +4097,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.38
-  m_Height: 2.87
+  m_Height: 1.87
   m_Direction: 2
-  m_Center: {x: -0.05, y: -0.10223412, z: 0.017549038}
+  m_Center: {x: -0.05, y: -0.10223412, z: -0.3}
 --- !u!4 &1147995572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 22e1a177d5b01be47b422c78ee94ebf0,
@@ -5166,9 +5165,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.38
-  m_Height: 2.87
+  m_Height: 1.87
   m_Direction: 2
-  m_Center: {x: -0.05, y: -0.10223412, z: 0.017549038}
+  m_Center: {x: -0.05, y: -0.10223412, z: -0.3}
 --- !u!4 &1379966154 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 22e1a177d5b01be47b422c78ee94ebf0,
@@ -5521,9 +5520,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.38
-  m_Height: 2.87
+  m_Height: 1.87
   m_Direction: 2
-  m_Center: {x: -0.05, y: -0.10223412, z: 0.017549038}
+  m_Center: {x: -0.05, y: -0.10223412, z: -0.3}
 --- !u!4 &1462076099 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 22e1a177d5b01be47b422c78ee94ebf0,
@@ -6039,9 +6038,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.38
-  m_Height: 2.87
+  m_Height: 1.87
   m_Direction: 2
-  m_Center: {x: -0.05, y: -0.10223412, z: 0.017549038}
+  m_Center: {x: -0.05, y: -0.10223412, z: -0.3}
 --- !u!4 &1592860913 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 22e1a177d5b01be47b422c78ee94ebf0,
@@ -6065,9 +6064,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.38
-  m_Height: 2.87
+  m_Height: 1.87
   m_Direction: 2
-  m_Center: {x: -0.05, y: -0.10223412, z: 0.017549038}
+  m_Center: {x: -0.05, y: -0.10223412, z: -0.3}
 --- !u!4 &1597037307 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 22e1a177d5b01be47b422c78ee94ebf0,
