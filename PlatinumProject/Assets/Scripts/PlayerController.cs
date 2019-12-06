@@ -30,6 +30,13 @@ public class PlayerController : MonoBehaviour
         dirX = mainPlayer.GetAxis("HorizontalMove");
         dirY = mainPlayer.GetAxis("VerticalMove");
 
+        Vector2 moveDir = new Vector2(dirX, dirY);
+        moveDir.Normalize();
+
+        entity.Move(moveDir);
+
+        entity.GetComponent<Animator>().SetFloat("Move", moveDir.magnitude);
+
         if (mainPlayer.GetButtonDown("PickUp") && entity.IsInsideCanon())
         {
             entity.QuitCanon();
@@ -45,11 +52,6 @@ public class PlayerController : MonoBehaviour
             entity.Throw();
         }
 
-        Vector2 moveDir = new Vector2(dirX, dirY);
-        moveDir.Normalize();
-
-        entity.Move(moveDir);
-
-        entity.GetComponent<Animator>().SetFloat("Move", moveDir.magnitude);
+        
     }
 }

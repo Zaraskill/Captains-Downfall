@@ -306,6 +306,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public List<PlayerEntity> GetTeamOne()
+    {
+        return teamOne;
+    }
+
+    public List<PlayerEntity> GetTeamTwo()
+    {
+        return teamTwo;
+    }
+
     #endregion
 
     #region Events Fonctions
@@ -325,14 +335,16 @@ public class GameManager : MonoBehaviour
             Debug.Log("Team match");
             isTeam = true;
             CreationTeam();
+            UIManager.managerUI.DisplayRoundBeginning(2);
         }
         else
         {
             Debug.Log("FFA");
             isTeam = false;
+            UIManager.managerUI.DisplayRoundBeginning(1);
         }
         GenerateObjects();
-        displayResults.gameObject.SetActive(false);
+
         gameState = STATE_PLAY.Party;
     }
 
