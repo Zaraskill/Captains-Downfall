@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82415c0f904d15f44975d2bf044ac82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerKnock: 80
+  powerKnock: 75
   isPickable: 1
   isThrown: 0
   curveThrow:
@@ -285,6 +285,7 @@ MonoBehaviour:
   friction: 0
   groundY: 0
   groundPosition: {fileID: 5214968777180337625}
+  hitParticle: {fileID: 0}
 --- !u!1 &5214968777180337626
 GameObject:
   m_ObjectHideFlags: 0
