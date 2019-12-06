@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         float dirX = 0f;
         float dirY = 0f;
 
-        if (!entity.IsDead())
+        if (!entity.IsDead() || entity.IsKnocked())
         {
             dirX = mainPlayer.GetAxis("HorizontalMove");
             dirY = mainPlayer.GetAxis("VerticalMove");
