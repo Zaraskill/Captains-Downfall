@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     public Canvas displayResults;
     public Text displayWinner;
     public Text displayPointsRounds;
+    private float startTimer = 3f;
+    private float timer;
+    
 
     void Awake()
     {
@@ -66,6 +69,7 @@ public class GameManager : MonoBehaviour
         teamOne = new List<PlayerEntity>();
         teamTwo = new List<PlayerEntity>();
         mainPlayer = ReInput.players.GetPlayer(0);
+        timer = startTimer;
     }
 
     // Start is called before the first frame update
@@ -116,11 +120,9 @@ public class GameManager : MonoBehaviour
                 CheckWinner();
                 break;
             case STATE_PLAY.DisplayResultsRound:
-                DisplayRoundResults();
                 WaitingForInput();
                 break;
             case STATE_PLAY.DisplayResultsFinal:
-                DisplayFinalResults();
                 WaitingForInput();
                 break;
             default:
@@ -321,36 +323,49 @@ public class GameManager : MonoBehaviour
     #region Events Fonctions
 
     private void PrepareParty()
-    {        
-        DestroyTeam();
-        ClearMap();
-        PrepareMap();
-        listWinnerPlayers.Clear();
-        idPlayerwinner = -1;
-        RespawnPlayers();
-        listAlivePlayers = new List<PlayerEntity>(listPlayers);
-        nbPlayersAlive = 4;
-        if (Random.Range(0, 2) == 1)
+    {
+        if (timer == startTimer)
         {
-            Debug.Log("Team match");
-            isTeam = true;
-            CreationTeam();
-            UIManager.managerUI.DisplayRoundBeginning(2);
+            DestroyTeam();
+            ClearMap();
+            PrepareMap();
+            listWinnerPlayers.Clear();
+            idPlayerwinner = -1;
+            RespawnPlayers();
+            listAlivePlayers = new List<PlayerEntity>(listPlayers);
+            nbPlayersAlive = 4;
+            if (Random.Range(0, 2) == 1)
+            {
+                Debug.Log("Team match");
+                isTeam = true;
+                CreationTeam();
+                UIManager.managerUI.DisplayRoundBeginning(2);
+            }
+            else
+            {
+                Debug.Log("FFA");
+                isTeam = false;
+                UIManager.managerUI.DisplayRoundBeginning(1);
+            }
+            GenerateObjects();
+        }        
+        if (timer <= 0f)
+        {
+            UIManager.managerUI.StartRound();
+            gameState = STATE_PLAY.Party;
+            timer = startTimer;
         }
         else
         {
-            Debug.Log("FFA");
-            isTeam = false;
-            UIManager.managerUI.DisplayRoundBeginning(1);
+            timer -= Time.deltaTime;
         }
-        GenerateObjects();
-        StartCoroutine(WaitSeconds());
-        gameState = STATE_PLAY.Party;
+        //StartCoroutine(WaitSeconds());
+        
     }
 
     IEnumerator WaitSeconds()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
     }
 
     private void PrepareSuddenDeath()
@@ -384,67 +399,6 @@ public class GameManager : MonoBehaviour
         {
             listPlayers[index].transform.position = listSpawnPoint[index].transform.position;
         }
-    }
-
-    #endregion
-
-    #region UI Fonctions
-
-    private void DisplayRoundResults()
-    {
-        int idPlayer = 0;
-        displayResults.gameObject.SetActive(true);
-        if (idPlayerwinner <= 4)
-        {
-            displayWinner.text = "Victoire du joueur " + idPlayerwinner;
-        }
-        else if (idPlayerwinner == 5)
-        {
-            displayWinner.text = "Victoire de l'équipe";
-            for (int i = 0; i < teamOne.Count; i++)
-            {
-                string displayText;
-                idPlayer = teamOne[i].playerID + 1;
-                if (i == 0)
-                {
-                    displayText = " " + idPlayer;
-                }
-                else
-                {
-                    displayText = " et " + idPlayer + "\n";
-                }
-                displayWinner.text += displayText;
-            }
-        }
-        else if (idPlayerwinner == 6)
-        {
-            displayWinner.text = "Victoire de l'équipe";
-            for (int i = 0; i < teamTwo.Count; i++)
-            {
-                string displayText;
-                idPlayer = teamTwo[i].playerID + 1;
-                if (i == 0)
-                {
-                    displayText = " " + idPlayer;
-                }
-                else
-                {
-                    displayText = " et " + idPlayer + "\n";
-                }
-                displayWinner.text += displayText;
-            }
-        }
-        displayPointsRounds.text = "Scores : ";
-        for (int index = 0; index < listPointsPlayers.Count; index++)
-        {
-            idPlayer = index + 1;
-            displayPointsRounds.text += "joueur " + idPlayer + ", points : " + listPointsPlayers[index] + "\n";
-        }
-    }
-
-    private void DisplayFinalResults()
-    {
-
     }
 
     #endregion
