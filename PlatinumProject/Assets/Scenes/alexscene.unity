@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.3629006, g: 0.56618, b: 0.843711, a: 1}
+  m_IndirectSpecularColor: {r: 0.11268271, g: 0.28155577, b: 0.70918036, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxObjectsInGame: 5
   listPrefabsPickableItems:
-  - {fileID: 3077946126571208657, guid: e95c108fad48e1449944333bca9d41bf, type: 3}
+  - {fileID: 4287047991879369359, guid: 1b292590269e87f47bf87b47eba388aa, type: 3}
   spawnZone: {fileID: 518152008}
   arrayItemsSpawnPoints:
   - {fileID: 632896701}
@@ -1100,8 +1100,6 @@ MonoBehaviour:
   canvasUI: {fileID: 60045468}
   titleImage: {fileID: 0}
   beginRound: {fileID: 239466213}
-  fightType: {fileID: 396016286}
-  displayCharacter: {fileID: 1990557488}
   characterSlotsFFA:
   - {fileID: 1207485588}
   - {fileID: 825854865}
