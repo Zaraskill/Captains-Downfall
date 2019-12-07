@@ -418,7 +418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &60045466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,6 +1040,10 @@ MonoBehaviour:
   maxObjectsInGame: 5
   listPrefabsPickableItems:
   - {fileID: 3077946126571208657, guid: e95c108fad48e1449944333bca9d41bf, type: 3}
+  - {fileID: 4287047991879369359, guid: 1b292590269e87f47bf87b47eba388aa, type: 3}
+  - {fileID: 5392298871816794809, guid: 45a14105f542c0f4eb61b5eb6f9fef7c, type: 3}
+  - {fileID: 6611940170725083520, guid: cf530fcded655694abd82c1f53f49d39, type: 3}
+  - {fileID: 6470534001642990695, guid: a3f02a03e87f805409f360da52c382f7, type: 3}
   spawnZone: {fileID: 518152008}
   arrayItemsSpawnPoints:
   - {fileID: 632896701}

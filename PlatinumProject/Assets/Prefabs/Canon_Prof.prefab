@@ -499,9 +499,9 @@ MonoBehaviour:
   smokeEffect: {fileID: 130346, guid: a6f9599628f0bcc4292dc49c2596b7b6, type: 3}
   timeInsideCanon: 2
   timeToExpel: 3
-  magnitude: 3
-  roughness: 3
-  fadeInTime: 0.1
+  magnitude: 4
+  roughness: 5
+  fadeInTime: 0.2
   fadeOutTime: 1
 --- !u!95 &8144772488471761641
 Animator:
