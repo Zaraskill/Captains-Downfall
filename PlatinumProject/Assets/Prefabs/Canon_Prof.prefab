@@ -496,8 +496,7 @@ MonoBehaviour:
   isRotating: 0
   knockPower: 60
   pointToThrow: {fileID: 6304602504167852033}
-  smokeEffect: {fileID: 5038769139394652529, guid: 43cf31b05c2269645a9ac5b471ad1146,
-    type: 3}
+  smokeEffect: {fileID: 130346, guid: a6f9599628f0bcc4292dc49c2596b7b6, type: 3}
   timeInsideCanon: 2
   timeToExpel: 3
   magnitude: 3
