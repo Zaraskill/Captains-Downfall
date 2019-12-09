@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
             0,0,0,0
         };
         listWalls = FindObjectsOfType<BreakableWalls>();
+        listBarrels = FindObjectsOfType<Barrel>();
         listWinnerPlayers = new List<int>();
         teamOne = new List<PlayerEntity>();
         teamTwo = new List<PlayerEntity>();
@@ -336,7 +337,17 @@ public class GameManager : MonoBehaviour
 
     private void PrepareParty()
     {
-        if (timer == startTimer)
+        if (timer <= 0f)
+        {
+            UIManager.managerUI.StartRound();
+            gameState = STATE_PLAY.Party;
+            timer = startTimer;
+        }
+        else if (timer < startTimer)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
         {
             DestroyTeam();
             ClearMap();
@@ -360,19 +371,7 @@ public class GameManager : MonoBehaviour
                 UIManager.managerUI.DisplayRoundBeginning(1);
             }
             GenerateObjects();
-        }        
-        if (timer <= 0f)
-        {
-            UIManager.managerUI.StartRound();
-            gameState = STATE_PLAY.Party;
-            timer = startTimer;
-        }
-        else
-        {
-            timer -= Time.deltaTime;
-        }
-        //StartCoroutine(WaitSeconds());
-        
+        }                
     }
 
     IEnumerator WaitSeconds()
@@ -415,6 +414,10 @@ public class GameManager : MonoBehaviour
         for (int index = 0; index < listPlayers.Count; index++)
         {
             listPlayers[index].transform.position = listSpawnPoint[index].transform.position;
+        }
+        foreach (Barrel barrel in listBarrels)
+        {
+            barrel.gameObject.SetActive(true);
         }
     }
 
