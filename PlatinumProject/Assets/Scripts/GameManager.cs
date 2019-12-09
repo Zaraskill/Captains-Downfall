@@ -88,41 +88,52 @@ public class GameManager : MonoBehaviour
         switch(gameState)
         {
             case STATE_PLAY.PlayerSelection:
+                Debug.Log(gameState);
                 break;
             case STATE_PLAY.PrepareParty:
+                Debug.Log(gameState);
                 PrepareParty();
                 break;
             case STATE_PLAY.PrepareSuddenDeath:
+                Debug.Log(gameState);
                 PrepareSuddenDeath();
                 break;
             case STATE_PLAY.Party:
+                Debug.Log(gameState);
                 if (nbPlayersAlive == 2 && isTeam)
                 {
                     if (teamOne.Count == 0)
                     {
                         idPlayerwinner = 5;
+                        Debug.Log(idPlayerwinner);
                         gameState = STATE_PLAY.Results;
                     }
                     else if (teamTwo.Count == 0)
                     {
                         idPlayerwinner = 4;
+                        Debug.Log(idPlayerwinner);
                         gameState = STATE_PLAY.Results;
                     }
                 }
                 else if (nbPlayersAlive == 1)
                 {                    
                     idPlayerwinner = listAlivePlayers[0].playerID;
+                    Debug.Log(idPlayerwinner);
                     gameState = STATE_PLAY.Results;      
                 }
                 break;
             case STATE_PLAY.Results:
+                Debug.Log(gameState);
                 UpdatePoints();
+                UIManager.managerUI.DisplayRoundEnding(idPlayerwinner);
                 CheckWinner();
                 break;
             case STATE_PLAY.DisplayResultsRound:
-                WaitingForInput();
+                Debug.Log(gameState);
+                WaitingForInput();                
                 break;
             case STATE_PLAY.DisplayResultsFinal:
+                Debug.Log(gameState);
                 WaitingForInput();
                 break;
             default:
@@ -258,6 +269,7 @@ public class GameManager : MonoBehaviour
             }
         }
         listAlivePlayers.Clear();
+        
     }
 
     private void CheckWinner()
@@ -384,6 +396,11 @@ public class GameManager : MonoBehaviour
         GenerateObjects();
     }
 
+    public int GetPointsPlayers(int index)
+    {
+        return listPointsPlayers[index];
+    }
+
     #endregion
 
     #region Map Fonctions
@@ -415,10 +432,12 @@ public class GameManager : MonoBehaviour
             }
             else if (listWinnerPlayers.Count > 1)
             {
+                UIManager.managerUI.EndRound();
                 gameState = STATE_PLAY.PrepareSuddenDeath;
             }
             else
             {
+                UIManager.managerUI.EndRound();
                 gameState = STATE_PLAY.PrepareParty;
             }
         }

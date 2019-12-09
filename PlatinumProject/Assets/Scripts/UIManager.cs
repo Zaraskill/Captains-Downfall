@@ -70,6 +70,7 @@ public class UIManager : MonoBehaviour
         
     }
 
+    #region Begin Round Fonctions
     public void DisplayRoundBeginning(int roundType)
     {
         beginRound.SetActive(true);
@@ -120,5 +121,84 @@ public class UIManager : MonoBehaviour
         roundTF.SetActive(false);
         beginRound.SetActive(false);
     }
+
+    #endregion
+
+    #region Ending round Fonctions
+
+    public void DisplayRoundEnding(int caseVictory)
+    {
+        endRound.SetActive(true);
+        switch (caseVictory)
+        {
+            case 0:
+                GenerateAnimation(0);
+                break;
+            case 1:
+                GenerateAnimation(1);
+                break;
+            case 2:
+                GenerateAnimation(2);
+                break;
+            case 3:
+                GenerateAnimation(3);
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void GenerateAnimation(int player)
+    {
+        if (GameManager.managerGame.GetPointsPlayers(player) == 1)
+        {
+
+        }
+        else if (GameManager.managerGame.GetPointsPlayers(player) == 2)
+        {
+
+        }
+        else if (GameManager.managerGame.GetPointsPlayers(player) == 3)
+        {
+
+        }
+        else if (GameManager.managerGame.GetPointsPlayers(player) == 4)
+        {
+
+        }
+        else if (GameManager.managerGame.GetPointsPlayers(player) == 5)
+        {
+
+        }
+    }
+
+    private void GenerateAnimationTeam(int team)
+    {
+        if (team == 4)
+        {
+            foreach (PlayerEntity player in GameManager.managerGame.GetTeamOne())
+            {
+                GenerateAnimation(player.playerID);
+            }
+        }
+        else if (team == 5)
+        {
+            foreach (PlayerEntity player in GameManager.managerGame.GetTeamTwo())
+            {
+                GenerateAnimation(player.playerID);
+            }
+        }
+    }
+
+    public void EndRound()
+    {
+        endRound.SetActive(false);
+    }
+
+    #endregion
 
 }
