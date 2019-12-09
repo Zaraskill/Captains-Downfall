@@ -20,6 +20,10 @@ public class UIManager : MonoBehaviour
     //Prepare Round
     [Header("Begin Round")]
     public GameObject beginRound;
+    public Image displayFightFFA;
+    public Image displayVSFFA;
+    public Image displayFightTF;
+    public Image displayVSTF;
     public List<Image> characterSlotsFFA;
     public List<Image> characterSlotsTF;
     public GameObject roundFFA;
@@ -90,13 +94,14 @@ public class UIManager : MonoBehaviour
                 }
                 
             }
-
+            GenerateAnimationsBeginRound(1);
         }
         else if (roundType == 2)
         {
             roundTF.SetActive(true);
             DisplayTeamOne();
             DisplayTeamTwo();
+            GenerateAnimationsBeginRound(2);
         }
     }
 
@@ -121,6 +126,20 @@ public class UIManager : MonoBehaviour
         roundFFA.SetActive(false);
         roundTF.SetActive(false);
         beginRound.SetActive(false);
+    }
+
+    public void GenerateAnimationsBeginRound(int roundType)
+    {
+        if (roundType == 1)
+        {
+            displayFightFFA.GetComponent<Animator>().SetTrigger("display");
+            displayVSFFA.GetComponent<Animator>();
+        }
+        else if (roundType == 2)
+        {
+            displayFightTF.GetComponent<Animator>();
+            displayVSTF.GetComponent<Animator>();
+        }
     }
 
     #endregion
