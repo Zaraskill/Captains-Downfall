@@ -148,7 +148,16 @@ public class GameManager : MonoBehaviour
     public void SpawnObject()
     {
         int randomSpawnPoints = Random.Range(0, arrayItemsSpawnPoints.Length);
-        Instantiate(listPrefabsPickableItems[randomObject], arrayItemsSpawnPoints[randomSpawnPoints].transform.position, Quaternion.identity);
+
+        RaycastHit hit;
+        if (Physics.Raycast(arrayItemsSpawnPoints[randomSpawnPoints].transform.position, -Vector3.up, out hit, 100f) && !hit.collider.gameObject.CompareTag("Pickable"))
+        {
+            Instantiate(listPrefabsPickableItems[randomObject], arrayItemsSpawnPoints[randomSpawnPoints].transform.position, Quaternion.identity);
+        }
+        else
+        {
+            SpawnObject();
+        }
     }
 
     private void GenerateObjects()
