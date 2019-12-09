@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.112690926, g: 0.28157187, b: 0.7091785, a: 1}
+  m_IndirectSpecularColor: {r: 0.11266736, g: 0.28155056, b: 0.70918214, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxObjectsInGame: 5
   listPrefabsPickableItems:
-  - {fileID: 6470534001642990695, guid: a3f02a03e87f805409f360da52c382f7, type: 3}
+  - {fileID: 3195229763863212020, guid: 1edd75d994b14934d9788dc34568e398, type: 3}
   spawnZone: {fileID: 518152008}
   arrayItemsSpawnPoints:
   - {fileID: 632896701}
@@ -9947,7 +9947,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006895469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.2, y: 0.06, z: 10.2}
+  m_LocalPosition: {x: -22.54, y: 0.06, z: 12.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1016506446}
