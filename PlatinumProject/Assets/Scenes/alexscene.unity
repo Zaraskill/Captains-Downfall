@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxObjectsInGame: 5
   listPrefabsPickableItems:
-  - {fileID: 6470534001642990695, guid: a3f02a03e87f805409f360da52c382f7, type: 3}
+  - {fileID: 3077946126571208657, guid: e95c108fad48e1449944333bca9d41bf, type: 3}
   spawnZone: {fileID: 518152008}
   arrayItemsSpawnPoints:
   - {fileID: 632896701}
