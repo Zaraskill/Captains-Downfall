@@ -71,6 +71,7 @@ public class UIManager : MonoBehaviour
     }
 
     #region Begin Round Fonctions
+
     public void DisplayRoundBeginning(int roundType)
     {
         beginRound.SetActive(true);

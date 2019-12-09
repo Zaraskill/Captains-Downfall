@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
     public List<PlayerEntity> listPlayers;
     public List<GameObject> listSpawnPoint;
     private List<PlayerEntity> listAlivePlayers;
-    private Player mainPlayer;
     private List<int> listPointsPlayers;
     private List<int> listWinnerPlayers;
     public int nbPlayersAlive;
@@ -39,6 +38,9 @@ public class GameManager : MonoBehaviour
     private bool isSuddenDeath = false;
     private List<PlayerEntity> teamOne;
     private List<PlayerEntity> teamTwo;
+
+    //Gestion controllers
+    private IList<Joystick> listControllers;
 
     //Affichage résultats
     [Header("Affichage Résultats")]
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
         listWinnerPlayers = new List<int>();
         teamOne = new List<PlayerEntity>();
         teamTwo = new List<PlayerEntity>();
-        mainPlayer = ReInput.players.GetPlayer(0);
+        listControllers = ReInput.controllers.Joysticks;
         timer = startTimer;
     }
 
@@ -384,11 +386,6 @@ public class GameManager : MonoBehaviour
         }                
     }
 
-    IEnumerator WaitSeconds()
-    {
-        yield return new WaitForSeconds(6);
-    }
-
     private void PrepareSuddenDeath()
     {
         DestroyTeam();
@@ -437,23 +434,26 @@ public class GameManager : MonoBehaviour
 
     private void WaitingForInput()
     {
-        if (mainPlayer.GetButtonDown("UISubmit"))
+        foreach (Joystick controller in listControllers)
         {
-            if (listWinnerPlayers.Count == 1)
+            if (controller.GetButtonDown(0))
             {
-                gameState = STATE_PLAY.DisplayResultsFinal;
+                if (listWinnerPlayers.Count == 1)
+                {
+                    gameState = STATE_PLAY.DisplayResultsFinal;
+                }
+                else if (listWinnerPlayers.Count > 1)
+                {
+                    UIManager.managerUI.EndRound();
+                    gameState = STATE_PLAY.PrepareSuddenDeath;
+                }
+                else
+                {
+                    UIManager.managerUI.EndRound();
+                    gameState = STATE_PLAY.PrepareParty;
+                }
             }
-            else if (listWinnerPlayers.Count > 1)
-            {
-                UIManager.managerUI.EndRound();
-                gameState = STATE_PLAY.PrepareSuddenDeath;
-            }
-            else
-            {
-                UIManager.managerUI.EndRound();
-                gameState = STATE_PLAY.PrepareParty;
-            }
-        }
+        }        
     }
 
     #endregion
