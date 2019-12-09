@@ -1105,6 +1105,10 @@ MonoBehaviour:
   canvasUI: {fileID: 60045468}
   titleImage: {fileID: 0}
   beginRound: {fileID: 239466213}
+  displayFightFFA: {fileID: 0}
+  displayVSFFA: {fileID: 0}
+  displayFightTF: {fileID: 0}
+  displayVSTF: {fileID: 0}
   characterSlotsFFA:
   - {fileID: 1207485588}
   - {fileID: 825854865}
@@ -1444,6 +1448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 201463172}
   - component: {fileID: 201463173}
+  - component: {fileID: 201463174}
   m_Layer: 0
   m_Name: Sand_Grass
   m_TagString: Untagged
@@ -1514,6 +1519,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &201463174
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201463171}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 36fad03ce8617b448b2aff8768ba4655, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &214850841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9027,6 +9051,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 91b9158500f2f974089509616e95a38a, type: 2}
+    - target: {fileID: 8041143324440842834, guid: d9dd463aa3148534ba7b55bc3002e133,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.92
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9dd463aa3148534ba7b55bc3002e133, type: 3}
 --- !u!1 &1673484438
