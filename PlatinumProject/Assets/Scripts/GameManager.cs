@@ -371,6 +371,7 @@ public class GameManager : MonoBehaviour
                 UIManager.managerUI.DisplayRoundBeginning(1);
             }
             GenerateObjects();
+            timer -= Time.deltaTime;
         }                
     }
 
