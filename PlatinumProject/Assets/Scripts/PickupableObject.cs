@@ -226,7 +226,16 @@ public class PickupableObject : MonoBehaviour
             collision.gameObject.GetComponent<PickupableObject>().Throw(orient);
             GetComponent<SphereCollider>().enabled = true;
             isPickable = true;
-            
+        }
+        else if (collision.gameObject.CompareTag("Ground") && isThrown)
+        {
+            if (hitParticle != null)
+            {
+                GameObject _instance = Instantiate(hitParticle, transform.position, Quaternion.identity);
+                Destroy(_instance, 2f);
+            }
+            GameManager.managerGame.SpawnObject();
+            Destroy(gameObject);
         }
     }
 
