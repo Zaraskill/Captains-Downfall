@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.11264143, g: 0.2815267, b: 0.7091875, a: 1}
+  m_IndirectSpecularColor: {r: 0.11266736, g: 0.28155056, b: 0.70918214, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1083,7 +1083,7 @@ MonoBehaviour:
     type: 3}
   timerSpawnFx: 0
   maxTimerSpawnFx: 0
-  redZone: {fileID: 197318, guid: f2fe877d0be01c04aa3e21b44782c27b, type: 3}
+  redZone: {fileID: 156674, guid: 49617395c7adb30498fd64c73a2e744b, type: 3}
   poofAppears: {fileID: 115174, guid: 32517388e0643fb489ecfb36a7edae0b, type: 3}
   listPlayers:
   - {fileID: 974614573}
