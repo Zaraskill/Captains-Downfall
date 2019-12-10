@@ -206,10 +206,12 @@ public class GameManager : MonoBehaviour
         IEnumerator InstantiateNewBarrel(float timeRedZone, float timeBarrel, int index)
         {
             yield return new WaitForSeconds(timeRedZone);
-            Instantiate(redZone, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
+            GameObject zone = Instantiate(redZone, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
             yield return new WaitForSeconds(timeBarrel);
-            Instantiate(barrelPrefab, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
+            GameObject _instance = Instantiate(barrelPrefab, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
+            _instance.transform.Rotate(-90, 0, -60);
             Instantiate(poofAppears, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
+            Destroy(zone);
         }
     }
 
