@@ -30,6 +30,12 @@ public class UIManager : MonoBehaviour
     public GameObject endRound;
     public Image displayWinner;
     public Image boardLadder;
+    public Image playerOne;
+    public Image playerTwo;
+    public Image playerThree;
+    public Image playerFour;
+    public List<Sprite> listWinner;
+    private Image tmpImage;
 
     //Database Skin
     [Header("Skins Players")]
@@ -132,23 +138,73 @@ public class UIManager : MonoBehaviour
         switch (caseVictory)
         {
             case 0:
+                displayWinner.sprite = listWinner[0];
+                tmpImage = playerOne;
                 GenerateAnimation(0);
                 break;
             case 1:
+                displayWinner.sprite = listWinner[1];
+                tmpImage = playerTwo;
                 GenerateAnimation(1);
                 break;
             case 2:
+                displayWinner.sprite = listWinner[2];
+                tmpImage = playerThree;
                 GenerateAnimation(2);
                 break;
             case 3:
+                displayWinner.sprite = listWinner[3];
+                tmpImage = playerFour;
                 GenerateAnimation(3);
                 break;
             case 4:
+                GenerateAnimationTeam(1);
                 break;
             case 5:
+                GenerateAnimationTeam(2);
                 break;
             default:
                 break;
+        }
+    }
+
+    private void DisplayWinnerTeam(int caseVictory)
+    {
+        if (caseVictory == 4)
+        {
+            DisplayWinnerUI(GameManager.managerGame.GetTeamOne());
+        }
+        else if (caseVictory == 5)
+        {
+            DisplayWinnerUI(GameManager.managerGame.GetTeamTwo());
+        }
+    }
+
+    private void DisplayWinnerUI(List<PlayerEntity> team)
+    {
+        if ( (team[0].playerID == 0 && team[1].playerID == 1) || (team[1].playerID == 0 && team[0].playerID == 1) ) //J1 et J2
+        {
+            displayWinner.sprite = listWinner[4];
+        }
+        else if ((team[0].playerID == 0 && team[1].playerID == 2) || (team[1].playerID == 0 && team[0].playerID == 2)) //J1 et J3
+        {
+            displayWinner.sprite = listWinner[5];
+        }
+        else if ((team[0].playerID == 0 && team[1].playerID == 3) || (team[1].playerID == 0 && team[0].playerID == 3)) //J1 et J4
+        {
+            displayWinner.sprite = listWinner[6];
+        }
+        else if ((team[0].playerID == 1 && team[1].playerID == 2) || (team[1].playerID == 1 && team[0].playerID == 2)) //J2 et J3
+        {
+            displayWinner.sprite = listWinner[7];
+        }
+        else if ((team[0].playerID == 1 && team[1].playerID == 3) || (team[1].playerID == 1 && team[0].playerID == 3)) //J2 et J4
+        {
+            displayWinner.sprite = listWinner[8];
+        }
+        else if ((team[0].playerID == 2 && team[1].playerID == 3) || (team[1].playerID == 2 && team[0].playerID == 3)) //J3 et J4
+        {
+            displayWinner.sprite = listWinner[9];
         }
     }
 
@@ -156,24 +212,25 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.managerGame.GetPointsPlayers(player) == 1)
         {
-
+            tmpImage.GetComponent<Animator>().SetInteger("points", 1);
         }
         else if (GameManager.managerGame.GetPointsPlayers(player) == 2)
         {
-
+            tmpImage.GetComponent<Animator>().SetInteger("points", 2);
         }
         else if (GameManager.managerGame.GetPointsPlayers(player) == 3)
         {
-
+            tmpImage.GetComponent<Animator>().SetInteger("points", 3);
         }
         else if (GameManager.managerGame.GetPointsPlayers(player) == 4)
         {
-
+            tmpImage.GetComponent<Animator>().SetInteger("points", 4);
         }
         else if (GameManager.managerGame.GetPointsPlayers(player) == 5)
         {
-
+            tmpImage.GetComponent<Animator>().SetInteger("points", 5);
         }
+        tmpImage = null;
     }
 
     private void GenerateAnimationTeam(int team)
@@ -182,6 +239,7 @@ public class UIManager : MonoBehaviour
         {
             foreach (PlayerEntity player in GameManager.managerGame.GetTeamOne())
             {
+                UpdateImage(player);
                 GenerateAnimation(player.playerID);
             }
         }
@@ -189,6 +247,7 @@ public class UIManager : MonoBehaviour
         {
             foreach (PlayerEntity player in GameManager.managerGame.GetTeamTwo())
             {
+                UpdateImage(player);
                 GenerateAnimation(player.playerID);
             }
         }
@@ -197,6 +256,26 @@ public class UIManager : MonoBehaviour
     public void EndRound()
     {
         endRound.SetActive(false);
+    }
+
+    private void UpdateImage(PlayerEntity player)
+    {
+        if (player.playerID == 0)
+        {
+            tmpImage = playerOne;
+        }
+        else if (player.playerID == 1)
+        {
+            tmpImage = playerTwo;
+        }
+        else if (player.playerID == 2)
+        {
+            tmpImage = playerThree;
+        }
+        else if (player.playerID == 3)
+        {
+            tmpImage = playerFour;
+        }
     }
 
     #endregion
