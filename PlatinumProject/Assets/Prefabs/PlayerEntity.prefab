@@ -156,6 +156,7 @@ MonoBehaviour:
   - {fileID: 3627408514360096768}
   pickedObject: {fileID: 0}
   pointToHold: {fileID: 7913258809843175882}
+  knockPower: 100
   smoke: {fileID: 6045044167209978312, guid: 765d68cb023497b49b2b5e3874c4d589, type: 3}
   startTimeBtwSpawns: 0.5
   durationTime: 5

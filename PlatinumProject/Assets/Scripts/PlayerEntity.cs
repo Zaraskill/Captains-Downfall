@@ -60,7 +60,10 @@ public class PlayerEntity : MonoBehaviour
     private float power = 0f;
 
     // Knockback
+    [Header("Knockback")]
+    public float knockPower;
     private bool isKnocked = false;
+    private Collider colliderOtherPlayer;
 
     //Canon
     private bool isInsideCanon = false;
@@ -410,6 +413,14 @@ public class PlayerEntity : MonoBehaviour
         else if (collision.gameObject.tag == "Pickable" && !collision.gameObject.GetComponent<PickupableObject>().isPickable)
         {
             SoundManager.managerSound.MakeHitSound();
+        }
+        else if (collision.gameObject.CompareTag("Player") && isKnocked)
+        {
+            colliderItemPicked = collision.gameObject.GetComponent<CapsuleCollider>();
+            HittingWall();
+            Vector3 newOrient = collision.gameObject.transform.position - transform.position;
+            Vector3 newOrientNormalized = newOrient.normalized;
+            collision.gameObject.GetComponent<PlayerEntity>().Knockback(new Vector2(newOrientNormalized.x, newOrientNormalized.y), knockPower);
         }
     }
 
