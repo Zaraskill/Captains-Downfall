@@ -88,6 +88,8 @@ public class PlayerEntity : MonoBehaviour
 
     public Collider colliderItemPicked = null;
 
+    private bool _isPlayerRepulsed;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -119,6 +121,11 @@ public class PlayerEntity : MonoBehaviour
         {
             Physics.IgnoreCollision(gameObject.GetComponent<CapsuleCollider>(), colliderItemPicked, true);
         }
+    }
+
+    private void LateUpdate()
+    {
+        _isPlayerRepulsed = false;
     }
 
     private void OnGUI()
@@ -414,13 +421,13 @@ public class PlayerEntity : MonoBehaviour
         {
             SoundManager.managerSound.MakeHitSound();
         }
-        else if (collision.gameObject.CompareTag("Player") && isKnocked)
+        else if (collision.gameObject.CompareTag("Player") && isKnocked && !_isPlayerRepulsed)
         {
-            colliderItemPicked = collision.gameObject.GetComponent<CapsuleCollider>();
+            PlayerEntity otherPlayer = collision.gameObject.GetComponent<PlayerEntity>();
+            otherPlayer.Knockback(speed.normalized, speed.magnitude);
             HittingWall();
-            Vector3 newOrient = collision.gameObject.transform.position - transform.position;
-            Vector3 newOrientNormalized = newOrient.normalized;
-            collision.gameObject.GetComponent<PlayerEntity>().Knockback(new Vector2(newOrientNormalized.x, newOrientNormalized.y), knockPower);
+            otherPlayer._isPlayerRepulsed = true;
+            _isPlayerRepulsed = true;
         }
     }
 
