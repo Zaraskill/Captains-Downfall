@@ -83,6 +83,8 @@ public class PlayerEntity : MonoBehaviour
 
     private Animator animator;
 
+    public Collider colliderItemPicked = null;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -108,6 +110,11 @@ public class PlayerEntity : MonoBehaviour
         if(pickedObject == null)
         {
             isHoldingItem = false;
+        }
+
+        if(colliderItemPicked != null)
+        {
+            Physics.IgnoreCollision(gameObject.GetComponent<CapsuleCollider>(), colliderItemPicked, true);
         }
     }
 
@@ -256,6 +263,7 @@ public class PlayerEntity : MonoBehaviour
             return;
         }
         pickedObject = targetObjet;
+        colliderItemPicked = pickedObject.GetComponent<BoxCollider>();
         if (pickedObject.isPickable)
         {
             pickedObject.Picked();
