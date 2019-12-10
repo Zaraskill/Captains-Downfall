@@ -142,7 +142,8 @@ public class Barrel : MonoBehaviour
         CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
         GameObject _instance = Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(_instance, 2f);
-        gameObject.SetActive(false);
+        GameManager.managerGame.SpawnBarrel();
+        Destroy(gameObject);
     }
 
     #endregion

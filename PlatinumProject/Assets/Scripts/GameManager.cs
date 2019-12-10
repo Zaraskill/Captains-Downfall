@@ -21,6 +21,16 @@ public class GameManager : MonoBehaviour
     public Transform[] arrayItemsSpawnPoints;
     private int randomObject;
 
+    //Spawn Barrel
+    [Header("Spawn Barrels")]
+    public int maxBarrelsInGame;
+    public Transform[] arrayBarrelsSpawnPoints;
+    public GameObject barrelPrefab;
+    public float timerSpawnFx;
+    public float maxTimerSpawnFx;
+    public GameObject redZone;
+    public GameObject poofAppears;
+
     //Gestion Map
     private BreakableWalls[] listWalls;
     private Barrel[] listBarrels;
@@ -153,7 +163,7 @@ public class GameManager : MonoBehaviour
         foreach(Transform spawnPoint in arrayItemsSpawnPoints)
         {
             RaycastHit hit;
-            if (Physics.Raycast(spawnPoint.transform.position, -Vector3.up, out hit, 100f) && !hit.collider.gameObject.CompareTag("Pickable"))
+            if (Physics.Raycast(spawnPoint.transform.position, -Vector3.up, out hit) && !hit.collider.gameObject.CompareTag("Pickable"))
             {
                 emptyItemsSpawnPoints.Add(spawnPoint);
             }
@@ -172,6 +182,42 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < maxObjectsInGame; i++)
         {
             SpawnObject();
+        }
+    }
+
+    public void SpawnBarrel()
+    {
+        List<Transform> emptyBarrelSpawnPoints = new List<Transform>();
+        foreach (Transform spawnPoint in arrayBarrelsSpawnPoints)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(spawnPoint.transform.position, Vector3.up, out hit) && !hit.collider.gameObject.CompareTag("Barrel"))
+            {
+                emptyBarrelSpawnPoints.Add(spawnPoint);
+            }
+        }
+
+        if (emptyBarrelSpawnPoints.Count > 0)
+        {
+            int randomIndex = Random.Range(0, emptyBarrelSpawnPoints.Count);
+            StartCoroutine(InstantiateNewBarrel(1.5f, 3f, randomIndex));
+        }
+
+        IEnumerator InstantiateNewBarrel(float timeRedZone, float timeBarrel, int index)
+        {
+            yield return new WaitForSeconds(timeRedZone);
+            Instantiate(redZone, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(timeBarrel);
+            Instantiate(barrelPrefab, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
+            Instantiate(poofAppears, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
+        }
+    }
+
+    private void GenerateBarrels()
+    {
+        for (int i = 0; i < maxBarrelsInGame; i++)
+        {
+            SpawnBarrel();
         }
     }
 
@@ -386,6 +432,7 @@ public class GameManager : MonoBehaviour
                 UIManager.managerUI.DisplayRoundBeginning(1);
             }
             GenerateObjects();
+            //GenerateBarrels();
             timer -= Time.deltaTime;
         }                
     }
@@ -404,6 +451,7 @@ public class GameManager : MonoBehaviour
         listWinnerPlayers.Clear();
         isSuddenDeath = true;
         GenerateObjects();
+        //GenerateBarrels();
     }
 
     public int GetPointsPlayers(int index)
@@ -426,10 +474,10 @@ public class GameManager : MonoBehaviour
         {
             listPlayers[index].transform.position = listSpawnPoint[index].transform.position;
         }
-        foreach (Barrel barrel in listBarrels)
+        /*foreach (Barrel barrel in listBarrels)
         {
             barrel.gameObject.SetActive(true);
-        }
+        }*/
     }
 
     #endregion
