@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.11264143, g: 0.2815267, b: 0.7091875, a: 1}
+  m_IndirectSpecularColor: {r: 0.112690926, g: 0.28157187, b: 0.7091785, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7281,12 +7281,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d689270309134234f932339b4393ba50, type: 2}
+      objectReference: {fileID: 2100000, guid: 4fb9fa0653b0b86429f9c8282ba3935c, type: 2}
     - target: {fileID: 1901419186774873626, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 51261d07acb32f7448a48d8a3b3f80ea, type: 2}
+      objectReference: {fileID: 2100000, guid: 041e703d4e09cf5448f9e477292fc7c2, type: 2}
     - target: {fileID: 2376336353835143215, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Mesh
@@ -11453,12 +11453,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4fb9fa0653b0b86429f9c8282ba3935c, type: 2}
+      objectReference: {fileID: 2100000, guid: d689270309134234f932339b4393ba50, type: 2}
     - target: {fileID: 1901419186774873626, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 041e703d4e09cf5448f9e477292fc7c2, type: 2}
+      objectReference: {fileID: 2100000, guid: 51261d07acb32f7448a48d8a3b3f80ea, type: 2}
     - target: {fileID: 2376336353835143215, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Mesh
