@@ -137,30 +137,32 @@ public class UIManager : MonoBehaviour
         endRound.SetActive(true);
         switch (caseVictory)
         {
-            case 0:
+            case 1:
                 displayWinner.sprite = listWinner[0];
                 tmpImage = playerOne;
                 GenerateAnimation(0);
                 break;
-            case 1:
+            case 2:
                 displayWinner.sprite = listWinner[1];
                 tmpImage = playerTwo;
                 GenerateAnimation(1);
                 break;
-            case 2:
+            case 3:
                 displayWinner.sprite = listWinner[2];
                 tmpImage = playerThree;
                 GenerateAnimation(2);
                 break;
-            case 3:
+            case 4:
                 displayWinner.sprite = listWinner[3];
                 tmpImage = playerFour;
                 GenerateAnimation(3);
                 break;
-            case 4:
+            case 5:
+                DisplayWinnerTeam(5);
                 GenerateAnimationTeam(1);
                 break;
-            case 5:
+            case 6:
+                DisplayWinnerTeam(6);
                 GenerateAnimationTeam(2);
                 break;
             default:
@@ -170,13 +172,15 @@ public class UIManager : MonoBehaviour
 
     private void DisplayWinnerTeam(int caseVictory)
     {
-        if (caseVictory == 4)
+        if (caseVictory == 5)
         {
-            DisplayWinnerUI(GameManager.managerGame.GetTeamOne());
+            List<PlayerEntity> tmpTeam = GameManager.managerGame.GetTeamTwo();
+            DisplayWinnerUI(tmpTeam);
         }
-        else if (caseVictory == 5)
+        else if (caseVictory == 6)
         {
-            DisplayWinnerUI(GameManager.managerGame.GetTeamTwo());
+            List<PlayerEntity> tmpTeam = GameManager.managerGame.GetTeamTwo();
+            DisplayWinnerUI(tmpTeam);
         }
     }
 
