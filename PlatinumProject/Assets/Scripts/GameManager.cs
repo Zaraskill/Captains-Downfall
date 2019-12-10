@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public float maxTimerSpawnFx;
     public GameObject redZone;
     public GameObject poofAppears;
+    private List<Transform> usedBarrelSpawnPoints = new List<Transform>();
 
     //Gestion Map
     private BreakableWalls[] listWalls;
@@ -194,13 +195,15 @@ public class GameManager : MonoBehaviour
     public void SpawnBarrel()
     {
         List<Transform> emptyBarrelSpawnPoints = new List<Transform>();
-        List<Transform> usedBarrelSpawnPoints = new List<Transform>();
         foreach (Transform spawnPoint in arrayBarrelsSpawnPoints)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(spawnPoint.transform.position, Vector3.up, out hit) && !hit.collider.gameObject.CompareTag("Barrel"))
+            if(!usedBarrelSpawnPoints.Contains(spawnPoint))
             {
-                emptyBarrelSpawnPoints.Add(spawnPoint);
+                RaycastHit hit;
+                if (Physics.Raycast(spawnPoint.transform.position, Vector3.up, out hit) && !hit.collider.gameObject.CompareTag("Barrel"))
+                {
+                    emptyBarrelSpawnPoints.Add(spawnPoint);
+                }
             }
         }
 
@@ -213,6 +216,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator InstantiateNewBarrel(float timeRedZone, float timeBarrel, int index, List<Transform> listSpawnPoints)
     {
+        usedBarrelSpawnPoints.Add(listSpawnPoints[index].transform);
         yield return new WaitForSeconds(timeRedZone);
         GameObject zone = Instantiate(redZone, listSpawnPoints[index].transform.position, Quaternion.identity);
         yield return new WaitForSeconds(timeBarrel);
@@ -220,6 +224,7 @@ public class GameManager : MonoBehaviour
         _instance.transform.Rotate(-90, 0, -60);
         Instantiate(poofAppears, listSpawnPoints[index].transform.position, Quaternion.identity);
         Destroy(zone);
+        usedBarrelSpawnPoints.Remove(listSpawnPoints[index].transform);
     }
 
     private void GenerateBarrels()
