@@ -200,19 +200,19 @@ public class GameManager : MonoBehaviour
         if (emptyBarrelSpawnPoints.Count > 0)
         {
             int randomIndex = Random.Range(0, emptyBarrelSpawnPoints.Count);
-            StartCoroutine(InstantiateNewBarrel(1.5f, 3f, randomIndex));
+            StartCoroutine(InstantiateNewBarrel(1.5f, 3f, randomIndex, emptyBarrelSpawnPoints));
         }
+    }
 
-        IEnumerator InstantiateNewBarrel(float timeRedZone, float timeBarrel, int index)
-        {
-            yield return new WaitForSeconds(timeRedZone);
-            GameObject zone = Instantiate(redZone, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(timeBarrel);
-            GameObject _instance = Instantiate(barrelPrefab, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
-            _instance.transform.Rotate(-90, 0, -60);
-            Instantiate(poofAppears, emptyBarrelSpawnPoints[index].transform.position, Quaternion.identity);
-            Destroy(zone);
-        }
+    IEnumerator InstantiateNewBarrel(float timeRedZone, float timeBarrel, int index, List<Transform> listSpawnPoints)
+    {
+        yield return new WaitForSeconds(timeRedZone);
+        GameObject zone = Instantiate(redZone, listSpawnPoints[index].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(timeBarrel);
+        GameObject _instance = Instantiate(barrelPrefab, listSpawnPoints[index].transform.position, Quaternion.identity);
+        _instance.transform.Rotate(-90, 0, -60);
+        Instantiate(poofAppears, listSpawnPoints[index].transform.position, Quaternion.identity);
+        Destroy(zone);
     }
 
     private void GenerateBarrels()
