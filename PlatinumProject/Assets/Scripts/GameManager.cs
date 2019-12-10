@@ -55,8 +55,6 @@ public class GameManager : MonoBehaviour
     //Affichage résultats
     [Header("Affichage Résultats")]
     public Canvas displayResults;
-    public Text displayWinner;
-    public Text displayPointsRounds;
     private float startTimer = 3f;
     private float timer;
     
@@ -188,6 +186,7 @@ public class GameManager : MonoBehaviour
     public void SpawnBarrel()
     {
         List<Transform> emptyBarrelSpawnPoints = new List<Transform>();
+        List<Transform> usedBarrelSpawnPoints = new List<Transform>();
         foreach (Transform spawnPoint in arrayBarrelsSpawnPoints)
         {
             RaycastHit hit;
