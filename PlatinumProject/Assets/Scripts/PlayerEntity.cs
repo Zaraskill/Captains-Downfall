@@ -448,9 +448,11 @@ public class PlayerEntity : MonoBehaviour
     public void Respawn()
     {
         isDead = false;
+        isKnocked = false;
         groundY = 0f;
         speed = Vector2.zero;
-    }
+        orientDir = Vector2.right;
+}
 
     #endregion
 
