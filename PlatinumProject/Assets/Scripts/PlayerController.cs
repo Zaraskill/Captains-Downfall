@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.managerGame.IsWaitingForInput())
+        {
+            return;
+        }
         float dirX = 0f;
         float dirY = 0f;
 

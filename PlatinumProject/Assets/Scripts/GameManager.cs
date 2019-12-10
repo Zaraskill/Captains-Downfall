@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     //Gestion Map
     private BreakableWalls[] listWalls;
     private Barrel[] listBarrels;
+    private bool isWaitingForInput = false;
 
     //Gestion players
     [Header("Players")]    
@@ -103,7 +104,11 @@ public class GameManager : MonoBehaviour
                 break;
             case STATE_PLAY.PrepareParty:
                 Debug.Log(gameState);
-                PrepareParty();
+                if (!isWaitingForInput)
+                {
+                    PrepareParty();
+                }
+                WaitingForInput();                
                 break;
             case STATE_PLAY.PrepareSuddenDeath:
                 Debug.Log(gameState);
@@ -135,12 +140,15 @@ public class GameManager : MonoBehaviour
                 break;
             case STATE_PLAY.Results:
                 Debug.Log(gameState);
-                UpdatePoints();
-                UIManager.managerUI.DisplayRoundEnding(idPlayerwinner);
+                UpdatePoints();                
                 CheckWinner();
                 break;
             case STATE_PLAY.DisplayResultsRound:
-                Debug.Log(gameState);
+                if (!isWaitingForInput)
+                {
+                    UIManager.managerUI.DisplayRoundEnding(idPlayerwinner);
+                    Debug.Log(gameState);
+                }            
                 WaitingForInput();                
                 break;
             case STATE_PLAY.DisplayResultsFinal:
@@ -399,18 +407,10 @@ public class GameManager : MonoBehaviour
 
     private void PrepareParty()
     {
-        if (timer <= 0f)
+        if (isWaitingForInput)
         {
-            UIManager.managerUI.StartRound();
-            gameState = STATE_PLAY.Party;
-            timer = startTimer;
+            return;
         }
-        else if (timer < startTimer)
-        {
-            timer -= Time.deltaTime;
-        }
-        else
-        {
             DestroyTeam();
             ClearMap();
             PrepareMap();
@@ -433,9 +433,7 @@ public class GameManager : MonoBehaviour
                 UIManager.managerUI.DisplayRoundBeginning(1);
             }
             GenerateObjects();
-            //GenerateBarrels();
-            timer -= Time.deltaTime;
-        }                
+            //GenerateBarrels();              
     }
 
     private void PrepareSuddenDeath()
@@ -487,26 +485,48 @@ public class GameManager : MonoBehaviour
 
     private void WaitingForInput()
     {
+        if (!isWaitingForInput)
+        {
+            isWaitingForInput = true;
+        }
         foreach (Joystick controller in listControllers)
         {
             if (controller.GetButtonDown(0))
             {
-                if (listWinnerPlayers.Count == 1)
+                isWaitingForInput = false;
+                if (gameState == STATE_PLAY.PrepareParty)
                 {
-                    gameState = STATE_PLAY.DisplayResultsFinal;
+                    UIManager.managerUI.StartRound();
+                    gameState = STATE_PLAY.Party;
                 }
-                else if (listWinnerPlayers.Count > 1)
+                else if (gameState == STATE_PLAY.DisplayResultsRound)
                 {
-                    UIManager.managerUI.EndRound();
-                    gameState = STATE_PLAY.PrepareSuddenDeath;
-                }
-                else
-                {
-                    UIManager.managerUI.EndRound();
-                    gameState = STATE_PLAY.PrepareParty;
-                }
+                    if (listWinnerPlayers.Count == 1)
+                    {
+                        gameState = STATE_PLAY.DisplayResultsFinal;
+                    }
+                    else if (listWinnerPlayers.Count > 1)
+                    {
+                        UIManager.managerUI.EndRound();
+                        gameState = STATE_PLAY.PrepareSuddenDeath;
+                    }
+                    else
+                    {
+                        UIManager.managerUI.EndRound();
+                        gameState = STATE_PLAY.PrepareParty;
+                    }
+                }                
             }
         }        
+    }
+
+    #endregion
+
+    #region Get/Set Fonctions
+
+    public bool IsWaitingForInput()
+    {
+        return isWaitingForInput;
     }
 
     #endregion
