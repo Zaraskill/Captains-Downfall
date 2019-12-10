@@ -6,6 +6,12 @@ using UnityEngine.UI;
 //code crée et géré par Corentin
 public class UIManager : MonoBehaviour
 {
+    public const int WINNER_P1 = 1;
+    public const int WINNER_P2 = 2;
+    public const int WINNER_P3 = 3;
+    public const int WINNER_P4 = 4;
+    public const int WINNER_TEAM1 = 5;
+    public const int WINNER_TEAM2 = 6;
 
     public static UIManager managerUI;
 
@@ -137,33 +143,33 @@ public class UIManager : MonoBehaviour
         endRound.SetActive(true);
         switch (caseVictory)
         {
-            case 1:
+            case WINNER_P1:
                 displayWinner.sprite = listWinner[0];
                 tmpImage = playerOne;
                 GenerateAnimation(0);
                 break;
-            case 2:
+            case WINNER_P2:
                 displayWinner.sprite = listWinner[1];
                 tmpImage = playerTwo;
                 GenerateAnimation(1);
                 break;
-            case 3:
+            case WINNER_P3:
                 displayWinner.sprite = listWinner[2];
                 tmpImage = playerThree;
                 GenerateAnimation(2);
                 break;
-            case 4:
+            case WINNER_P4:
                 displayWinner.sprite = listWinner[3];
                 tmpImage = playerFour;
                 GenerateAnimation(3);
                 break;
-            case 5:
-                DisplayWinnerTeam(5);
-                GenerateAnimationTeam(1);
+            case WINNER_TEAM1:
+                DisplayWinnerTeam(WINNER_TEAM1);
+                GenerateAnimationTeam(WINNER_TEAM1);
                 break;
-            case 6:
-                DisplayWinnerTeam(6);
-                GenerateAnimationTeam(2);
+            case WINNER_TEAM2:
+                DisplayWinnerTeam(WINNER_TEAM2);
+                GenerateAnimationTeam(WINNER_TEAM2);
                 break;
             default:
                 break;
@@ -172,12 +178,12 @@ public class UIManager : MonoBehaviour
 
     private void DisplayWinnerTeam(int caseVictory)
     {
-        if (caseVictory == 5)
+        if (caseVictory == WINNER_TEAM1)
         {
-            List<PlayerEntity> tmpTeam = GameManager.managerGame.GetTeamTwo();
+            List<PlayerEntity> tmpTeam = GameManager.managerGame.GetTeamOne();
             DisplayWinnerUI(tmpTeam);
         }
-        else if (caseVictory == 6)
+        else if (caseVictory == WINNER_TEAM2)
         {
             List<PlayerEntity> tmpTeam = GameManager.managerGame.GetTeamTwo();
             DisplayWinnerUI(tmpTeam);
@@ -239,7 +245,7 @@ public class UIManager : MonoBehaviour
 
     private void GenerateAnimationTeam(int team)
     {
-        if (team == 4)
+        if (team == WINNER_TEAM1)
         {
             foreach (PlayerEntity player in GameManager.managerGame.GetTeamOne())
             {
@@ -247,7 +253,7 @@ public class UIManager : MonoBehaviour
                 GenerateAnimation(player.playerID);
             }
         }
-        else if (team == 5)
+        else if (team == WINNER_TEAM2)
         {
             foreach (PlayerEntity player in GameManager.managerGame.GetTeamTwo())
             {
