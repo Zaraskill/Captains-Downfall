@@ -50,6 +50,13 @@ public class UIManager : MonoBehaviour
     public List<Sprite> playerSkinsTFLeft;
     public List<Sprite> playerSkinsTFRight;
 
+    //Final Results
+    [Header("Final Display")]
+    public GameObject finalDisplay;
+    public GameObject oneWinner;
+    public GameObject twoWinners;
+    public List<Sprite> listPlayersPodium;
+
     //Pause
 
     //Credits
@@ -285,6 +292,34 @@ public class UIManager : MonoBehaviour
         else if (player.playerID == 3)
         {
             tmpImage = playerFour;
+        }
+    }
+
+    #endregion
+
+    #region Final Displays Fonctions
+
+    public void DisplayPodiumWinner(List<int> listWinner)
+    {
+        finalDisplay.SetActive(true);
+        switch (listWinner.Count)
+        {           
+            case 1:
+                oneWinner.SetActive(true);
+                Image winner = oneWinner.GetComponentInChildren<Image>();
+                winner.sprite = listPlayersPodium[listWinner[0]];
+                break;
+            case 2:
+                twoWinners.SetActive(true);
+                Image[] winners = twoWinners.GetComponentsInChildren<Image>();
+                for (int index = 0; index < winners.Length; index++)
+                {
+                    winners[index].sprite = listPlayersPodium[listWinner[index]];
+                }
+                
+                break;
+            default:
+                break;
         }
     }
 
