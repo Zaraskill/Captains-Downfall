@@ -1115,6 +1115,11 @@ MonoBehaviour:
   roughness: 5
   fadeInTime: 0.2
   fadeOutTime: 1
+  UIPlayerInCanon:
+  - {fileID: 21300000, guid: 5b59bb0563d66e941aeff4c71eb06282, type: 3}
+  - {fileID: 21300000, guid: 8a94286f34ed78e448047a508ca0074f, type: 3}
+  - {fileID: 21300000, guid: 346525d944c8d8a48b7a897db8f6366e, type: 3}
+  - {fileID: 21300000, guid: a478830b726d7f4449007e6b5dc9322a, type: 3}
 --- !u!54 &2653294448895419150
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -30,6 +30,8 @@ public class Canon : MonoBehaviour
     private PlayerEntity playerCollisionned;
     private Animator animator;
 
+    public List<Sprite> UIPlayerInCanon; 
+
     // Start is called before the first frame update
     void Start()
     {
