@@ -337,7 +337,7 @@ public class PlayerEntity : MonoBehaviour
         orientDir = knockDir;
         moveDir = Vector2.zero;
         speed = knockDir * powerKnock;
-        animator.SetTrigger("HitTrigger");
+        animator.SetBool("HitBool", true);
     }
 
     public bool IsKnocked()
