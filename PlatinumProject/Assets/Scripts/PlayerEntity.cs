@@ -90,6 +90,9 @@ public class PlayerEntity : MonoBehaviour
 
     private bool _isPlayerRepulsed;
 
+    public GameObject confettis;
+    private bool _HasConfettisSpawned = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -111,6 +114,8 @@ public class PlayerEntity : MonoBehaviour
         UpdateModelOrient();
         UpdatePosition();
         UpdateSmoke();    
+
+        OutOfScreen();
 
         if(pickedObject == null)
         {
@@ -482,4 +487,18 @@ public class PlayerEntity : MonoBehaviour
 
     #endregion
 
+    private void OutOfScreen()
+    {
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+        Vector2 centerScreenPosition = Camera.main.WorldToScreenPoint(new Vector3(0.5f, 0.5f, 0.5f));
+        if(screenPosition.x > Screen.width || screenPosition.x < 0 || screenPosition.y > Screen.height || screenPosition.y < 0)
+        {
+            if(!_HasConfettisSpawned)
+            {
+                GameObject _instance = Instantiate(confettis, transform.position, Quaternion.identity);
+                _instance.transform.LookAt(centerScreenPosition);
+                _HasConfettisSpawned = true;
+            }
+        }
+    }
 }

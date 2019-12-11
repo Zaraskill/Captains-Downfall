@@ -163,6 +163,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _debugMode: 1
   colliderItemPicked: {fileID: 0}
+  confettis: {fileID: 165102, guid: 4de72d65c2293424cbe6461a89fe2997, type: 3}
 --- !u!95 &2522967404550544915
 Animator:
   serializedVersion: 3
