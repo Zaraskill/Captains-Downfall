@@ -115,8 +115,6 @@ public class PlayerEntity : MonoBehaviour
         UpdatePosition();
         UpdateSmoke();    
 
-        OutOfScreen();
-
         if(pickedObject == null)
         {
             isHoldingItem = false;
@@ -389,7 +387,17 @@ public class PlayerEntity : MonoBehaviour
             groundY = -2f;
             TimeToDie();
         }
+        else if (other.gameObject.CompareTag("OutZone") && isDead)
+        {
+                Vector3 centerScreenPosition = new Vector3(Screen.width / 2f, Screen.height / 2f, Camera.main.transform.position.z);
+                Vector3 centerWorldPosition = Camera.main.ScreenToWorldPoint(centerScreenPosition);
+
+                GameObject _instance = Instantiate(confettis, transform.position, Quaternion.identity);
+                _instance.transform.LookAt(centerWorldPosition);
+                //_HasConfettisSpawned = true;
+        }
     }
+
 
     private void OnTriggerExit(Collider other)
     {
@@ -487,18 +495,24 @@ public class PlayerEntity : MonoBehaviour
 
     #endregion
 
-    private void OutOfScreen()
+    /*private void OutOfScreen()
     {
+        Vector3 spawnPosition = transform.position;
+        Vector3 spawnScreenPosition = Camera.main.WorldToScreenPoint(spawnPosition);
+
+        spawnScreenPosition.x = Mathf.Clamp(spawnScreenPosition.x, 0f, Screen.width);
+        spawnScreenPosition.y = Mathf.Clamp(spawnScreenPosition.y, 0f, Screen.height);
+        spawnScreenPosition.z = -Camera.main.transform.position.z;
+        spawnPosition = Camera.main.ScreenToWorldPoint(spawnScreenPosition);
+
         Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-        Vector2 centerScreenPosition = Camera.main.WorldToScreenPoint(new Vector3(0.5f, 0.5f, 0.5f));
-        if(screenPosition.x > Screen.width || screenPosition.x < 0 || screenPosition.y > Screen.height || screenPosition.y < 0)
-        {
-            if(!_HasConfettisSpawned)
+        Vector3 centerScreenPosition = new Vector3(Screen.width / 2f, Screen.height / 2f, Camera.main.transform.position.z);
+        Vector3 centerWorldPosition = Camera.main.ScreenToWorldPoint(centerScreenPosition);
+            if (!_HasConfettisSpawned)
             {
-                GameObject _instance = Instantiate(confettis, transform.position, Quaternion.identity);
-                _instance.transform.LookAt(centerScreenPosition);
+                GameObject _instance = Instantiate(confettis, spawnPosition, Quaternion.identity);
+                _instance.transform.LookAt(centerWorldPosition);
                 _HasConfettisSpawned = true;
             }
-        }
-    }
+    }*/
 }
