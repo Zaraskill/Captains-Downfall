@@ -196,6 +196,7 @@ public class PickupableObject : MonoBehaviour
                 GameObject _instance = Instantiate(hitParticle, transform.position, Quaternion.identity);
                 Destroy(_instance, 2f);
             }
+            SoundManager.managerSound.MakeItemBreakSound();
             GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
         }
@@ -234,6 +235,7 @@ public class PickupableObject : MonoBehaviour
                 GameObject _instance = Instantiate(hitParticle, transform.position, Quaternion.identity);
                 Destroy(_instance, 2f);
             }
+            SoundManager.managerSound.MakeItemBreakSound();
             GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
         }

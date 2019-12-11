@@ -15,6 +15,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip deathSound;
     public AudioClip barrelExplosionSound;
+    public AudioClip itemBreakSound;
+    public AudioClip UISound;
 
 
     // Start is called before the first frame update
@@ -69,5 +71,15 @@ public class SoundManager : MonoBehaviour
     public void MakeBarrelExplosionSound()
     {
         MakeSound(barrelExplosionSound);
+    }
+
+    public void MakeItemBreakSound()
+    {
+        MakeSound(itemBreakSound);
+    }
+
+    public void MakeUISound()
+    {
+        MakeSound(UISound);
     }
 }
