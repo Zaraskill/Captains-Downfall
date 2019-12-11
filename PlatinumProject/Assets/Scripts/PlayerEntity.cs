@@ -7,13 +7,13 @@ using EZCameraShake;
 // Code crée et géré par Corentin
 public class PlayerEntity : MonoBehaviour
 {
+
+    enum STATE_DEATH {Knockbacked, Suicide}
+
     // Player
     [Header("Player")]
     public int playerID = 0;
     public int teamID;
-    private bool isDead = false;
-    public TextMesh text;
-    
     
     // Move
     [Header("Move")]
@@ -52,7 +52,6 @@ public class PlayerEntity : MonoBehaviour
     private bool isHoldingItem = false;
     private PickupableObject targetObjet;
 
-
     // Throw
     [Header("Throw")]
     private bool canThrow = false;
@@ -75,6 +74,14 @@ public class PlayerEntity : MonoBehaviour
     public float startTimeBtwSpawns;
     public float durationTime;
     private float timeBtwSpawns;
+
+    //Death
+    [Header("Death")]
+    public float multiplierKnock;
+    public AnimationCurve jumpToDie;
+    private float timingJump = 0f;
+    private bool isDead = false;
+    private STATE_DEATH typeDeath;
 
     //Rigidbody
     [Header("Rigidbody")]
@@ -152,7 +159,15 @@ public class PlayerEntity : MonoBehaviour
 
     private void UpdatePosition()
     {
-        _rigidbody.velocity = new Vector3(speed.x, verticalSpeed, speed.y);
+        if (isDead && typeDeath == STATE_DEATH.Suicide)
+        {
+            timingJump += Time.fixedDeltaTime;
+            transform.position = new Vector3(speed.x, jumpToDie.Evaluate(timingJump), speed.y);
+        }
+        else
+        {
+            _rigidbody.velocity = new Vector3(speed.x, verticalSpeed, speed.y);
+        }
     }
 
 
@@ -200,7 +215,7 @@ public class PlayerEntity : MonoBehaviour
 
     public void Move(Vector2 dir)
     {
-        if (!isKnocked)
+        if (!isKnocked && !isDead)
         {
             moveDir = dir;
         }
@@ -322,6 +337,7 @@ public class PlayerEntity : MonoBehaviour
         orientDir = knockDir;
         moveDir = Vector2.zero;
         speed = knockDir * powerKnock;
+        animator.SetTrigger("HitTrigger");
     }
 
     public bool IsKnocked()
@@ -384,7 +400,14 @@ public class PlayerEntity : MonoBehaviour
         }
         else if (other.gameObject.tag == "DeathZone" && !isDead)
         {
-            groundY = -2f;
+            if (isKnocked)
+            {
+                typeDeath = STATE_DEATH.Knockbacked;
+            }
+            else
+            {
+                typeDeath = STATE_DEATH.Suicide;
+            }
             TimeToDie();
         }
         else if (other.gameObject.CompareTag("OutZone") && isDead)
@@ -457,7 +480,7 @@ public class PlayerEntity : MonoBehaviour
 
     private void UpdateSmoke()
     {
-        if (moveDir != Vector2.zero)
+        if (moveDir != Vector2.zero && !isDead)
         {
             GameObject _instance = Instantiate(smoke, transform.position, Quaternion.identity);
             Destroy(_instance, 2f);
@@ -473,8 +496,15 @@ public class PlayerEntity : MonoBehaviour
         if (!isDead)
         {
             isDead = true;
-            isKnocked = true;
-            speed *= 5;
+            if (typeDeath == STATE_DEATH.Knockbacked)
+            {                
+                speed *= multiplierKnock;
+            }
+            else if (typeDeath == STATE_DEATH.Suicide)
+            {
+                _rigidbody.velocity = Vector3.zero;
+            }
+            Debug.Log(typeDeath);
             GameManager.managerGame.DeadPlayer(playerID);
         }
     }

@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour
                 WaitingForInput();                
                 break;
             case STATE_PLAY.DisplayResultsFinal:
+                Debug.Log(gameState);
                 if (!isWaitingForInput)
                 {
                     UIManager.managerUI.DisplayPodiumWinner(listWinnerPlayers);
