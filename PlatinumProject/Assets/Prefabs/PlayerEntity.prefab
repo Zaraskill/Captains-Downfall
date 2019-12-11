@@ -334,13 +334,13 @@ MonoBehaviour:
   startTimeBtwSpawns: 0.5
   durationTime: 5
   multiplierKnock: 10
-  distToJump: 5
+  distToJump: 4
   jumpToDie:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -348,26 +348,53 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.2165538
-      value: 7.351621
-      inSlope: -0.026690574
-      outSlope: -0.026690574
+      time: 0.5353358
+      value: -3.112546
+      inSlope: -8.026036
+      outSlope: -8.026036
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 1
+      outWeight: 0.12750404
     - serializedVersion: 3
-      time: 0.40865874
-      value: 0.98552763
-      inSlope: -54.58811
-      outSlope: -54.58811
+      time: 1.3070822
+      value: -5.220685
+      inSlope: 4.760971
+      outSlope: 4.760971
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.13715604
+      inWeight: 0.36671197
+      outWeight: 0.37913305
     - serializedVersion: 3
-      time: 0.5
-      value: -10
+      time: 1.7971747
+      value: -7.2076626
+      inSlope: 6.6272335
+      outSlope: 6.6272335
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.46578252
+      outWeight: 0.18525673
+    - serializedVersion: 3
+      time: 2.3074162
+      value: -9.586731
+      inSlope: 3.0163562
+      outSlope: 3.0163562
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.5503982
+      outWeight: 0.371925
+    - serializedVersion: 3
+      time: 2.6265585
+      value: -13.47598
+      inSlope: -4.515555
+      outSlope: -4.515555
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.8866821
+      outWeight: 0.29190233
+    - serializedVersion: 3
+      time: 3
+      value: -15
       inSlope: 2
       outSlope: 2
       tangentMode: 0
