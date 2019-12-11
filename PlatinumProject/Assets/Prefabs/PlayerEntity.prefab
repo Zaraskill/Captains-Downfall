@@ -333,7 +333,7 @@ MonoBehaviour:
   smoke: {fileID: 6045044167209978312, guid: 765d68cb023497b49b2b5e3874c4d589, type: 3}
   startTimeBtwSpawns: 0.5
   durationTime: 5
-  multiplierKnock: 0
+  multiplierKnock: 10
   jumpToDie:
     serializedVersion: 2
     m_Curve: []
