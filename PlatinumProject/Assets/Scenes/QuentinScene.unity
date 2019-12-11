@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.11264143, g: 0.2815267, b: 0.7091875, a: 1}
+  m_IndirectSpecularColor: {r: 0.112690926, g: 0.28157187, b: 0.7091785, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -557,7 +557,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1092,7 +1092,6 @@ MonoBehaviour:
   - {fileID: 842025164}
   - {fileID: 1721919019}
   nbPlayersAlive: 0
-  displayResults: {fileID: 60045468}
 --- !u!4 &101982922
 Transform:
   m_ObjectHideFlags: 0
@@ -1120,7 +1119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasUI: {fileID: 60045468}
-  titleImage: {fileID: 0}
+  mainMenu: {fileID: 0}
   beginRound: {fileID: 239466213}
   characterSlotsFFA:
   - {fileID: 1207485588}
@@ -1172,6 +1171,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cb6fea265c814564eb115e59b1efccc6, type: 3}
   - {fileID: 21300000, guid: 301f704b9eaaac844912794a3c78d310, type: 3}
   - {fileID: 21300000, guid: ff55d189b8fe9144c95342f3da085b5a, type: 3}
+  listNumberPlayer:
+  - {fileID: 21300000, guid: 5b59bb0563d66e941aeff4c71eb06282, type: 3}
+  - {fileID: 21300000, guid: 8a94286f34ed78e448047a508ca0074f, type: 3}
+  - {fileID: 21300000, guid: 346525d944c8d8a48b7a897db8f6366e, type: 3}
+  - {fileID: 21300000, guid: a478830b726d7f4449007e6b5dc9322a, type: 3}
   finalDisplay: {fileID: 895554223}
   oneWinner: {fileID: 1425842190}
   twoWinners: {fileID: 1932484674}

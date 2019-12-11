@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager managerGame;
 
-    enum STATE_PLAY { PlayerSelection, PrepareParty, PrepareSuddenDeath, Party, Results, DisplayResultsRound, DisplayResultsFinal}
+    enum STATE_PLAY {MainMenu, PlayerSelection, PrepareFirstParty, PrepareParty, Party, Results, DisplayResultsRound, DisplayResultsFinal}
 
     private STATE_PLAY gameState;
 
@@ -54,11 +54,6 @@ public class GameManager : MonoBehaviour
     //Gestion controllers
     private IList<Joystick> listControllers;
 
-    //Affichage résultats
-    [Header("Affichage Résultats")]
-    public Canvas displayResults;
-    private float startTimer = 3f;
-    private float timer;
     
 
     void Awake()
@@ -71,27 +66,16 @@ public class GameManager : MonoBehaviour
         {
             managerGame = this;
             DontDestroyOnLoad(this.gameObject);
-        }
-        listPointsPlayers = new List<int>()
-        {
-            0,0,0,0
-        };
-        listWalls = FindObjectsOfType<BreakableWalls>();
-        listBarrels = FindObjectsOfType<Barrel>();
-        listWinnerPlayers = new List<int>();
-        teamOne = new List<PlayerEntity>();
-        teamTwo = new List<PlayerEntity>();
-        listControllers = ReInput.controllers.Joysticks;
-        timer = startTimer;
+        }       
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        gameState = STATE_PLAY.PrepareParty;
+        gameState = STATE_PLAY.PrepareFirstParty;
         for (int i = 0; i < listPlayers.Count; i++)
         {
-            listPlayers[i].GetComponentInChildren<TextMesh>().text = "J" + (i + 1);
+            listPlayers[i].GetComponentInChildren<Image>().sprite = UIManager.managerUI.listNumberPlayer[i];
         }
     }
 
@@ -100,8 +84,14 @@ public class GameManager : MonoBehaviour
     {
         switch(gameState)
         {
+            case STATE_PLAY.MainMenu:
+                Debug.Log(gameState);
+                break;
             case STATE_PLAY.PlayerSelection:
                 Debug.Log(gameState);
+                break;
+            case STATE_PLAY.PrepareFirstParty:
+                PrepareFirstParty();
                 break;
             case STATE_PLAY.PrepareParty:
                 Debug.Log(gameState);
@@ -110,10 +100,6 @@ public class GameManager : MonoBehaviour
                     PrepareParty();
                 }
                 WaitingForInput();                
-                break;
-            case STATE_PLAY.PrepareSuddenDeath:
-                Debug.Log(gameState);
-                PrepareSuddenDeath();
                 break;
             case STATE_PLAY.Party:
                 Debug.Log(gameState);
@@ -153,7 +139,10 @@ public class GameManager : MonoBehaviour
                 WaitingForInput();                
                 break;
             case STATE_PLAY.DisplayResultsFinal:
-                Debug.Log(gameState);
+                if (!isWaitingForInput)
+                {
+                    UIManager.managerUI.DisplayPodiumWinner(listWinnerPlayers);
+                }
                 WaitingForInput();
                 break;
             default:
@@ -300,14 +289,14 @@ public class GameManager : MonoBehaviour
             playerID = listTemp[id];
             teamOne.Add(playerID);
             playerID.teamID = 1;
-            playerID.gameObject.GetComponentInChildren<TextMesh>().color = Color.blue;
+            playerID.gameObject.GetComponentInChildren<Image>().color = Color.blue;
             listTemp.Remove(playerID);
             //playerID.body.color = Color.blue;
         }
         foreach (PlayerEntity player in listTemp)
         {
             player.teamID = 2;
-            player.gameObject.GetComponentInChildren<TextMesh>().color = Color.red;
+            player.gameObject.GetComponentInChildren<Image>().color = Color.red;
             //player.body.color = Color.red;
             teamTwo.Add(player);
         }
@@ -359,7 +348,7 @@ public class GameManager : MonoBehaviour
         }
         if (listWinnerPlayers.Count == 1)
         {
-            gameState = STATE_PLAY.DisplayResultsFinal;
+            
         }
         else if (listWinnerPlayers.Count >= 2)
         {
@@ -379,19 +368,19 @@ public class GameManager : MonoBehaviour
             player.Respawn();
             if (player.playerID == 0)
             {
-                player.gameObject.GetComponentInChildren<TextMesh>().color = Color.blue;
+                player.gameObject.GetComponentInChildren<Image>().color = Color.blue;
             }
             else if ( player.playerID == 1)
             {
-                player.gameObject.GetComponentInChildren<TextMesh>().color = Color.red;
+                player.gameObject.GetComponentInChildren<Image>().color = Color.red;
             }
             else if (player.playerID == 2)
             {
-                player.gameObject.GetComponentInChildren<TextMesh>().color = Color.green;
+                player.gameObject.GetComponentInChildren<Image>().color = Color.green;
             }
             else if (player.playerID == 3)
             {
-                player.gameObject.GetComponentInChildren<TextMesh>().color = Color.yellow;
+                player.gameObject.GetComponentInChildren<Image>().color = Color.yellow;
             }
         }
     }
@@ -409,6 +398,25 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Events Fonctions
+
+    private void PrepareFirstParty()
+    {
+        listPointsPlayers = new List<int>()
+        {
+            0,0,0,0
+        };
+        listWalls = FindObjectsOfType<BreakableWalls>();
+        listBarrels = FindObjectsOfType<Barrel>();
+        listWinnerPlayers = new List<int>();
+        teamOne = new List<PlayerEntity>();
+        teamTwo = new List<PlayerEntity>();
+        listControllers = ReInput.controllers.Joysticks;
+        gameState = STATE_PLAY.PrepareParty;
+        for (int i = 0; i < listPlayers.Count; i++)
+        {
+            listPlayers[i].GetComponentInChildren<Image>().sprite = UIManager.managerUI.listNumberPlayer[i];
+        }
+    }
 
     private void PrepareParty()
     {
@@ -439,23 +447,6 @@ public class GameManager : MonoBehaviour
             }
             GenerateObjects();
             //GenerateBarrels();              
-    }
-
-    private void PrepareSuddenDeath()
-    {
-        DestroyTeam();
-        ClearMap();
-        listAlivePlayers.Clear();
-        idPlayerwinner = -1;
-        foreach (int index in listWinnerPlayers)
-        {
-            listAlivePlayers.Add(listPlayers[index]);
-        }
-        nbPlayersAlive = listWinnerPlayers.Count;
-        listWinnerPlayers.Clear();
-        isSuddenDeath = true;
-        GenerateObjects();
-        //GenerateBarrels();
     }
 
     public int GetPointsPlayers(int index)
@@ -506,21 +497,20 @@ public class GameManager : MonoBehaviour
                 }
                 else if (gameState == STATE_PLAY.DisplayResultsRound)
                 {
-                    if (listWinnerPlayers.Count == 1)
+                    if (listWinnerPlayers.Count > 0)
                     {
                         gameState = STATE_PLAY.DisplayResultsFinal;
-                    }
-                    else if (listWinnerPlayers.Count > 1)
-                    {
-                        UIManager.managerUI.EndRound();
-                        gameState = STATE_PLAY.PrepareSuddenDeath;
                     }
                     else
                     {
                         UIManager.managerUI.EndRound();
                         gameState = STATE_PLAY.PrepareParty;
                     }
-                }                
+                }
+                else if (gameState == STATE_PLAY.DisplayResultsFinal)
+                {
+                    gameState = STATE_PLAY.MainMenu;
+                }
             }
         }        
     }

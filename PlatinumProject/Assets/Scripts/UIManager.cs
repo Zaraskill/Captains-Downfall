@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
 
     // Main Menu
     [Header("MainMenu")]
-    public Image titleImage;
+    public GameObject mainMenu;
 
     //Player Selection
 
@@ -49,6 +49,7 @@ public class UIManager : MonoBehaviour
     public List<Sprite> playerSkinsFFARight;
     public List<Sprite> playerSkinsTFLeft;
     public List<Sprite> playerSkinsTFRight;
+    public List<Sprite> listNumberPlayer;
 
     //Final Results
     [Header("Final Display")]
@@ -60,7 +61,8 @@ public class UIManager : MonoBehaviour
     //Pause
 
     //Credits
-    public Image displayCredits;
+    [Header("Credits")]
+    public GameObject displayCredits;
 
     //Options
 
