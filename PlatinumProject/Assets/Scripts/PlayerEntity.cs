@@ -82,6 +82,8 @@ public class PlayerEntity : MonoBehaviour
     private float timingJump = 0f;
     private bool isDead = false;
     private STATE_DEATH typeDeath;
+    private Vector3 positionWhenDie;
+    private Vector2 targetDrop;
 
     //Rigidbody
     [Header("Rigidbody")]
@@ -162,6 +164,7 @@ public class PlayerEntity : MonoBehaviour
         if (isDead && typeDeath == STATE_DEATH.Suicide)
         {
             timingJump += Time.fixedDeltaTime;
+            
             transform.position = new Vector3(speed.x, jumpToDie.Evaluate(timingJump), speed.y);
         }
         else
@@ -322,6 +325,7 @@ public class PlayerEntity : MonoBehaviour
             pickedObject = null;
             isHoldingItem = false;
             canThrow = false;
+            animator.SetBool("ThrowBool", true);
         }
         
     }
@@ -503,6 +507,7 @@ public class PlayerEntity : MonoBehaviour
             else if (typeDeath == STATE_DEATH.Suicide)
             {
                 _rigidbody.velocity = Vector3.zero;
+                positionWhenDie = transform.position;
             }
             Debug.Log(typeDeath);
             GameManager.managerGame.DeadPlayer(playerID);
