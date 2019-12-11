@@ -318,7 +318,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  verticalSpeedOn: 10
+  verticalSpeedOn: 20
   maxSpeedToPick: 2
   speedTravel: 30
   friction: 0
