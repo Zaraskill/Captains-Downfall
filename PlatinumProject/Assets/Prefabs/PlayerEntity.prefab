@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 7913258810617097838}
   - component: {fileID: 2522967404550544915}
   - component: {fileID: 8932502487811475740}
+  - component: {fileID: 2920789792192358291}
   m_Layer: 0
   m_Name: PlayerEntity
   m_TagString: Player
@@ -316,7 +317,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 0
   teamID: 0
-  text: {fileID: 0}
   acceleration: 100
   moveSpeedMax: 22
   friction: 100
@@ -333,6 +333,13 @@ MonoBehaviour:
   smoke: {fileID: 6045044167209978312, guid: 765d68cb023497b49b2b5e3874c4d589, type: 3}
   startTimeBtwSpawns: 0.5
   durationTime: 5
+  multiplierKnock: 0
+  jumpToDie:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _rigidbody: {fileID: 0}
   _debugMode: 1
   colliderItemPicked: {fileID: 0}
@@ -366,6 +373,18 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 063a0676b53f0a049bcf191d12e8045f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2920789792192358291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7913258810617097839}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d62ef5d9be4704da1617ba4b07866b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8786853768443306677
