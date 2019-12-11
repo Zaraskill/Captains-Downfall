@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.11264143, g: 0.2815267, b: 0.7091875, a: 1}
+  m_IndirectSpecularColor: {r: 0.11266736, g: 0.28155056, b: 0.70918214, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -958,6 +958,8 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: e6dcc4b7bd0b926419a94ca4ce8e75e1, type: 3}
   barrelExplosionSound: {fileID: 8300000, guid: 03d0cc8041d9df845854fe078f226021,
     type: 3}
+  itemBreakSound: {fileID: 8300000, guid: a35faa8e49e94774f856471a23760bb1, type: 3}
+  UISound: {fileID: 8300000, guid: b2d249407f3a4564097eeb402d00a1dd, type: 3}
 --- !u!114 &101982921
 MonoBehaviour:
   m_ObjectHideFlags: 0
