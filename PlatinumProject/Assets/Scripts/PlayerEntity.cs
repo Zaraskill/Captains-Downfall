@@ -78,12 +78,13 @@ public class PlayerEntity : MonoBehaviour
     //Death
     [Header("Death")]
     public float multiplierKnock;
+    public float distToJump;
     public AnimationCurve jumpToDie;
     private float timingJump = 0f;
     private bool isDead = false;
     private STATE_DEATH typeDeath;
     private Vector3 positionWhenDie;
-    private Vector2 targetDrop;
+    private Vector3 targetDrop;
 
     //Rigidbody
     [Header("Rigidbody")]
@@ -163,9 +164,9 @@ public class PlayerEntity : MonoBehaviour
     {
         if (isDead && typeDeath == STATE_DEATH.Suicide)
         {
-            timingJump += Time.fixedDeltaTime;
-            
-            transform.position = new Vector3(speed.x, jumpToDie.Evaluate(timingJump), speed.y);
+            _rigidbody.velocity = Vector3.zero;
+            timingJump += Time.fixedDeltaTime;            
+            transform.position = new Vector3(Mathf.Lerp(positionWhenDie.x,targetDrop.x,timingJump), jumpToDie.Evaluate(timingJump), Mathf.Lerp(positionWhenDie.z, targetDrop.z, timingJump));
         }
         else
         {
@@ -508,6 +509,8 @@ public class PlayerEntity : MonoBehaviour
             {
                 _rigidbody.velocity = Vector3.zero;
                 positionWhenDie = transform.position;
+                Vector3 distJump = orientDir * distToJump;
+                targetDrop = new Vector3(positionWhenDie.x + distJump.x, positionWhenDie.y, positionWhenDie.z + distJump.y);
             }
             Debug.Log(typeDeath);
             GameManager.managerGame.DeadPlayer(playerID);
@@ -526,7 +529,7 @@ public class PlayerEntity : MonoBehaviour
         groundY = 0f;
         speed = Vector2.zero;
         orientDir = Vector2.right;
-}
+    }
 
     #endregion
 
