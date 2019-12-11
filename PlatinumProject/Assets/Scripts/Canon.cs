@@ -33,7 +33,7 @@ public class Canon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -48,7 +48,7 @@ public class Canon : MonoBehaviour
 
     private void UpdateRotate()
     {
-        transform.Rotate(0, rotateSpeed, 0);
+        transform.GetChild(0).Rotate(0, rotateSpeed, 0);
     }
 
     private void RotateCanon()
@@ -73,7 +73,7 @@ public class Canon : MonoBehaviour
         playerCollisionned.gameObject.SetActive(true);
         playerCollisionned.OutCanon();
         playerCollisionned.transform.position = pointToThrow.transform.position;
-        orientDir = transform.forward;
+        orientDir = transform.GetChild(0).transform.forward;
         Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
         playerCollisionned.Knockback(orientDirCanon, knockPower);
         isShooting = false;
