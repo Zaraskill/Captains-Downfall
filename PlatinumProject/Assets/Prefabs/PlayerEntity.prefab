@@ -334,9 +334,37 @@ MonoBehaviour:
   startTimeBtwSpawns: 0.5
   durationTime: 5
   multiplierKnock: 10
+  distToJump: 5
   jumpToDie:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.53691304
+      outSlope: 0.53691304
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4279827
+      value: 1.2297895
+      inSlope: -7.6555204
+      outSlope: -7.6555204
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13796376
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: -2
+      inSlope: -44.847404
+      outSlope: -44.847404
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
