@@ -318,10 +318,10 @@ MonoBehaviour:
   controller: {fileID: 0}
   playerID: 0
   teamID: 0
-  acceleration: 100
+  acceleration: 500
   moveSpeedMax: 22
   friction: 100
-  turnFriction: 100
+  turnFriction: 300
   gravity: 20
   verticalSpeedMax: 10
   groundCheckPoint: {fileID: 4422004457748270449}
@@ -382,7 +382,7 @@ MonoBehaviour:
   _debugMode: 1
   motorIndex: 0
   motorLevel: 1
-  duration: 0.5
+  duration: 0.2
   confettis: {fileID: 165102, guid: 4de72d65c2293424cbe6461a89fe2997, type: 3}
 --- !u!95 &2522967404550544915
 Animator:
