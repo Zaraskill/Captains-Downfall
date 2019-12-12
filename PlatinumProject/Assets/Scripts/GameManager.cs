@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Rewired;
 
 // Code crée et géré par Corentin
@@ -55,7 +56,9 @@ public class GameManager : MonoBehaviour
     //Gestion controllers
     private IList<Joystick> listControllers;
 
-    
+    private Animator animCredits;
+
+    public float timeBtwTutos;
 
     void Awake()
     {
@@ -73,15 +76,17 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameState = startState;
+        listControllers = ReInput.controllers.Joysticks;
+        animCredits = UIManager.managerUI.displayCredits.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(gameState)
+        Debug.Log(gameState);
+        switch (gameState)
         {
             case STATE_PLAY.MainMenu:
-                Debug.Log(gameState);
                 break;
             case STATE_PLAY.Credits:
                 WaitingForInput();
@@ -493,10 +498,36 @@ public class GameManager : MonoBehaviour
         }
         foreach (Joystick controller in listControllers)
         {
+            if(gameState == STATE_PLAY.TutoMove)
+            {
+                StartCoroutine(TransitionBetweenTutos(UIManager.managerUI.pressAToContinue));
+            }
+            else if (gameState == STATE_PLAY.TutoObjects)
+            {
+                StartCoroutine(TransitionBetweenTutos(UIManager.managerUI.pressAToContinue));
+            }
             if (controller.GetButtonDown(0))
             {
                 isWaitingForInput = false;
-                if (gameState == STATE_PLAY.PrepareParty)
+                if (gameState == STATE_PLAY.MainMenu)
+                {
+                    UIManager.managerUI.mainMenuToDisplay.SetActive(false);
+                    UIManager.managerUI.navBar.SetActive(false);
+                    UIManager.managerUI.tutoUI.SetActive(true);
+                    gameState = STATE_PLAY.TutoMove;
+                }
+                else if (gameState == STATE_PLAY.TutoMove && UIManager.managerUI.pressAToContinue.activeSelf)
+                {
+                    UIManager.managerUI.pressAToContinue.SetActive(false);
+                    UIManager.managerUI.tutoMove.SetActive(false);
+                    UIManager.managerUI.tutoObjects.SetActive(true);
+                    gameState = STATE_PLAY.TutoObjects;
+                }
+                else if (gameState == STATE_PLAY.TutoObjects && UIManager.managerUI.pressAToContinue.activeSelf)
+                {
+                    SceneManager.LoadScene(1);
+                }
+                else if (gameState == STATE_PLAY.PrepareParty)
                 {
                     UIManager.managerUI.StartRound();
                     gameState = STATE_PLAY.Party;
@@ -517,6 +548,27 @@ public class GameManager : MonoBehaviour
                 {
                     gameState = STATE_PLAY.MainMenu;
                 }
+            }
+            else if (controller.GetButtonDown(1))
+            {
+                if(gameState == STATE_PLAY.Credits)
+                {
+                    animCredits.SetBool("isDisplayed", false);
+                    UIManager.managerUI.mainMenuToDisplay.SetActive(true);
+                }
+                /*if(gameState == STATE_PLAY.TutoMove)
+                {
+                    UIManager.managerUI.tutoUI.SetActive(false);
+                    UIManager.managerUI.mainMenuToDisplay.SetActive(true);
+                    UIManager.managerUI.navBar.SetActive(true);
+                    gameState = STATE_PLAY.MainMenu;
+                }
+                if(gameState == STATE_PLAY.TutoObjects)
+                {
+                    UIManager.managerUI.tutoMove.SetActive(true);
+                    UIManager.managerUI.tutoObjects.SetActive(false);
+                    gameState = STATE_PLAY.TutoMove;
+                }*/
             }
         }        
     }
@@ -542,13 +594,20 @@ public class GameManager : MonoBehaviour
     public void OnClickCredits()
     {
         gameState = STATE_PLAY.Credits;
+        animCredits.SetBool("isDisplayed", true);
     }
 
     public void OnClickQuit()
     {
         Application.Quit();
+        Debug.Log("Quit");
     }
 
     #endregion
 
+    IEnumerator TransitionBetweenTutos(GameObject pressToContinue)
+    {
+        yield return new WaitForSeconds(timeBtwTutos);
+        pressToContinue.SetActive(true);
+    }
 }

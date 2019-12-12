@@ -63,6 +63,12 @@ public class UIManager : MonoBehaviour
     //Credits
     [Header("Credits")]
     public GameObject displayCredits;
+    public GameObject mainMenuToDisplay;
+    public GameObject tutoUI;
+    public GameObject navBar;
+    public GameObject pressAToContinue;
+    public GameObject tutoMove;
+    public GameObject tutoObjects;
 
     //Options
 
