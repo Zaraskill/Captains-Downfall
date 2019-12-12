@@ -18,7 +18,7 @@ public class PlayerEntity : MonoBehaviour
     
     // Move
     [Header("Move")]
-    [Range(0f, 100f)]  public float acceleration = 20f;
+    [Range(0f, 500)]  public float acceleration = 20f;
     public float moveSpeedMax = 10f;
     private Vector2 moveDir;
     private Vector2 speed = Vector2.zero;
@@ -27,7 +27,7 @@ public class PlayerEntity : MonoBehaviour
     // Frictions
     [Header("Friction")]
     [Range(0f, 100f)] public float friction;
-    [Range(0f, 100f)] public float turnFriction;
+    [Range(0f, 500f)] public float turnFriction;
 
     // Gravity
     [Header("Gravity")]
