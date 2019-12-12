@@ -52,6 +52,8 @@ public class PlayerEntity : MonoBehaviour
     private bool canPick = false;
     private bool isHoldingItem = false;
     private PickupableObject targetObjet;
+    private Vector3 distToTarget;
+    private List<PickupableObject> listObjCanPick;
 
     // Throw
     [Header("Throw")]
@@ -120,6 +122,8 @@ public class PlayerEntity : MonoBehaviour
 
     private void Start()
     {
+        listObjCanPick = new List<PickupableObject>();
+        distToTarget = new Vector3(10000, 0, 0);
         animator = GetComponent<Animator>();
     }
 
@@ -298,22 +302,65 @@ public class PlayerEntity : MonoBehaviour
 
     public void PickItem()
     {
-        if (isHoldingItem)
+        if (isHoldingItem || listObjCanPick.Count == 0)
         {
             return;
         }
-        pickedObject = targetObjet;
-        colliderItemPicked = pickedObject.GetComponent<BoxCollider>();
-        if (pickedObject.isPickable)
+        if (listObjCanPick.Count > 0)
         {
-            pickedObject.Picked();
-            targetObjet = null;
-            pickedObject.transform.SetParent(modelObjs[0].transform);
-            pickedObject.transform.position = pointToHold.transform.position;
-            canPick = false;
-            isHoldingItem = true;
-            canThrow = true;
+            foreach(PickupableObject targetedObject in listObjCanPick)
+            {
+                CalculDistToObj(targetedObject);
+            }
+            distToTarget = new Vector3(10000, 0, 0);
+            pickedObject = targetObjet;
+            colliderItemPicked = pickedObject.GetComponent<BoxCollider>();
+            if (pickedObject.isPickable)
+            {                
+                pickedObject.Picked();
+                targetObjet = null;
+                pickedObject.transform.SetParent(modelObjs[0].transform);
+                pickedObject.transform.position = pointToHold.transform.position;
+                canPick = false;
+                isHoldingItem = true;
+                canThrow = true;
+                listObjCanPick.Remove(pickedObject);
+            }
         }
+        
+        
+        
+    }
+
+    private void CalculDistToObj(PickupableObject target)
+    {
+        Vector3 playerPos = transform.position;
+        Vector3 objectPos = target.transform.position;
+        Vector3 distPlayerObject = objectPos - playerPos;
+        if (Vector3.Dot(orientDir, distPlayerObject) < 0)
+        {
+            if (distPlayerObject.x < 0)
+            {
+                distPlayerObject.x = distPlayerObject.x - 100;
+            }
+            else
+            {
+                distPlayerObject.x = distPlayerObject.x + 100;
+            }            
+        }
+        if (distPlayerObject.magnitude < distToTarget.magnitude)
+        {
+            distToTarget = distPlayerObject;
+            targetObjet = target;
+        }
+    }
+
+    public void ObjectDestroyedInRange(PickupableObject pickItem)
+    {
+        if (listObjCanPick.Contains(pickItem))
+        {
+            listObjCanPick.Remove(pickItem);
+        }        
     }
 
     #endregion
@@ -334,6 +381,10 @@ public class PlayerEntity : MonoBehaviour
             pickedObject = null;
             isHoldingItem = false;
             canThrow = false;
+            if(listObjCanPick.Count > 0)
+            {
+                canPick = true;
+            }
             animator.SetBool("ThrowBool", true);
         }
         
@@ -402,15 +453,11 @@ public class PlayerEntity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pickable" && !isHoldingItem)
+        if (other.tag == "Pickable" && other.GetComponent<PickupableObject>().IsPickable())
         {
-            PickupableObject objectPick = other.GetComponent<PickupableObject>();
-            if (objectPick.IsPickable())
-            {
-                canPick = true;
-                targetObjet = objectPick;
-            }
-
+            listObjCanPick.Add(other.GetComponent<PickupableObject>());
+            other.GetComponent<PickupableObject>().NewPlayerInRange(this);
+            canPick = true;
         }
         else if (other.gameObject.tag == "DeathZone" && !isDead)
         {
@@ -439,8 +486,12 @@ public class PlayerEntity : MonoBehaviour
     {
         if (other.tag == "Pickable" && !isHoldingItem)
         {
-            canPick = false;
-            targetObjet = null;
+            other.GetComponent<PickupableObject>().PlayerLeaveRange(this);
+            listObjCanPick.Remove(other.GetComponent<PickupableObject>());
+            if (listObjCanPick.Count == 0)
+            {
+                canPick = false;
+            }
         }
     }
 
@@ -541,24 +592,5 @@ public class PlayerEntity : MonoBehaviour
 
     #endregion
 
-    /*private void OutOfScreen()
-    {
-        Vector3 spawnPosition = transform.position;
-        Vector3 spawnScreenPosition = Camera.main.WorldToScreenPoint(spawnPosition);
-
-        spawnScreenPosition.x = Mathf.Clamp(spawnScreenPosition.x, 0f, Screen.width);
-        spawnScreenPosition.y = Mathf.Clamp(spawnScreenPosition.y, 0f, Screen.height);
-        spawnScreenPosition.z = -Camera.main.transform.position.z;
-        spawnPosition = Camera.main.ScreenToWorldPoint(spawnScreenPosition);
-
-        Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-        Vector3 centerScreenPosition = new Vector3(Screen.width / 2f, Screen.height / 2f, Camera.main.transform.position.z);
-        Vector3 centerWorldPosition = Camera.main.ScreenToWorldPoint(centerScreenPosition);
-            if (!_HasConfettisSpawned)
-            {
-                GameObject _instance = Instantiate(confettis, spawnPosition, Quaternion.identity);
-                _instance.transform.LookAt(centerWorldPosition);
-                _HasConfettisSpawned = true;
-            }
-    }*/
+    
 }

@@ -13,6 +13,7 @@ public class PickupableObject : MonoBehaviour
     private Vector2 orient = Vector2.zero;
     private float timing = 0f;
     public AnimationCurve curveThrow;
+    private List<PlayerEntity> playerWhoCanPick;
 
     [Header("Speed")]
     public float verticalSpeedOn = 10f;
@@ -43,6 +44,7 @@ public class PickupableObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerWhoCanPick = new List<PlayerEntity>();
         _rigidbody = GetComponent<Rigidbody>();
         timer = timerSpawn;
     }
@@ -175,6 +177,24 @@ public class PickupableObject : MonoBehaviour
         barrel = null;
     }
 
+    public void NewPlayerInRange(PlayerEntity player)
+    {
+        playerWhoCanPick.Add(player);
+    }
+
+    public void PlayerLeaveRange(PlayerEntity player)
+    {
+        playerWhoCanPick.Remove(player);
+    }
+
+    private void ClearPlayer()
+    {
+        foreach(PlayerEntity player in playerWhoCanPick)
+        {
+            player.ObjectDestroyedInRange(this);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player") && isThrown)
@@ -186,7 +206,8 @@ public class PickupableObject : MonoBehaviour
             }
             SoundManager.managerSound.MakeHitSound();
             collision.gameObject.GetComponent<PlayerEntity>().Knockback(orient, powerKnock);
-            GameManager.managerGame.SpawnObject(); 
+            GameManager.managerGame.SpawnObject();
+            ClearPlayer();
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Pillar") || collision.gameObject.CompareTag("Canon"))
@@ -198,6 +219,7 @@ public class PickupableObject : MonoBehaviour
             }
             SoundManager.managerSound.MakeItemBreakSound();
             GameManager.managerGame.SpawnObject();
+            ClearPlayer();
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall") && isThrown)
@@ -205,6 +227,7 @@ public class PickupableObject : MonoBehaviour
             GameManager.managerGame.SpawnObject();
             BreakableWalls wall = collision.gameObject.GetComponent<BreakableWalls>();
             wall.TakeDamage();
+            ClearPlayer();
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Barrel") && isThrown)
@@ -217,11 +240,13 @@ public class PickupableObject : MonoBehaviour
             GameManager.managerGame.SpawnObject();
             _rigidbody.velocity = Vector3.zero;
             velocity = Vector2.zero;
+            ClearPlayer();
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("DeathZone"))
         {
             GameManager.managerGame.SpawnObject();
+            ClearPlayer();
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Pickable"))
@@ -242,6 +267,7 @@ public class PickupableObject : MonoBehaviour
             }
             SoundManager.managerSound.MakeItemBreakSound();
             GameManager.managerGame.SpawnObject();
+            ClearPlayer();
             Destroy(gameObject);
         }
     }
