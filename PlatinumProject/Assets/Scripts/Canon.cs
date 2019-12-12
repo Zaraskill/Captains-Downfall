@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using EZCameraShake;
 
 // Code créé et géré par Siméon
@@ -45,6 +46,12 @@ public class Canon : MonoBehaviour
         {
             UpdateRotate();
             RotateCanon();
+        }
+        else
+        {
+            Color c = GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color;
+            c.a = 0;
+            GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = c;
         }
     }
 
@@ -93,6 +100,49 @@ public class Canon : MonoBehaviour
             playerCollisionned = collision.gameObject.GetComponent<PlayerEntity>();
             playerCollisionned.gameObject.SetActive(false);
             playerCollisionned.GoInsideCanon(this);
+            DisplayCanonUI();
+        }
+    }
+
+    private void DisplayCanonUI()
+    {
+        if (playerCollisionned != null)
+        {
+            for(int i = 0; i < UIPlayerInCanon.Count; i++)
+            {
+                if (playerCollisionned.playerID == i)
+                {
+                    GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().sprite = UIPlayerInCanon[i];
+                }
+            }
+            if(playerCollisionned.teamID == 1)
+            {
+                GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.blue;
+            }
+            else if (playerCollisionned.teamID == 2)
+            {
+                GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.red;
+            }
+            else if (playerCollisionned.teamID == 0)
+            {
+                switch(playerCollisionned.playerID)
+                {
+                    case 0:
+                        GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.blue;
+                        break;
+                    case 1:
+                        GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.red;
+                        break;
+                    case 2:
+                        GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.green;
+                        break;
+                    case 3:
+                        GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.yellow;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
