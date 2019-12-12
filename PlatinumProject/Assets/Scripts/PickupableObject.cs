@@ -209,6 +209,11 @@ public class PickupableObject : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Barrel") && isThrown)
         {
+            if (hitParticle != null)
+            {
+                GameObject _instance = Instantiate(hitParticle, transform.position, Quaternion.identity);
+                Destroy(_instance, 2f);
+            }
             GameManager.managerGame.SpawnObject();
             _rigidbody.velocity = Vector3.zero;
             velocity = Vector2.zero;
@@ -245,6 +250,11 @@ public class PickupableObject : MonoBehaviour
     {
         if (other.gameObject.tag == "DeathZone")
         {
+            if (hitParticle != null)
+            {
+                GameObject _instance = Instantiate(hitParticle, transform.position, Quaternion.identity);
+                Destroy(_instance, 2f);
+            }
             GameManager.managerGame.SpawnObject();
             Destroy(gameObject);
         }

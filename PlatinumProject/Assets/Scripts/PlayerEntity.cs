@@ -7,8 +7,9 @@ using EZCameraShake;
 // Code crée et géré par Corentin
 public class PlayerEntity : MonoBehaviour
 {
-
     enum STATE_DEATH {Knockbacked, Suicide}
+
+    public PlayerController controller;
 
     // Player
     [Header("Player")]
@@ -65,6 +66,7 @@ public class PlayerEntity : MonoBehaviour
     private Collider colliderOtherPlayer;
 
     //Canon
+    [Header("Canon")]
     private bool isInsideCanon = false;
     private Canon canon = null;
 
@@ -94,14 +96,20 @@ public class PlayerEntity : MonoBehaviour
     [Header("Debug")]
     public bool _debugMode = false;
 
+    //Vibration
+    [Header("Vibration Manette")]
+    public int motorIndex;
+    public float motorLevel;
+    public float duration;
+
+    //Confettis
+    [Header("Confettis")]
+    public GameObject confettis;
+
     private Animator animator;
-
-    public Collider colliderItemPicked = null;
-
+    private Collider colliderItemPicked = null;
     private bool _isPlayerRepulsed;
 
-    public GameObject confettis;
-    private bool _HasConfettisSpawned = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -343,6 +351,7 @@ public class PlayerEntity : MonoBehaviour
         moveDir = Vector2.zero;
         speed = knockDir * powerKnock;
         animator.SetBool("HitBool", true);
+        controller.mainPlayer.SetVibration(motorIndex, motorLevel, duration);
     }
 
     public bool IsKnocked()
@@ -422,7 +431,6 @@ public class PlayerEntity : MonoBehaviour
 
                 GameObject _instance = Instantiate(confettis, transform.position, Quaternion.identity);
                 _instance.transform.LookAt(centerWorldPosition);
-                //_HasConfettisSpawned = true;
         }
     }
 

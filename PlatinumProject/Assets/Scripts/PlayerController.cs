@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public PlayerEntity entity;
 
-    private Player mainPlayer;
+    public Player mainPlayer;
 
     // Start is called before the first frame update
     void Start()
