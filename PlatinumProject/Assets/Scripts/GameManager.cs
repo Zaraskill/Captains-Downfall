@@ -9,9 +9,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager managerGame;
 
-    enum STATE_PLAY {MainMenu, PlayerSelection, PrepareFirstParty, PrepareParty, Party, Results, DisplayResultsRound, DisplayResultsFinal}
+    public enum STATE_PLAY {MainMenu, Credits, TutoMove, TutoObjects, PlayerSelection, PrepareFirstParty, PrepareParty, Party, Results, DisplayResultsRound, DisplayResultsFinal}
 
     private STATE_PLAY gameState;
+    public STATE_PLAY startState;
 
     //Spawn Objects
     [Header("Spawn Objects")]
@@ -65,18 +66,13 @@ public class GameManager : MonoBehaviour
         else
         {
             managerGame = this;
-            DontDestroyOnLoad(this.gameObject);
         }       
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        gameState = STATE_PLAY.PrepareFirstParty;
-        for (int i = 0; i < listPlayers.Count; i++)
-        {
-            listPlayers[i].GetComponentInChildren<Image>().sprite = UIManager.managerUI.listNumberPlayer[i];
-        }
+        gameState = startState;
     }
 
     // Update is called once per frame
@@ -86,6 +82,15 @@ public class GameManager : MonoBehaviour
         {
             case STATE_PLAY.MainMenu:
                 Debug.Log(gameState);
+                break;
+            case STATE_PLAY.Credits:
+                WaitingForInput();
+                break;
+            case STATE_PLAY.TutoMove:
+                WaitingForInput();
+                break;
+            case STATE_PLAY.TutoObjects:
+                WaitingForInput();
                 break;
             case STATE_PLAY.PlayerSelection:
                 Debug.Log(gameState);
@@ -523,6 +528,25 @@ public class GameManager : MonoBehaviour
     public bool IsWaitingForInput()
     {
         return isWaitingForInput;
+    }
+
+    #endregion
+
+    #region Click Buttons Fonctions
+
+    public void OnClickPlay()
+    {
+        gameState = STATE_PLAY.TutoMove;
+    }
+
+    public void OnClickCredits()
+    {
+        gameState = STATE_PLAY.Credits;
+    }
+
+    public void OnClickQuit()
+    {
+        Application.Quit();
     }
 
     #endregion
