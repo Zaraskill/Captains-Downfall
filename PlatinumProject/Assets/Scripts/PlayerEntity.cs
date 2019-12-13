@@ -334,24 +334,27 @@ public class PlayerEntity : MonoBehaviour
 
     private void CalculDistToObj(PickupableObject target)
     {
-        Vector3 playerPos = transform.position;
-        Vector3 objectPos = target.transform.position;
-        Vector3 distPlayerObject = objectPos - playerPos;
-        if (Vector3.Dot(orientDir, distPlayerObject) < 0)
+        if(target != null)
         {
-            if (distPlayerObject.x < 0)
+            Vector3 playerPos = transform.position;
+            Vector3 objectPos = target.transform.position;
+            Vector3 distPlayerObject = objectPos - playerPos;
+            if (Vector3.Dot(orientDir, distPlayerObject) < 0)
             {
-                distPlayerObject.x = distPlayerObject.x - 100;
+                if (distPlayerObject.x < 0)
+                {
+                    distPlayerObject.x = distPlayerObject.x - 100;
+                }
+                else
+                {
+                    distPlayerObject.x = distPlayerObject.x + 100;
+                }
             }
-            else
+            if (distPlayerObject.magnitude < distToTarget.magnitude)
             {
-                distPlayerObject.x = distPlayerObject.x + 100;
-            }            
-        }
-        if (distPlayerObject.magnitude < distToTarget.magnitude)
-        {
-            distToTarget = distPlayerObject;
-            targetObjet = target;
+                distToTarget = distPlayerObject;
+                targetObjet = target;
+            }
         }
     }
 
