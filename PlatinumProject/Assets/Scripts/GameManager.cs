@@ -535,7 +535,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (gameState == STATE_PLAY.DisplayResultsFinal)
                 {
-                    gameState = STATE_PLAY.MainMenu;
+                    SceneManager.LoadScene(0);
                 }
             }
             else if (controller.GetButtonDown(1))
