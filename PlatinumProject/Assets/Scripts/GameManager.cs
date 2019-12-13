@@ -357,18 +357,7 @@ public class GameManager : MonoBehaviour
                 listWinnerPlayers.Add(index);
             }
         }
-        if (listWinnerPlayers.Count == 1)
-        {
-            
-        }
-        else if (listWinnerPlayers.Count >= 2)
-        {
-
-        }
-        else
-        {
-            gameState = STATE_PLAY.DisplayResultsRound;
-        }
+        gameState = STATE_PLAY.DisplayResultsRound;
         idPlayerwinner++;
     }
 
@@ -540,9 +529,9 @@ public class GameManager : MonoBehaviour
                     }
                     else
                     {
-                        UIManager.managerUI.EndRound();
                         gameState = STATE_PLAY.PrepareParty;
                     }
+                    UIManager.managerUI.EndRound();
                 }
                 else if (gameState == STATE_PLAY.DisplayResultsFinal)
                 {

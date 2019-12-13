@@ -77,12 +77,11 @@ public class UIManager : MonoBehaviour
     {
         if (managerUI != null)
         {
-            Destroy(this.gameObject);
+
         }
         else
         {
             managerUI = this;
-            DontDestroyOnLoad(this.gameObject);
         }
     }
     // Start is called before the first frame update

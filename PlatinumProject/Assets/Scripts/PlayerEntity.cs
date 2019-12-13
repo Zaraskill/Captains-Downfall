@@ -562,6 +562,10 @@ public class PlayerEntity : MonoBehaviour
             isDead = true;
             if (typeDeath == STATE_DEATH.Knockbacked)
             {                
+                if (speed == Vector2.zero)
+                {
+                    speed = orientDir * multiplierKnock * multiplierKnock;
+                }
                 speed *= multiplierKnock;
             }
             else if (typeDeath == STATE_DEATH.Suicide)
@@ -584,7 +588,7 @@ public class PlayerEntity : MonoBehaviour
     public void Respawn()
     {
         isDead = false;
-        isKnocked = false;
+        isKnocked = false;listObjCanPick.Clear();
         groundY = 0f;
         speed = Vector2.zero;
         orientDir = Vector2.right;
