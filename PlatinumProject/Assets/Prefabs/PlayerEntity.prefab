@@ -321,7 +321,7 @@ MonoBehaviour:
   acceleration: 500
   moveSpeedMax: 22
   friction: 100
-  turnFriction: 300
+  turnFriction: 400
   gravity: 20
   verticalSpeedMax: 10
   groundCheckPoint: {fileID: 4422004457748270449}
