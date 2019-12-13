@@ -100,29 +100,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayRoundBeginning(int roundType)
     {
-        beginRound.SetActive(true);
-        if (roundType == 1)
-        {
-            roundFFA.SetActive(true);
-            for (int index = 0; index < characterSlotsFFA.Count; index++)
-            {
-                if (index % 2 == 0)
-                {
-                    characterSlotsFFA[index].sprite = playerSkinsFFALeft[index];
-                }
-                else
-                {
-                    characterSlotsFFA[index].sprite = playerSkinsFFARight[index];
-                }
-                
-            }
-        }
-        else if (roundType == 2)
-        {
-            roundTF.SetActive(true);
-            DisplayTeamOne();
-            DisplayTeamTwo();
-        }
+        CanClickForRound(roundType);
     }
 
     private void DisplayTeamOne()
@@ -154,40 +132,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayRoundEnding(int caseVictory)
     {
-        endRound.SetActive(true);
-        switch (caseVictory)
-        {
-            case WINNER_P1:
-                displayWinner.sprite = listWinner[0];
-                tmpImage = playerOne;
-                GenerateAnimation(0);
-                break;
-            case WINNER_P2:
-                displayWinner.sprite = listWinner[1];
-                tmpImage = playerTwo;
-                GenerateAnimation(1);
-                break;
-            case WINNER_P3:
-                displayWinner.sprite = listWinner[2];
-                tmpImage = playerThree;
-                GenerateAnimation(2);
-                break;
-            case WINNER_P4:
-                displayWinner.sprite = listWinner[3];
-                tmpImage = playerFour;
-                GenerateAnimation(3);
-                break;
-            case WINNER_TEAM1:
-                DisplayWinnerTeam(WINNER_TEAM1);
-                GenerateAnimationTeam(WINNER_TEAM1);
-                break;
-            case WINNER_TEAM2:
-                DisplayWinnerTeam(WINNER_TEAM2);
-                GenerateAnimationTeam(WINNER_TEAM2);
-                break;
-            default:
-                break;
-        }
+        CanClickForEndRound(caseVictory);
     }
 
     private void DisplayWinnerTeam(int caseVictory)
@@ -332,4 +277,70 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    IEnumerator CanClickForRound(int roundType)
+    {
+        beginRound.SetActive(true);
+        if (roundType == 1)
+        {
+            roundFFA.SetActive(true);
+            for (int index = 0; index < characterSlotsFFA.Count; index++)
+            {
+                if (index % 2 == 0)
+                {
+                    characterSlotsFFA[index].sprite = playerSkinsFFALeft[index];
+                }
+                else
+                {
+                    characterSlotsFFA[index].sprite = playerSkinsFFARight[index];
+                }
+
+            }
+        }
+        else if (roundType == 2)
+        {
+            roundTF.SetActive(true);
+            DisplayTeamOne();
+            DisplayTeamTwo();
+        }
+        yield return new WaitForSeconds(3);
+    }
+
+    IEnumerator CanClickForEndRound(int caseVictory)
+    {
+        endRound.SetActive(true);
+        switch (caseVictory)
+        {
+            case WINNER_P1:
+                displayWinner.sprite = listWinner[0];
+                tmpImage = playerOne;
+                GenerateAnimation(0);
+                break;
+            case WINNER_P2:
+                displayWinner.sprite = listWinner[1];
+                tmpImage = playerTwo;
+                GenerateAnimation(1);
+                break;
+            case WINNER_P3:
+                displayWinner.sprite = listWinner[2];
+                tmpImage = playerThree;
+                GenerateAnimation(2);
+                break;
+            case WINNER_P4:
+                displayWinner.sprite = listWinner[3];
+                tmpImage = playerFour;
+                GenerateAnimation(3);
+                break;
+            case WINNER_TEAM1:
+                DisplayWinnerTeam(WINNER_TEAM1);
+                GenerateAnimationTeam(WINNER_TEAM1);
+                break;
+            case WINNER_TEAM2:
+                DisplayWinnerTeam(WINNER_TEAM2);
+                GenerateAnimationTeam(WINNER_TEAM2);
+                break;
+            default:
+                break;
+        }
+        yield return new WaitForSeconds(3);
+    }
 }
