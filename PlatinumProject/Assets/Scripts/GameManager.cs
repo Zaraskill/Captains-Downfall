@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
 
     public float timeBtwTutos;
 
+    private bool isCoroutineDone = false;
+
     void Awake()
     {
         if (managerGame != null)
@@ -519,11 +521,15 @@ public class GameManager : MonoBehaviour
         }
         foreach (Joystick controller in listControllers)
         {
-            if(gameState == STATE_PLAY.TutoMove)
+            if(gameState == STATE_PLAY.TutoMove && !isCoroutineDone)
             {
                 StartCoroutine(TransitionBetweenTutos(UIManager.managerUI.pressAToContinue));
             }
-            else if (gameState == STATE_PLAY.TutoObjects)
+            else if (gameState == STATE_PLAY.TutoObjects && !isCoroutineDone)
+            {
+                StartCoroutine(TransitionBetweenTutos(UIManager.managerUI.pressAToContinue));
+            }
+            else if (gameState == STATE_PLAY.PrepareParty && !isCoroutineDone)
             {
                 StartCoroutine(TransitionBetweenTutos(UIManager.managerUI.pressAToContinue));
             }
@@ -539,6 +545,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (gameState == STATE_PLAY.TutoMove && UIManager.managerUI.pressAToContinue.activeSelf)
                 {
+                    isCoroutineDone = false;
                     UIManager.managerUI.pressAToContinue.SetActive(false);
                     UIManager.managerUI.tutoMove.SetActive(false);
                     UIManager.managerUI.tutoObjects.SetActive(true);
@@ -546,10 +553,14 @@ public class GameManager : MonoBehaviour
                 }
                 else if (gameState == STATE_PLAY.TutoObjects && UIManager.managerUI.pressAToContinue.activeSelf)
                 {
+                    isCoroutineDone = false;
+                    UIManager.managerUI.pressAToContinue.SetActive(false);
                     SceneManager.LoadScene(1);
                 }
                 else if (gameState == STATE_PLAY.PrepareParty)
                 {
+                    isCoroutineDone = false;
+                    UIManager.managerUI.pressAToContinue.SetActive(false);
                     UIManager.managerUI.StartRound();
                     gameState = STATE_PLAY.Party;
                 }
@@ -577,19 +588,6 @@ public class GameManager : MonoBehaviour
                     animCredits.SetBool("isDisplayed", false);
                     UIManager.managerUI.mainMenuToDisplay.SetActive(true);
                 }
-                /*if(gameState == STATE_PLAY.TutoMove)
-                {
-                    UIManager.managerUI.tutoUI.SetActive(false);
-                    UIManager.managerUI.mainMenuToDisplay.SetActive(true);
-                    UIManager.managerUI.navBar.SetActive(true);
-                    gameState = STATE_PLAY.MainMenu;
-                }
-                if(gameState == STATE_PLAY.TutoObjects)
-                {
-                    UIManager.managerUI.tutoMove.SetActive(true);
-                    UIManager.managerUI.tutoObjects.SetActive(false);
-                    gameState = STATE_PLAY.TutoMove;
-                }*/
             }
         }        
     }
@@ -628,6 +626,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TransitionBetweenTutos(GameObject pressToContinue)
     {
+        isCoroutineDone = true;
+        pressToContinue.SetActive(false);
         yield return new WaitForSeconds(timeBtwTutos);
         pressToContinue.SetActive(true);
     }
