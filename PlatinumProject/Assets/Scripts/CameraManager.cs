@@ -10,6 +10,9 @@ public class CameraManager : MonoBehaviour
     private Transform targetPosition;
     private Vector3 basePosition;
     private bool onMovement = false;
+    private float timer;
+    public float timeTravel = 5f;
+
 
     private Animator animator;
 
@@ -34,7 +37,8 @@ public class CameraManager : MonoBehaviour
     {
         if (onMovement)
         {
-            transform.position = Vector3.Lerp(basePosition, targetPosition.position, 1f);
+            timer += Time.unscaledDeltaTime / timeTravel;
+            transform.position = Vector3.Lerp(basePosition, targetPosition.position, timer);
         }
     }
 
@@ -47,6 +51,7 @@ public class CameraManager : MonoBehaviour
 
     public void ResetRound()
     {
+        timer = 0f;
         onMovement = false;
         targetPosition = null;
         transform.position = basePosition;
