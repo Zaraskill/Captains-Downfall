@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
     public Image playerTwo;
     public Image playerThree;
     public Image playerFour;
+    public List<AudioSource> listSounds;
     public List<Sprite> listWinner;
     private Image tmpImage;
 
@@ -161,8 +162,11 @@ public class UIManager : MonoBehaviour
     public void DisplayRoundEnding(int caseVictory)
     {
         endRound.SetActive(true);
+        AudioSource sound = listSounds[Random.Range(0, listSounds.Count)];
+        sound.enabled = true;
         switch (caseVictory)
         {
+            
             case WINNER_P1:
                 displayWinner.sprite = listWinner[0];
                 tmpImage = playerOne;
@@ -194,11 +198,7 @@ public class UIManager : MonoBehaviour
             default:
                 break;
         }
-        while(timer < 0f)
-        {
-            timer -= Time.deltaTime;
-        }
-        timer = timerStart;
+        sound.enabled = false;
     }
 
     private void DisplayWinnerTeam(int caseVictory)
