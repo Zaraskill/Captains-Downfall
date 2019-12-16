@@ -243,6 +243,7 @@ public class PlayerEntity : MonoBehaviour
     public void OnEndingAnimations()
     {
         canMove = false;
+        ResetMovement();
     }
 
     public bool CanMove()
@@ -639,7 +640,7 @@ public class PlayerEntity : MonoBehaviour
     {
         _rigidbody.velocity = Vector3.zero;
         speed = Vector2.zero;
-        orientDir = Vector2.right;
+        orientDir = Vector2.down;
         moveDir = Vector2.zero;
     }
 
