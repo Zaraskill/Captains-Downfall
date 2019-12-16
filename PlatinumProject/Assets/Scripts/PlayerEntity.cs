@@ -603,6 +603,14 @@ public class PlayerEntity : MonoBehaviour
         groundY = 0f;
         speed = Vector2.zero;
         orientDir = Vector2.right;
+        moveDir = Vector2.zero;
+    }
+
+    public void ResetMovement()
+    {
+        speed = Vector2.zero;
+        orientDir = Vector2.right;
+        moveDir = Vector2.zero;
     }
 
     #endregion

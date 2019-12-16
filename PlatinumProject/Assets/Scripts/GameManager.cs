@@ -545,6 +545,10 @@ public class GameManager : MonoBehaviour
             else if (gameState == STATE_PLAY.DisplayResultsRound && !isCoroutineDone)
             {
                 StartCoroutine(TransitionBetweenTutos(UIManager.managerUI.pressAToContinue));
+                for(int i = 0; i < listPlayers.Count; i++)
+                {
+                    listPlayers[i].ResetMovement();
+                }
             }
             if (controller.GetButtonDown(0))
             {
