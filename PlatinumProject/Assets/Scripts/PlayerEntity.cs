@@ -89,6 +89,7 @@ public class PlayerEntity : MonoBehaviour
     private STATE_DEATH typeDeath;
     private Vector3 positionWhenDie;
     private Vector3 targetDrop;
+    public AudioSource deathAudioClip;
 
     //Rigidbody
     [Header("Rigidbody")]
@@ -472,6 +473,7 @@ public class PlayerEntity : MonoBehaviour
             {
                 typeDeath = STATE_DEATH.Suicide;
             }
+            deathAudioClip.Play();
             TimeToDie();
         }
         else if (other.gameObject.CompareTag("OutZone") && isDead)

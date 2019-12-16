@@ -1026,7 +1026,7 @@ MonoBehaviour:
   - {fileID: 1721919019}
   nbPlayersAlive: 0
   timerStart: 3
-  timeBtwTutos: 0
+  timeBtwTutos: 3
 --- !u!4 &101982922
 Transform:
   m_ObjectHideFlags: 0
@@ -1694,6 +1694,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &258637542 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1469938966}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &266945461
 GameObject:
   m_ObjectHideFlags: 0
@@ -4319,6 +4325,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 467320, guid: 5d6b38963c71745479d1df1c75c4f9e7,
     type: 3}
   m_PrefabInstance: {fileID: 1042656441}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &644630779 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1884622224}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &653902963 stripped
 Transform:
@@ -7498,6 +7510,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d4fe31b222d53ec4b8f5b4bed36fbeab, type: 3}
     - target: {fileID: 7913258810617097839, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Name
@@ -7538,6 +7555,11 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 278999947}
+    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: deathAudioClip
+      value: 
+      objectReference: {fileID: 1833710045}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8382,6 +8404,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ee06b483f4c4215459d9155d7389ed0b, type: 3}
     - target: {fileID: 7913258810617097839, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Name
@@ -8613,6 +8640,11 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 1445705239}
+    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: deathAudioClip
+      value: 
+      objectReference: {fileID: 1330593693}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8779,6 +8811,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84946a7ad55ce5641972d8a152b87ab6, type: 3}
+--- !u!82 &1330593693 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1324460558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1334487113
 GameObject:
   m_ObjectHideFlags: 0
@@ -9545,6 +9583,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a02808c82f8dba448b428682bc7762bd, type: 3}
     - target: {fileID: 7913258810617097839, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Name
@@ -9585,6 +9628,11 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 1004201919}
+    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: deathAudioClip
+      value: 
+      objectReference: {fileID: 258637542}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11854,6 +11902,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832400001}
   m_CullTransparentMesh: 0
+--- !u!82 &1833710045 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1113654133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1847267188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4422004457748270449, guid: 836a6388fdaedac47890666e71c595f7,
@@ -12010,6 +12064,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cafc215d5f775546b93e426efa13e1f, type: 3}
     - target: {fileID: 7913258810617097839, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Name
@@ -12050,6 +12109,11 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 424634744}
+    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: deathAudioClip
+      value: 
+      objectReference: {fileID: 644630779}
     - target: {fileID: 7913258810617097837, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_LocalPosition.x
