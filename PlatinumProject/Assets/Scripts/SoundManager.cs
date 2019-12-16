@@ -17,6 +17,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip barrelExplosionSound;
     public AudioClip itemBreakSound;
     public AudioClip UISound;
+    public List<AudioClip> victorySound;
 
 
     // Start is called before the first frame update
@@ -81,5 +82,11 @@ public class SoundManager : MonoBehaviour
     public void MakeUISound()
     {
         MakeSound(UISound);
+    }
+
+    public void MakeVictorySound()
+    {
+        int randomIndex = Random.Range(0, victorySound.Count);
+        MakeSound(victorySound[randomIndex]);
     }
 }

@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour
                 CheckWinner();
                 break;
             case STATE_PLAY.DisplayResultsRound:
+                SoundManager.managerSound.MakeVictorySound();
                 if (!isWaitingForInput)
                 {
                     UIManager.managerUI.DisplayRoundEnding(idPlayerwinner);
@@ -174,6 +175,7 @@ public class GameManager : MonoBehaviour
                 break;
             case STATE_PLAY.DisplayResultsFinal:
                 Debug.Log(gameState);
+                SoundManager.managerSound.MakeVictorySound();
                 if (!isWaitingForInput)
                 {
                     UIManager.managerUI.DisplayPodiumWinner(listWinnerPlayers);
