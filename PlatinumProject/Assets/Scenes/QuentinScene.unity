@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.076979585, g: 0.35495034, b: 0.9464395, a: 1}
+  m_IndirectSpecularColor: {r: 0.074020684, g: 0.34666348, b: 0.9476599, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7510,16 +7510,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: d4fe31b222d53ec4b8f5b4bed36fbeab, type: 3}
     - target: {fileID: 7913258810617097839, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Name
       value: PlayerEntity (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d4fe31b222d53ec4b8f5b4bed36fbeab, type: 3}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: moveSpeedMax
@@ -8404,25 +8404,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: ee06b483f4c4215459d9155d7389ed0b, type: 3}
     - target: {fileID: 7913258810617097839, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Name
       value: PlayerEntity
       objectReference: {fileID: 0}
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ee06b483f4c4215459d9155d7389ed0b, type: 3}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: modelObjs.Array.size
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.size
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -8493,147 +8488,7 @@ PrefabInstance:
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: multiplierKnock
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[0].inSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[0].outSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[1].time
-      value: 1.0010884
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[1].value
-      value: 1.5006274
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[1].inSlope
-      value: -0.10587675
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[1].outSlope
-      value: -0.10587675
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[1].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[2].time
-      value: 3.1576123
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[2].value
-      value: 1.0690255
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[2].inSlope
-      value: -0.7171451
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[2].outSlope
-      value: -0.7171451
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[2].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[2].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[3].time
-      value: 4.3126454
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[3].value
-      value: -0.6165184
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[3].inSlope
-      value: -1.3818032
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[3].outSlope
-      value: -1.3818032
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[3].inWeight
-      value: 0.050209496
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[3].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[4].time
-      value: 4.9385934
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[4].value
-      value: -1.839399
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[4].inSlope
-      value: -0.85545486
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[4].outSlope
-      value: -0.85545486
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[4].inWeight
-      value: 0.10257793
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[4].outWeight
-      value: 0.29035228
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[5].time
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: jumpToDie.m_Curve.Array.data[5].value
-      value: -2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
@@ -9583,16 +9438,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: a02808c82f8dba448b428682bc7762bd, type: 3}
     - target: {fileID: 7913258810617097839, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Name
       value: PlayerEntity (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a02808c82f8dba448b428682bc7762bd, type: 3}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: moveSpeedMax
@@ -12064,16 +11919,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 6cafc215d5f775546b93e426efa13e1f, type: 3}
     - target: {fileID: 7913258810617097839, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: m_Name
       value: PlayerEntity (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cafc215d5f775546b93e426efa13e1f, type: 3}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: moveSpeedMax

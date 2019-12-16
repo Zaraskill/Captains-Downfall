@@ -335,7 +335,7 @@ MonoBehaviour:
   smoke: {fileID: 6045044167209978312, guid: 765d68cb023497b49b2b5e3874c4d589, type: 3}
   startTimeBtwSpawns: 0.5
   durationTime: 5
-  multiplierKnock: 10
+  multiplierKnock: 3
   distToJump: 4
   jumpToDie:
     serializedVersion: 2
@@ -359,8 +359,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.12750404
     - serializedVersion: 3
-      time: 1.701827
-      value: -5.449353
+      time: 1.0204611
+      value: -9.751653
       inSlope: 4.760971
       outSlope: 4.760971
       tangentMode: 0
@@ -368,8 +368,8 @@ MonoBehaviour:
       inWeight: 0.36671197
       outWeight: 0.37913305
     - serializedVersion: 3
-      time: 3
-      value: -15
+      time: 5.1255445
+      value: -79.936356
       inSlope: 2
       outSlope: 2
       tangentMode: 0
