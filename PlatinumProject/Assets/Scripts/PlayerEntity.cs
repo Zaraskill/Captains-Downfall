@@ -557,6 +557,16 @@ public class PlayerEntity : MonoBehaviour
         }
     }
 
+    public void PlayWinAnim()
+    {
+        animator.SetBool("hasWin", true);
+    }
+
+    public void ResetWinAnim()
+    {
+        animator.SetBool("hasWin", false);
+    }
+
     #endregion
 
     #region Death Fonctions
@@ -595,8 +605,15 @@ public class PlayerEntity : MonoBehaviour
     {
         isDead = false;
         isKnocked = false;
+        isHoldingItem = false;
+        canPick = false;
+        isInsideCanon = false;
+        canon = null;
+        canPick = false;
         listObjCanPick.Clear();
         groundY = 0f;
+        ResetWinAnim();
+        _rigidbody.velocity = Vector3.zero;
         speed = Vector2.zero;
         orientDir = Vector2.right;
         moveDir = Vector2.zero;
@@ -604,6 +621,7 @@ public class PlayerEntity : MonoBehaviour
 
     public void ResetMovement()
     {
+        _rigidbody.velocity = Vector3.zero;
         speed = Vector2.zero;
         orientDir = Vector2.right;
         moveDir = Vector2.zero;

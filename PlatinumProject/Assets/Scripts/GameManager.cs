@@ -127,14 +127,14 @@ public class GameManager : MonoBehaviour
                     {
                         idPlayerwinner = 5;
                         Debug.Log(idPlayerwinner);
-                        Time.timeScale = 0.5f;
+                        PlayWinnerAnimation();
                         gameState = STATE_PLAY.EndParty;
                     }
                     else if (teamTwo.Count == 0)
                     {
                         idPlayerwinner = 4;
                         Debug.Log(idPlayerwinner);
-                        Time.timeScale = 0.5f;
+                        PlayWinnerAnimation();
                         gameState = STATE_PLAY.EndParty;
                     }
                 }
@@ -142,15 +142,14 @@ public class GameManager : MonoBehaviour
                 {                    
                     idPlayerwinner = listAlivePlayers[0].playerID;
                     CameraManager.managerCamera.GoToPlayer(listPointForCamera[listAlivePlayers[0].playerID]);
+                    PlayWinnerAnimation();
                     Debug.Log(idPlayerwinner);
-                    Time.timeScale = 0.5f;
                     gameState = STATE_PLAY.EndParty;      
                 }
                 break;
             case STATE_PLAY.EndParty:
                 if (timer <= 0)
                 {
-                    Time.timeScale = 1f;
                     timer = timerStart;
                     gameState = STATE_PLAY.Results;
                 }
@@ -183,7 +182,6 @@ public class GameManager : MonoBehaviour
                 WaitingForInput();
                 break;
             default:
-                Application.Quit();
                 break;
         }
     }
@@ -420,6 +418,14 @@ public class GameManager : MonoBehaviour
     {
         return teamTwo;
     }
+
+    public void PlayWinnerAnimation()
+    {
+        foreach(PlayerEntity player in listAlivePlayers)
+        {
+            player.PlayWinAnim();
+        }
+    }    
 
     #endregion
 
