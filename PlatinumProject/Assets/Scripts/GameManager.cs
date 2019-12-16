@@ -557,7 +557,7 @@ public class GameManager : MonoBehaviour
                     UIManager.managerUI.pressAToContinue.SetActive(false);
                     SceneManager.LoadScene(1);
                 }
-                else if (gameState == STATE_PLAY.PrepareParty)
+                else if (gameState == STATE_PLAY.PrepareParty && UIManager.managerUI.pressAToContinue.activeSelf)
                 {
                     isCoroutineDone = false;
                     UIManager.managerUI.pressAToContinue.SetActive(false);
