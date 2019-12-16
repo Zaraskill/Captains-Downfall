@@ -578,6 +578,7 @@ public class PlayerEntity : MonoBehaviour
                 Vector3 distJump = orientDir * distToJump;
                 targetDrop = new Vector3(positionWhenDie.x + distJump.x, positionWhenDie.y, positionWhenDie.z + distJump.y);
             }
+            GameManager.managerGame.CheckAlivePlayers();
             Debug.Log(typeDeath);
             GameManager.managerGame.DeadPlayer(playerID);
         }
@@ -591,7 +592,8 @@ public class PlayerEntity : MonoBehaviour
     public void Respawn()
     {
         isDead = false;
-        isKnocked = false;listObjCanPick.Clear();
+        isKnocked = false;
+        listObjCanPick.Clear();
         groundY = 0f;
         speed = Vector2.zero;
         orientDir = Vector2.right;

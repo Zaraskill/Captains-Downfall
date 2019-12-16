@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
     //Gestion controllers
     private IList<Joystick> listControllers;
 
+    //Gestion Endround
+    private float timer;
+    public float timerStart = 3f;
+
     private Animator animCredits;
 
     public float timeBtwTutos;
@@ -395,6 +399,34 @@ public class GameManager : MonoBehaviour
         return teamTwo;
     }
 
+    public void CheckAlivePlayers()
+    {
+        if (isTeam)
+        {
+            if (teamOne.Count == 0 || teamTwo.Count == 0)
+            {
+                Time.timeScale = 0.1f;
+                StartCoroutine(TransitionWinner());
+            }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            if (nbPlayersAlive == 1)
+            {
+                Time.timeScale = 0.1f;
+                StartCoroutine(TransitionWinner());
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
+
     #endregion
 
     #region Events Fonctions
@@ -598,5 +630,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBtwTutos);
         pressToContinue.SetActive(true);
+    }
+
+    IEnumerator TransitionWinner()
+    {
+        yield return new WaitForSeconds(3);
+        Time.timeScale = 1f;
     }
 }
