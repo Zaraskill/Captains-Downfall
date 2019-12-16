@@ -535,9 +535,9 @@ public class GameManager : MonoBehaviour
             }
             if (controller.GetButtonDown(0))
             {
-                isWaitingForInput = false;
                 if (gameState == STATE_PLAY.MainMenu)
                 {
+                    isWaitingForInput = false;
                     UIManager.managerUI.mainMenuToDisplay.SetActive(false);
                     UIManager.managerUI.navBar.SetActive(false);
                     UIManager.managerUI.tutoUI.SetActive(true);
@@ -545,6 +545,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (gameState == STATE_PLAY.TutoMove && UIManager.managerUI.pressAToContinue.activeSelf)
                 {
+                    isWaitingForInput = false;
                     isCoroutineDone = false;
                     UIManager.managerUI.pressAToContinue.SetActive(false);
                     UIManager.managerUI.tutoMove.SetActive(false);
@@ -553,12 +554,14 @@ public class GameManager : MonoBehaviour
                 }
                 else if (gameState == STATE_PLAY.TutoObjects && UIManager.managerUI.pressAToContinue.activeSelf)
                 {
+                    isWaitingForInput = false;
                     isCoroutineDone = false;
                     UIManager.managerUI.pressAToContinue.SetActive(false);
                     SceneManager.LoadScene(1);
                 }
                 else if (gameState == STATE_PLAY.PrepareParty && UIManager.managerUI.pressAToContinue.activeSelf)
                 {
+                    isWaitingForInput = false;
                     isCoroutineDone = false;
                     UIManager.managerUI.pressAToContinue.SetActive(false);
                     UIManager.managerUI.StartRound();
@@ -566,6 +569,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (gameState == STATE_PLAY.DisplayResultsRound)
                 {
+                    isWaitingForInput = false;
                     if (listWinnerPlayers.Count > 0)
                     {
                         gameState = STATE_PLAY.DisplayResultsFinal;
@@ -578,6 +582,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (gameState == STATE_PLAY.DisplayResultsFinal)
                 {
+                    isWaitingForInput = false;
                     SceneManager.LoadScene(0);
                 }
             }
