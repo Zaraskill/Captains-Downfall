@@ -521,6 +521,10 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(TransitionBetweenTutos(UIManager.managerUI.pressAToContinue));
             }
+            else if (gameState == STATE_PLAY.DisplayResultsRound && !isCoroutineDone)
+            {
+                StartCoroutine(TransitionBetweenTutos(UIManager.managerUI.pressAToContinue));
+            }
             if (controller.GetButtonDown(0))
             {
                 if (gameState == STATE_PLAY.MainMenu)
@@ -555,9 +559,10 @@ public class GameManager : MonoBehaviour
                     UIManager.managerUI.StartRound();
                     gameState = STATE_PLAY.Party;
                 }
-                else if (gameState == STATE_PLAY.DisplayResultsRound)
+                else if (gameState == STATE_PLAY.DisplayResultsRound && UIManager.managerUI.pressAToContinue.activeSelf)
                 {
                     isWaitingForInput = false;
+                    isCoroutineDone = false;
                     if (listWinnerPlayers.Count > 0)
                     {
                         gameState = STATE_PLAY.DisplayResultsFinal;
