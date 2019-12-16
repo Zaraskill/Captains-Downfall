@@ -15,6 +15,7 @@ public class PlayerEntity : MonoBehaviour
     [Header("Player")]
     public int playerID = 0;
     public int teamID;
+    public GameObject pointToCamera;
     
     // Move
     [Header("Move")]
@@ -582,6 +583,10 @@ public class PlayerEntity : MonoBehaviour
             }
             Debug.Log(typeDeath);
             GameManager.managerGame.DeadPlayer(playerID);
+            if (GameManager.managerGame.IsLastPlayerToDie())
+            {
+                CameraManager.managerCamera.GoToPlayer(pointToCamera);
+            }
         }
     }
 

@@ -417,6 +417,25 @@ public class GameManager : MonoBehaviour
         return teamTwo;
     }
 
+    public bool IsLastPlayerToDie()
+    {
+        if (nbPlayersAlive == 1)
+        {
+            return true;
+        }
+        else if (isTeam)
+        {
+            if (nbPlayersAlive == 2)
+            {
+                if (teamOne.Count == 0 || teamTwo.Count == 0)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     #endregion
 
     #region Events Fonctions
@@ -433,6 +452,7 @@ public class GameManager : MonoBehaviour
         teamOne = new List<PlayerEntity>();
         teamTwo = new List<PlayerEntity>();
         listControllers = ReInput.controllers.Joysticks;
+        CameraManager.managerCamera.ResetRound();
         gameState = STATE_PLAY.PrepareParty;
         for (int i = 0; i < listPlayers.Count; i++)
         {
@@ -446,6 +466,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+            CameraManager.managerCamera.ResetRound();
             DestroyTeam();
             ClearMap();
             PrepareMap();
