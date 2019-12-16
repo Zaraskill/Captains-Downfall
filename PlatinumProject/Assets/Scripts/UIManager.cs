@@ -153,6 +153,7 @@ public class UIManager : MonoBehaviour
         roundFFA.SetActive(false);
         roundTF.SetActive(false);
         beginRound.SetActive(false);
+        GameManager.managerGame.StartMovement();
     }
 
     #endregion
@@ -291,6 +292,7 @@ public class UIManager : MonoBehaviour
     public void EndRound()
     {
         endRound.SetActive(false);
+
     }
 
     private void UpdateImage(PlayerEntity player)

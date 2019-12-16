@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        if (!entity.CanMove())
+        {
+            return;
+        }
         float dirX = 0f;
         float dirY = 0f;
 

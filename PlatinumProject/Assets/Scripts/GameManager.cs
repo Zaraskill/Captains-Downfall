@@ -148,6 +148,10 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case STATE_PLAY.EndParty:
+                foreach(PlayerEntity player in listAlivePlayers)
+                {
+                    player.OnEndingAnimations();
+                }
                 if (timer <= 0)
                 {
                     timer = timerStart;
@@ -425,7 +429,15 @@ public class GameManager : MonoBehaviour
         {
             player.PlayWinAnim();
         }
-    }    
+    }
+
+    public void StartMovement()
+    {
+        foreach(PlayerEntity player in listPlayers)
+        {
+            player.TimeToMove();
+        }
+    }
 
     #endregion
 
@@ -646,9 +658,4 @@ public class GameManager : MonoBehaviour
         pressToContinue.SetActive(true);
     }
 
-    IEnumerator TransitionWinner()
-    {
-        yield return new WaitForSeconds(3);
-        Time.timeScale = 1f;
-    }
 }

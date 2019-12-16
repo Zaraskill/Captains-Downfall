@@ -24,6 +24,7 @@ public class PlayerEntity : MonoBehaviour
     private Vector2 moveDir;
     private Vector2 speed = Vector2.zero;
     private Vector2 orientDir = Vector2.right;
+    private bool canMove = false;
 
     // Frictions
     [Header("Friction")]
@@ -237,6 +238,21 @@ public class PlayerEntity : MonoBehaviour
         {
             moveDir = dir;
         }
+    }
+
+    public void OnEndingAnimations()
+    {
+        canMove = false;
+    }
+
+    public bool CanMove()
+    {
+        return canMove;
+    }
+
+    public void TimeToMove()
+    {
+        canMove = true;
     }
 
     private void UpdateModelOrient()
