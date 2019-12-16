@@ -460,10 +460,10 @@ public class GameManager : MonoBehaviour
             CameraManager.managerCamera.ResetRound();
             DestroyTeam();
             ClearMap();
+            RespawnPlayers();
             PrepareMap();
             listWinnerPlayers.Clear();
-            idPlayerwinner = -1;
-            RespawnPlayers();
+            idPlayerwinner = -1;            
             listAlivePlayers = new List<PlayerEntity>(listPlayers);
             nbPlayersAlive = 4;
             if (Random.Range(0, 2) == 1)
