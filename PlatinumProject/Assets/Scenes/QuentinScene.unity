@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.074020684, g: 0.34666348, b: 0.9476599, a: 1}
+  m_IndirectSpecularColor: {r: 0.08101093, g: 0.36622638, b: 0.94467866, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1025,6 +1025,11 @@ MonoBehaviour:
   - {fileID: 842025164}
   - {fileID: 1721919019}
   nbPlayersAlive: 0
+  listPointForCamera:
+  - {fileID: 1324460559}
+  - {fileID: 1469938967}
+  - {fileID: 1884622225}
+  - {fileID: 1113654134}
   timerStart: 3
   timeBtwTutos: 2
 --- !u!4 &101982922
@@ -7529,11 +7534,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerEntity (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: d4fe31b222d53ec4b8f5b4bed36fbeab, type: 3}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: moveSpeedMax
@@ -7664,8 +7664,19 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d4fe31b222d53ec4b8f5b4bed36fbeab, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 836a6388fdaedac47890666e71c595f7, type: 3}
+--- !u!1 &1113654134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5642163608669561964, guid: 836a6388fdaedac47890666e71c595f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1113654133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1147995568 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 22e1a177d5b01be47b422c78ee94ebf0,
@@ -8423,11 +8434,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerEntity
       objectReference: {fileID: 0}
-    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: ee06b483f4c4215459d9155d7389ed0b, type: 3}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: modelObjs.Array.size
@@ -8609,8 +8615,19 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ee06b483f4c4215459d9155d7389ed0b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 836a6388fdaedac47890666e71c595f7, type: 3}
+--- !u!1 &1324460559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5642163608669561964, guid: 836a6388fdaedac47890666e71c595f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1324460558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1326318000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9457,11 +9474,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerEntity (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: a02808c82f8dba448b428682bc7762bd, type: 3}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: moveSpeedMax
@@ -9592,8 +9604,19 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a02808c82f8dba448b428682bc7762bd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 836a6388fdaedac47890666e71c595f7, type: 3}
+--- !u!1 &1469938967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5642163608669561964, guid: 836a6388fdaedac47890666e71c595f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1469938966}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1472522029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11938,11 +11961,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerEntity (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 6cafc215d5f775546b93e426efa13e1f, type: 3}
     - target: {fileID: 7913258810617097838, guid: 836a6388fdaedac47890666e71c595f7,
         type: 3}
       propertyPath: moveSpeedMax
@@ -12073,8 +12091,19 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8356959879143875125, guid: 836a6388fdaedac47890666e71c595f7,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cafc215d5f775546b93e426efa13e1f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 836a6388fdaedac47890666e71c595f7, type: 3}
+--- !u!1 &1884622225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5642163608669561964, guid: 836a6388fdaedac47890666e71c595f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1884622224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1886268683
 PrefabInstance:
   m_ObjectHideFlags: 0
