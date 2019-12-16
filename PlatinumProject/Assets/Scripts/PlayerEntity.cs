@@ -578,7 +578,6 @@ public class PlayerEntity : MonoBehaviour
                 Vector3 distJump = orientDir * distToJump;
                 targetDrop = new Vector3(positionWhenDie.x + distJump.x, positionWhenDie.y, positionWhenDie.z + distJump.y);
             }
-            GameManager.managerGame.CheckAlivePlayers();
             Debug.Log(typeDeath);
             GameManager.managerGame.DeadPlayer(playerID);
         }

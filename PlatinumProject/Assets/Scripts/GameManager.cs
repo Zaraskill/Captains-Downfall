@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager managerGame;
 
-    public enum STATE_PLAY {MainMenu, Credits, TutoMove, TutoObjects, PlayerSelection, PrepareFirstParty, PrepareParty, Party, Results, DisplayResultsRound, DisplayResultsFinal}
+    public enum STATE_PLAY {MainMenu, Credits, TutoMove, TutoObjects, PlayerSelection, PrepareFirstParty, PrepareParty, Party, EndParty, Results, DisplayResultsRound, DisplayResultsFinal}
 
     private STATE_PLAY gameState;
     public STATE_PLAY startState;
@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
         gameState = startState;
         listControllers = ReInput.controllers.Joysticks;
         animCredits = UIManager.managerUI.displayCredits.GetComponent<Animator>();
+        timer = timerStart;
     }
 
     // Update is called once per frame
@@ -125,20 +126,35 @@ public class GameManager : MonoBehaviour
                     {
                         idPlayerwinner = 5;
                         Debug.Log(idPlayerwinner);
-                        gameState = STATE_PLAY.Results;
+                        Time.timeScale = 0.5f;
+                        gameState = STATE_PLAY.EndParty;
                     }
                     else if (teamTwo.Count == 0)
                     {
                         idPlayerwinner = 4;
                         Debug.Log(idPlayerwinner);
-                        gameState = STATE_PLAY.Results;
+                        Time.timeScale = 0.5f;
+                        gameState = STATE_PLAY.EndParty;
                     }
                 }
                 else if (nbPlayersAlive == 1)
                 {                    
                     idPlayerwinner = listAlivePlayers[0].playerID;
                     Debug.Log(idPlayerwinner);
-                    gameState = STATE_PLAY.Results;      
+                    Time.timeScale = 0.5f;
+                    gameState = STATE_PLAY.EndParty;      
+                }
+                break;
+            case STATE_PLAY.EndParty:
+                if (timer <= 0)
+                {
+                    Time.timeScale = 1f;
+                    timer = timerStart;
+                    gameState = STATE_PLAY.Results;
+                }
+                else
+                {
+                    timer -= Time.unscaledDeltaTime;
                 }
                 break;
             case STATE_PLAY.Results:
@@ -399,34 +415,6 @@ public class GameManager : MonoBehaviour
     public List<PlayerEntity> GetTeamTwo()
     {
         return teamTwo;
-    }
-
-    public void CheckAlivePlayers()
-    {
-        if (isTeam)
-        {
-            if (teamOne.Count == 0 || teamTwo.Count == 0)
-            {
-                Time.timeScale = 0.1f;
-                StartCoroutine(TransitionWinner());
-            }
-            else
-            {
-                return;
-            }
-        }
-        else
-        {
-            if (nbPlayersAlive == 1)
-            {
-                Time.timeScale = 0.1f;
-                StartCoroutine(TransitionWinner());
-            }
-            else
-            {
-                return;
-            }
-        }
     }
 
     #endregion
