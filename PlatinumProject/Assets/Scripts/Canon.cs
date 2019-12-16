@@ -111,6 +111,18 @@ public class Canon : MonoBehaviour
         }
     }
 
+    public void ResetCanon()
+    {
+        canEnter = false;
+        animator.SetBool("isShooting", false);
+        isRotating = false;
+    }
+
+    public void SetCanEnterCanon()
+    {
+        canEnter = true;
+    }
+
     private void DisplayCanonUI()
     {
         if (playerCollisionned != null)

@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
 
     private bool isCoroutineDone = false;
 
+    public Canon canonPrefab;
+
     void Awake()
     {
         if (managerGame != null)
@@ -148,6 +150,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case STATE_PLAY.EndParty:
+                canonPrefab.ResetCanon();
                 foreach(PlayerEntity player in listAlivePlayers)
                 {
                     player.OnEndingAnimations();
@@ -470,6 +473,7 @@ public class GameManager : MonoBehaviour
             return;
         }
             CameraManager.managerCamera.ResetRound();
+            canonPrefab.SetCanEnterCanon();
             DestroyTeam();
             ClearMap();
             RespawnPlayers();
