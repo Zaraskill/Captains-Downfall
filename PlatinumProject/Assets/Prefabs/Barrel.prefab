@@ -128,10 +128,10 @@ MonoBehaviour:
   isTouchingPlayer: 0
   isExploding: 0
   explosionEffect: {fileID: 150222, guid: 9f03f372adf02874cb666857a9f97abd, type: 3}
-  magnitude: 6
-  roughness: 10
-  fadeInTime: 0.1
-  fadeOutTime: 1
+  magnitude: 10
+  roughness: 5
+  fadeInTime: 0.5
+  fadeOutTime: 1.3
 --- !u!54 &-3645558695578656319
 Rigidbody:
   m_ObjectHideFlags: 0

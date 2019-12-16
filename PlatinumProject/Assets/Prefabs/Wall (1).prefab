@@ -172,9 +172,9 @@ MonoBehaviour:
   currentHealthPoints: 0
   destructionEffect: {fileID: 6303737827848758770, guid: 258c34dbc83d2364d994c027f37e9429,
     type: 3}
-  magnitude: 1
-  roughness: 1
-  fadeInTime: 0.1
+  magnitude: 7
+  roughness: 3
+  fadeInTime: 0.3
   fadeOutTime: 1
 --- !u!1 &6636642176532145641
 GameObject:

@@ -1185,9 +1185,9 @@ MonoBehaviour:
   smokeEffect: {fileID: 130346, guid: a6f9599628f0bcc4292dc49c2596b7b6, type: 3}
   timeInsideCanon: 2
   timeToExpel: 3
-  magnitude: 4
+  magnitude: 10
   roughness: 5
-  fadeInTime: 0.2
+  fadeInTime: 0.4
   fadeOutTime: 1
   UIPlayerInCanon:
   - {fileID: 21300000, guid: 5b59bb0563d66e941aeff4c71eb06282, type: 3}
