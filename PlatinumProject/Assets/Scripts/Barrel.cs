@@ -26,6 +26,12 @@ public class Barrel : MonoBehaviour
     private PlayerEntity playerCollisionned;
     private Animator animator;
 
+    //Vibration
+    [Header("Vibration Manette")]
+    public int motorIndex;
+    public float motorLevel;
+    public float duration;
+
 
     // Start is called before the first frame update
     void Start()
@@ -121,6 +127,7 @@ public class Barrel : MonoBehaviour
                 Vector3 orientDir = (playerIntoArea[i].transform.position - transform.position);
                 Vector3 directionNormalized = orientDir.normalized;
                 playerIntoArea[i].Knockback(new Vector2(directionNormalized.x, directionNormalized.z), knockPower);
+                playerIntoArea[i].controller.mainPlayer.SetVibration(motorIndex, motorLevel, duration);
                 }
             }            
         }

@@ -407,7 +407,6 @@ public class PlayerEntity : MonoBehaviour
         moveDir = Vector2.zero;
         speed = knockDir * powerKnock;
         animator.SetBool("HitBool", true);
-        controller.mainPlayer.SetVibration(motorIndex, motorLevel, duration);
     }
 
     public bool IsKnocked()
@@ -515,6 +514,7 @@ public class PlayerEntity : MonoBehaviour
             if (IsKnocked())
             {
                 wall.TakeDamage();
+                controller.mainPlayer.SetVibration(motorIndex, motorLevel, duration);
             }
             HittingWall();
             

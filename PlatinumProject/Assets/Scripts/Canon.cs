@@ -31,6 +31,12 @@ public class Canon : MonoBehaviour
     private PlayerEntity playerCollisionned;
     private Animator animator;
 
+    //Vibration
+    [Header("Vibration Manette")]
+    public int motorIndex;
+    public float motorLevel;
+    public float duration;
+
     public List<Sprite> UIPlayerInCanon; 
 
     // Start is called before the first frame update
@@ -85,6 +91,7 @@ public class Canon : MonoBehaviour
         orientDir = transform.GetChild(0).transform.forward;
         Vector2 orientDirCanon = new Vector2(orientDir.x, orientDir.z);
         playerCollisionned.Knockback(orientDirCanon, knockPower);
+        playerCollisionned.controller.mainPlayer.SetVibration(motorIndex, motorLevel, duration);
         isShooting = false;
         canEnter = true;
         playerCollisionned = null;
