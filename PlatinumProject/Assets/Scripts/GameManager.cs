@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     private bool isSuddenDeath = false;
     private List<PlayerEntity> teamOne;
     private List<PlayerEntity> teamTwo;
+    public List<GameObject> listPointForCamera;
 
     //Gestion controllers
     private IList<Joystick> listControllers;
@@ -140,6 +141,7 @@ public class GameManager : MonoBehaviour
                 else if (nbPlayersAlive == 1)
                 {                    
                     idPlayerwinner = listAlivePlayers[0].playerID;
+                    CameraManager.managerCamera.GoToPlayer(listPointForCamera[listAlivePlayers[0].playerID]);
                     Debug.Log(idPlayerwinner);
                     Time.timeScale = 0.5f;
                     gameState = STATE_PLAY.EndParty;      
@@ -415,25 +417,6 @@ public class GameManager : MonoBehaviour
     public List<PlayerEntity> GetTeamTwo()
     {
         return teamTwo;
-    }
-
-    public bool IsLastPlayerToDie()
-    {
-        if (nbPlayersAlive == 1)
-        {
-            return true;
-        }
-        else if (isTeam)
-        {
-            if (nbPlayersAlive == 2)
-            {
-                if (teamOne.Count == 0 || teamTwo.Count == 0)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     #endregion

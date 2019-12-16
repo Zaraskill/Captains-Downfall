@@ -583,10 +583,6 @@ public class PlayerEntity : MonoBehaviour
             }
             Debug.Log(typeDeath);
             GameManager.managerGame.DeadPlayer(playerID);
-            if (GameManager.managerGame.IsLastPlayerToDie())
-            {
-                CameraManager.managerCamera.GoToPlayer(pointToCamera);
-            }
         }
     }
 
