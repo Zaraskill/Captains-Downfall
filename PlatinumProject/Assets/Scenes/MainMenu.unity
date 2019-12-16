@@ -613,6 +613,7 @@ MonoBehaviour:
   playerTwo: {fileID: 0}
   playerThree: {fileID: 0}
   playerFour: {fileID: 0}
+  listSounds: []
   listWinner:
   - {fileID: 21300000, guid: c3fa6b7f622a43a478218d0169302cb7, type: 3}
   - {fileID: 21300000, guid: fd1b60a8a3c400a47b679fef394c4388, type: 3}
@@ -681,6 +682,7 @@ MonoBehaviour:
     type: 3}
   itemBreakSound: {fileID: 8300000, guid: a35faa8e49e94774f856471a23760bb1, type: 3}
   UISound: {fileID: 8300000, guid: b2d249407f3a4564097eeb402d00a1dd, type: 3}
+  victorySound: []
 --- !u!114 &235050628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,7 +742,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   nbPlayersAlive: 0
-  timeBtwTutos: 3
+  listPointForCamera: []
+  timerStart: 3
+  timeBtwTutos: 2
 --- !u!4 &235050629
 Transform:
   m_ObjectHideFlags: 0
