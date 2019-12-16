@@ -1189,6 +1189,9 @@ MonoBehaviour:
   roughness: 5
   fadeInTime: 0.4
   fadeOutTime: 1
+  motorIndex: 0
+  motorLevel: 3
+  duration: 0.3
   UIPlayerInCanon:
   - {fileID: 21300000, guid: 5b59bb0563d66e941aeff4c71eb06282, type: 3}
   - {fileID: 21300000, guid: 8a94286f34ed78e448047a508ca0074f, type: 3}
