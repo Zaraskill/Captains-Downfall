@@ -557,6 +557,10 @@ public class GameManager : MonoBehaviour
                     listPlayers[i].ResetMovement();
                 }
             }
+            else if (gameState == STATE_PLAY.DisplayResultsFinal && !isCoroutineDone)
+            {
+                StartCoroutine(TransitionBetweenTutos(UIManager.managerUI.pressAToContinue));
+            }
             if (controller.GetButtonDown(0))
             {
                 if (gameState == STATE_PLAY.MainMenu)
@@ -605,9 +609,11 @@ public class GameManager : MonoBehaviour
                     }
                     UIManager.managerUI.EndRound();
                 }
-                else if (gameState == STATE_PLAY.DisplayResultsFinal)
+                else if (gameState == STATE_PLAY.DisplayResultsFinal && UIManager.managerUI.pressAToContinue.activeSelf)
                 {
                     isWaitingForInput = false;
+                    isCoroutineDone = false;
+                    UIManager.managerUI.pressAToContinue.SetActive(false);
                     SceneManager.LoadScene(0);
                 }
             }
