@@ -18,6 +18,8 @@ public class Canon : MonoBehaviour
     public GameObject smokeEffect;
     public float timeInsideCanon = 0f;
     public float timeToExpel = 3f;
+    private float maxTime = 3f;
+    private float timeLeft;
     private bool isShooting = false;
     private Vector3 orientDir = Vector3.zero;
 
@@ -37,7 +39,12 @@ public class Canon : MonoBehaviour
     public float motorLevel;
     public float duration;
 
-    public List<Sprite> UIPlayerInCanon; 
+    public List<Sprite> UIPlayerInCanon;
+
+    public Image timerBG;
+    public Image timerBar;
+    public Image timerButtonX;
+    public GameObject timerCanonGameObject;
 
     // Start is called before the first frame update
     void Start()
@@ -52,12 +59,15 @@ public class Canon : MonoBehaviour
         {
             UpdateRotate();
             RotateCanon();
+            timerCanonGameObject.SetActive(true);
         }
         else
         {
             Color c = GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color;
             c.a = 0;
             GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = c;
+
+            timerCanonGameObject.SetActive(false);
         }
     }
 
@@ -68,8 +78,9 @@ public class Canon : MonoBehaviour
 
     private void RotateCanon()
     {
-        timeInsideCanon += Time.fixedDeltaTime;
-        if (timeInsideCanon > timeToExpel)
+        timeLeft -= Time.fixedDeltaTime;
+        timerBar.fillAmount = timeLeft / maxTime;
+        if (timeLeft <= 0)
         {
             ForcedEjection();
         }
@@ -104,8 +115,10 @@ public class Canon : MonoBehaviour
             canEnter = false;
             animator.SetBool("isShooting", false);
             isRotating = true;
+            timeLeft = maxTime;
             playerCollisionned = collision.gameObject.GetComponent<PlayerEntity>();
             playerCollisionned.gameObject.SetActive(false);
+            playerCollisionned.gameObject.transform.position = transform.position;
             playerCollisionned.GoInsideCanon(this);
             DisplayCanonUI();
         }
@@ -137,10 +150,12 @@ public class Canon : MonoBehaviour
             if(playerCollisionned.teamID == 1)
             {
                 GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.blue;
+                timerBar.color = Color.blue;
             }
             else if (playerCollisionned.teamID == 2)
             {
                 GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.red;
+                timerBar.color = Color.red;
             }
             else if (playerCollisionned.teamID == 0)
             {
@@ -148,15 +163,19 @@ public class Canon : MonoBehaviour
                 {
                     case 0:
                         GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.blue;
+                        timerBar.color = Color.blue;
                         break;
                     case 1:
                         GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.red;
+                        timerBar.color = Color.red;
                         break;
                     case 2:
                         GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.green;
+                        timerBar.color = Color.green;
                         break;
                     case 3:
                         GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().color = Color.yellow;
+                        timerBar.color = Color.yellow;
                         break;
                     default:
                         break;
