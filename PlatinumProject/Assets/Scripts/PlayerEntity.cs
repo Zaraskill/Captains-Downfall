@@ -17,7 +17,7 @@ public class PlayerEntity : MonoBehaviour
     public int playerID = 0;
     public int teamID;
     public GameObject pointToCamera;
-    public Image crown4Points;
+    public GameObject crown4Points;
     
     // Move
     [Header("Move")]
@@ -651,7 +651,7 @@ public class PlayerEntity : MonoBehaviour
 
     public void DisplaytheCrown()
     {
-        crown4Points.enabled = true;
+        crown4Points.SetActive(true);
     }
     
 }

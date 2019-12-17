@@ -167,7 +167,8 @@ public class GameManager : MonoBehaviour
                 break;
             case STATE_PLAY.Results:
                 Debug.Log(gameState);
-                UpdatePoints();                
+                UpdatePoints();
+                CheckPlayerFourPoints();
                 CheckWinner();
                 break;
             case STATE_PLAY.DisplayResultsRound:
@@ -360,21 +361,12 @@ public class GameManager : MonoBehaviour
         if (idPlayerwinner < 4)
         {
             listPointsPlayers[idPlayerwinner]++;
-            if (listPointsPlayers[idPlayerwinner] == 4)
-            {
-                listPlayers[idPlayerwinner].DisplaytheCrown();
-            }
         }
         else if (idPlayerwinner == 4)
         {
             foreach (PlayerEntity player in teamOne)
             {
                 listPointsPlayers[player.playerID]++;
-                if (listPointsPlayers[player.playerID] == 4)
-                {
-                    listPlayers[player.playerID].DisplaytheCrown();
-                }
-
             }
         }
         else
@@ -382,14 +374,20 @@ public class GameManager : MonoBehaviour
             foreach (PlayerEntity player in teamTwo)
             {
                 listPointsPlayers[player.playerID]++;
-                if (listPointsPlayers[player.playerID] == 4)
-                {
-                    listPlayers[player.playerID].DisplaytheCrown();
-                }
             }
         }
-        listAlivePlayers.Clear();
-        
+        listAlivePlayers.Clear();        
+    }
+
+    private void CheckPlayerFourPoints()
+    {
+        for (int index = 0; index < listPointsPlayers.Count; index++)
+        {
+            if (listPointsPlayers[index] == 4)
+            {
+                listPlayers[index].DisplaytheCrown();
+            }
+        }
     }
 
     private void CheckWinner()
