@@ -360,12 +360,21 @@ public class GameManager : MonoBehaviour
         if (idPlayerwinner < 4)
         {
             listPointsPlayers[idPlayerwinner]++;
+            if (listPointsPlayers[idPlayerwinner] == 4)
+            {
+                listPlayers[idPlayerwinner].DisplaytheCrown();
+            }
         }
         else if (idPlayerwinner == 4)
         {
             foreach (PlayerEntity player in teamOne)
             {
                 listPointsPlayers[player.playerID]++;
+                if (listPointsPlayers[player.playerID] == 4)
+                {
+                    listPlayers[player.playerID].DisplaytheCrown();
+                }
+
             }
         }
         else
@@ -373,6 +382,10 @@ public class GameManager : MonoBehaviour
             foreach (PlayerEntity player in teamTwo)
             {
                 listPointsPlayers[player.playerID]++;
+                if (listPointsPlayers[player.playerID] == 4)
+                {
+                    listPlayers[player.playerID].DisplaytheCrown();
+                }
             }
         }
         listAlivePlayers.Clear();
