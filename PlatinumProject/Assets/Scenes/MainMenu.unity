@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -745,6 +745,7 @@ MonoBehaviour:
   listPointForCamera: []
   timerStart: 3
   timeBtwTutos: 2
+  canonPrefab: {fileID: 0}
 --- !u!4 &235050629
 Transform:
   m_ObjectHideFlags: 0
@@ -5197,7 +5198,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.05
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -620,6 +620,7 @@ public class PlayerEntity : MonoBehaviour
 
     public void Respawn()
     {
+        gameObject.SetActive(true);
         isDead = false;
         isKnocked = false;
         isHoldingItem = false;
