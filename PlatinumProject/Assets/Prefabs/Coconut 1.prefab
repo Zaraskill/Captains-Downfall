@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82415c0f904d15f44975d2bf044ac82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerKnock: 75
+  powerKnock: 45
   isPickable: 1
   isThrown: 0
   curveThrow:
